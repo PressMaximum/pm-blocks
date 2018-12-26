@@ -27,10 +27,9 @@
 
 
 
-
-import "./call-to-action/block.js";
-import "./posts/block.js";
-import "./repeater/repeater.js";
-import "./repeater/item.js";
+import "./blocks/call-to-action/block.js";
+import "./blocks/posts/block.js";
+import "./blocks/repeater/repeater.js";
+import "./blocks/repeater/item.js";
 
 
