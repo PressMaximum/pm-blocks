@@ -9,6 +9,7 @@
 import './style.scss';
 import './editor.scss';
 
+
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 
@@ -52,6 +53,7 @@ registerBlockType( 'cgb/block-pm-blocks', {
 		// Creates a <p class='wp-block-cgb-block-pm-blocks'></p>.
 		return (
 			<div className={ props.className }>
+				<p>Padding control</p>
 				<p>— Hello from the backend.</p>
 				<p>
 					CGB BLOCK: <code>pm-blocks</code> is a new Gutenberg block

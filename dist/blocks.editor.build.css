@@ -4,6 +4,10 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.padding-together.active {
+  background: #000;
+  color: #fff; }
+
 /**
  * #.# Editor Styles
  *
@@ -23,6 +27,10 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.padding-together.active {
+  background: #000;
+  color: #fff; }
+
 /**
  * #.# Editor Styles
  *

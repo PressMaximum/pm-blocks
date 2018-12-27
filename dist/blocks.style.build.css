@@ -4,6 +4,10 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.padding-together.active {
+  background: #000;
+  color: #fff; }
+
 /**
  * #.# Styles
  *
@@ -22,6 +26,10 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.padding-together.active {
+  background: #000;
+  color: #fff; }
+
 /**
  * #.# Styles
  *
@@ -40,6 +48,10 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.padding-together.active {
+  background: #000;
+  color: #fff; }
+
 .pm-repeater {
   border: 3px solid #ededed; }
 
