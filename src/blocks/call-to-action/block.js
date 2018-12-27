@@ -9,6 +9,7 @@
 import './style.scss';
 import './editor.scss';
 import PaddingControl from '../../components/padding';
+import MarginControl from '../../components/margin';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -50,12 +51,13 @@ registerBlockType( 'cgb/block-pm-cta', {
 		const {
 			setAttributes
 		} = props;
-		const { padding } = props.attributes;
+		const { padding, margin } = props.attributes;
 		console.log("props: ", props);
 		console.log("attributes: ", props.attributes);
 		return (
 			<div className={ props.className }>
 				<PaddingControl onPaddingChange={ (value) =>setAttributes({padding: value})}/>
+				<MarginControl onMarginChange={ (value) =>setAttributes({margin: value})}/>
 				<p>— Hello from the backend.</p>
 				<p>
 					CGB BLOCK: <code>pm-blocks</code> is a new Gutenberg block
