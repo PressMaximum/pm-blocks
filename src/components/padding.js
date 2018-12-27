@@ -1,7 +1,6 @@
 const { __ } = wp.i18n;
-const {
-	Component,
-} = wp.element;
+import { defaults } from "lodash";
+const { Component } = wp.element;
 const {
 	TextControl,
 	CheckboxControl,
@@ -12,143 +11,205 @@ const {
 	BaseControl
 } = wp.components;
 const { withState, withInstanceId } = wp.compose;
-var closest = require('dom-closest');
+// var closest = require('dom-closest');
+class CSSRulerControl extends Component {
+	constructor() {
+		super(...arguments);
 
-export default function PaddingControl( {
-	padding,
-	onPaddingChange,
-	...props
-}) {
-	var value_together = true;
-	var padding_values ={
-		top: '',
-		left: '',
-		bottom: '',
-		right: '',
-		link: '',
+		const default_value = {
+			top: "",
+			left: "",
+			bottom: "",
+			right: "",
+			link: "",
 
-		top_tablet: '',
-		left_tablet: '',
-		bottom_tablet: '',
-		right_tablet: '',
-		link_tablet: '',
+			top_tablet: "",
+			left_tablet: "",
+			bottom_tablet: "",
+			right_tablet: "",
+			link_tablet: "",
 
-		top_mobile: '',
-		left_mobile: '',
-		bottom_mobile: '',
-		right_mobile: '',
-		link_mobile: '',
-		_devices: [],
-	};
+			top_mobile: "",
+			left_mobile: "",
+			bottom_mobile: "",
+			right_mobile: "",
+			link_mobile: "",
+			_devices: []
+		};
 
-	const onChangeHandler = ( e ) => {
-		var current_node = event.target;
-		var settings_wrap_node = closest( current_node, '.padding-settings' );
-		var current_responsive_mode = settings_wrap_node.getAttribute('data-mode');
-		var wraper_node = closest( current_node, '.padding-control-wrap' );
-		var value = e;
-
-		var padding_top_node = wraper_node.querySelector(`input[name="${current_responsive_mode}-padding-top"]`);
-		var padding_right_node = wraper_node.querySelector(`input[name="${current_responsive_mode}-padding-right"]`);
-		var padding_bottom_node = wraper_node.querySelector(`input[name="${current_responsive_mode}-padding-bottom"]`);
-		var padding_left_node = wraper_node.querySelector(`input[name="${current_responsive_mode}-padding-left"]`);
-
-		if( value_together ) {
-			padding_top_node.value = value;
-			padding_right_node.value = value;
-			padding_bottom_node.value = value;
-			padding_left_node.value = value;
-		}
-
-		var device_prefix = '';
-		if( 'desktop' !== current_responsive_mode ) {
-			device_prefix = '_' + current_responsive_mode;
-		}
-
-		var key_padding_top = 'top' + device_prefix; 
-		var key_padding_right = 'right' + device_prefix; 
-		var key_padding_bottom = 'bottom' + device_prefix; 
-		var key_padding_left = 'left' + device_prefix; 
-
-		
-		padding_values[key_padding_top] = padding_top_node.value;
-		padding_values[key_padding_right] = padding_right_node.value;
-		padding_values[key_padding_bottom] = padding_bottom_node.value;
-		padding_values[key_padding_left] = padding_left_node.value; 
-	
-		onPaddingChange(padding_values);
-		event.target.focus();
-	};
-
-	const maybeValueTogether = ( e ) => {
-		var parent_node = closest( event.target, '.padding-together' );
-
-		if( parent_node.classList.contains("active") ) {
-			parent_node.classList.remove("active");
-		}else{
-			parent_node.classList.add("active");
-		}
-		if( !parent_node.classList.contains("active") ) {
-			value_together = false;
-		}
-	
+		this.state = defaults( this.props.value, default_value );
+		this.onChangeHandler = this.onChangeHandler.bind( this );
 	}
 
-	const PaddingSettingFields = ( props ) => (
-		(
-			<div className={`padding-settings padding-for-${props.device_type}`} data-mode={props.device_type}>
-				<span>
-					<TextControl type="number" min="0" placeholder={__( "Top" )} name={`${props.device_type}-padding-top`} className="padding-top" onChange={onChangeHandler} value="0" />
-				</span>
-				<span>
-					<TextControl type="number" min="0" placeholder={__( "Right" )} name={`${props.device_type}-padding-right`} className="padding-right" onChange={onChangeHandler} value="0"/>
-				</span>
-				<span>
-					<TextControl type="number" min="0" placeholder={__( "Bottom" )} name={`${props.device_type}-padding-bottom`} className="padding-bottom" onChange={onChangeHandler} value="0"/>
-				</span>
-				<span>
-					<TextControl type="number" min="0" placeholder={__( "Left" )} name={`${props.device_type}-padding-left`} className="padding-left" onChange={onChangeHandler} value="0"/>
-				</span>
-				<span className="toggle_value_together">
-					<IconButton className="padding-together active" icon="admin-links" label={__("Padding together")} name={`${props.device_type}-padding-together`} onClick={maybeValueTogether}/>
-				</span>
+	onChangeHandler = data => {
+		console.log("Change", data);
+		let key = data.key + "_" + data.device;
+		if (data.device === "desktop") {
+			key = data.key;
+		} else {
+	
+		}
 
-			</div>
-		)
-	);
+		let changeData= {};
+		 changeData[ key ] = data.value ;
 
-	const ResponsiveTab = (
-			<TabPanel className="padding-responsive-tabs"
-				activeClass="active-tab"
-				tabs={ [
-					{
-						name: 'desktop',
-						title: <Dashicon icon="desktop" />,
-						className: 'padding-desk-tab',
-					},
-					{
-						name: 'tablet',
-						title: <Dashicon icon="tablet" />,
-						className: 'padding-tablet-tab'
-					},
-					{
-						name: 'mobile',
-						title: <Dashicon icon="smartphone" />,
-						className: 'padding-mobile-tab'
-					},
-				] }>
-				{
-					( tab ) => {
-						return <div className="padding-tab-content"><PaddingSettingFields device_type={tab.name}/></div>;
-					}
-				}
-			</TabPanel>
-	);
+		this.setState( changeData );
 
-	return (
-		<div className="padding-control-wrap" {...props} onPaddingChange={onPaddingChange}>
-			<span class="padding-control-label">{__("Padding")}</span>
-			{ResponsiveTab}
-		</div>
-	);
+		this.props.onChange( this.state );
+	};
+
+	render() {
+		const {
+			onChange,
+			className,
+			label,
+			value,
+			instanceId,
+			...props
+		} = this.props;
+
+		var that = this;
+
+		const id = `css-ruler-control-${instanceId}`;
+
+		return (
+			<BaseControl id={id} className="padding-control-wrap" {...props}>
+				<span class="padding-control-label">{__("Padding")}</span>
+				<TabPanel
+					className="padding-responsive-tabs"
+					activeClass="active-tab"
+					tabs={[
+						{
+							name: "desktop",
+							title: <Dashicon icon="desktop" />,
+							className: "padding-desk-tab"
+						},
+						{
+							name: "tablet",
+							title: <Dashicon icon="tablet" />,
+							className: "padding-tablet-tab"
+						},
+						{
+							name: "mobile",
+							title: <Dashicon icon="smartphone" />,
+							className: "padding-mobile-tab"
+						}
+					]}
+				>
+					{tab => {
+
+						let valueTop, valueRight, valueBottom, valueLeft;
+						if (tab.name === "desktop") {
+							valueTop = this.state["top"];
+							valueRight = this.state["right"];
+							valueBottom = this.state["bottom"];
+							valueLeft = this.state["left"];
+						} else {
+							valueTop = this.state["top_" + tab.name];
+							valueRight = this.state["right_" + tab.name];
+							valueBottom = this.state["bottom_" + tab.name];
+							valueLeft = this.state["left_" + tab.name];
+						}
+
+						const prefixId = `${id}-${tab.name}`;
+
+						return (
+							<div className="padding-tab-content">
+								<div
+									className={`components components-css-ruler-control padding-for-${
+										tab.name
+									}`}
+								>
+									<div
+										className={`padding-settings padding-for-${
+											tab.name
+										}`}
+										data-mode={tab.name}
+									>
+										<span>
+											<input
+												id={`${prefixId}-top`}
+												type="text"
+												placeholder={__("Top")}
+												className="padding-top"
+												onChange={e =>
+													this.onChangeHandler({
+														key: "top",
+														value: e.target.value,
+														device: tab.name
+													})
+												}
+												value={valueTop}
+												{...props}
+											/>
+										</span>
+										<span>
+											<input
+												id={`${prefixId}-right`}
+												type="text"
+												placeholder={__("Right")}
+												className="padding-right"
+												onChange={e =>
+													this.onChangeHandler({
+														key: "right",
+														value: e.target.value,
+														device: tab.name
+													})
+												}
+												value={valueRight}
+												{...props}
+											/>
+										</span>
+										<span>
+											<input
+												id={`${prefixId}-bottom`}
+												type="text"
+												placeholder={__("Bottom")}
+												className="padding-bottom"
+												onChange={e =>
+													this.onChangeHandler({
+														key: "bottom",
+														value: e.target.value,
+														device: tab.name
+													})
+												}
+												value={valueBottom}
+												{...props}
+											/>
+										</span>
+										<span>
+											<input
+												id={`${prefixId}-left`}
+												type="text"
+												placeholder={__("Left")}
+												className="padding-left"
+												onChange={e =>
+													this.onChangeHandler({
+														key: "left",
+														value: e.target.value,
+														device: tab.name
+													})
+												}
+												value={valueLeft}
+												{...props}
+											/>
+										</span>
+										<span className="toggle_value_together">
+											<IconButton
+												className="padding-together active"
+												icon="admin-links"
+												label={__("Padding together")}
+											/>
+										</span>
+									</div>
+								</div>
+							</div>
+						);
+					}}
+				</TabPanel>
+			</BaseControl>
+		);
+	}
 }
+
+export default withInstanceId(CSSRulerControl);

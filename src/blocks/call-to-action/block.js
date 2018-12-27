@@ -8,7 +8,7 @@
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
-import PaddingControl from '../../components/padding';
+import CSSRulerControl from '../../components/padding';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -36,6 +36,14 @@ registerBlockType( 'cgb/block-pm-cta', {
 		__( 'CGB Example' ),
 		__( 'create-guten-block' ),
 	],
+	attributes: { 
+		padding: {
+			type: 'object',
+		},
+		text: {
+			type: 'string',
+		},
+	},
 
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
@@ -50,13 +58,17 @@ registerBlockType( 'cgb/block-pm-cta', {
 		const {
 			setAttributes
 		} = props;
-		const { padding } = props.attributes;
-		console.log("props: ", props);
-		console.log("attributes: ", props.attributes);
+		const { padding, text } = props.attributes;
+		console.log("attributes_on_component: ", props.attributes);
 		return (
 			<div className={ props.className }>
-				<PaddingControl onPaddingChange={ (value) =>setAttributes({padding: value})}/>
+				<CSSRulerControl value={padding} onChange={ padding =>setAttributes({padding})}/>
 				<p>— Hello from the backend.</p>
+				<TextControl
+						label={__("Meta box", "jsforwpblocks")}
+						value={text}
+						onChange={text => setAttributes({ text })}
+				/>
 				<p>
 					CGB BLOCK: <code>pm-blocks</code> is a new Gutenberg block
 				</p>
