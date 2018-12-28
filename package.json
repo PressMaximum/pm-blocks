@@ -10,7 +10,8 @@
   "dependencies": {
     "cgb-scripts": "1.14.0",
     "classnames": "^2.2.6",
-    "dom-closest": "^0.2.0"
+    "dom-closest": "^0.2.0",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "react-trigger-change": "^1.0.2"

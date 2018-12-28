@@ -12,9 +12,79 @@ $gray: #dedede;
 $green: #bada55;
 $red: orangered;
 
-.padding-together{
+.cssruler-together-together{
 	&.active{
 		background: #000;
 		color: #fff;
 	}
+	
+
+	&.components-button:focus,
+	&.components-button:focus:enabled,
+	&.components-button:hover {
+		background-color: inherit!important;
+		color: inherit!important;
+	}
 }
+
+.cssruler-tab-content {
+	.cssruler-settings {
+		display: flex;
+		span{
+			vertical-align: middle;
+			margin-right: 5px;
+			
+			input[type=number] {
+				height: 36px;
+			}
+
+			&.toggle_value_together{
+				margin-right: 0;
+			}
+		}
+	}
+
+	.components-button{
+		&.cssruler-together{
+			background-color: #fff;
+			color: #191e23;
+			box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25,30,35,.2);
+			&.active,
+			&.active:hover{
+				background-color: #000;
+				color: #fff;
+				box-shadow:none;
+			}
+		}
+	}
+}
+
+.cssruler-responsive-tabs {
+	margin-top: -25px;
+	[role="tablist"] {
+		text-align: right;
+
+		&::after{
+			content: '';
+			display:table;
+			clear: both;
+		}
+	}
+	button[role="tab"] {
+		background:none;
+		border: none;
+		opacity: 0.4;
+		outline:0;
+		padding-left: 3px;
+		padding-right: 3px;
+		cursor: pointer;
+	
+		&.active-tab{
+			opacity: 1;
+		}
+		&:last-child{
+			padding-right: 0;
+		}
+	}
+}
+
