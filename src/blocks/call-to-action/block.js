@@ -9,10 +9,11 @@
 import './style.scss';
 import './editor.scss';
 import CSSRulerDevicesControl from '../../components/cssrulerdevice';
+import CSSRulerControl from '../../components/cssruler';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { TextControl, Fragment, InspectorControls, PanelBody } = wp.components;
+const { TextControl, Fragment, InspectorControls, PanelBody, Dashicon } = wp.components;
 /**
  * Register: aa Gutenberg Block.
  *
@@ -40,10 +41,15 @@ registerBlockType( 'cgb/block-pm-cta', {
 		padding: {
 			type: 'object',
 		},
+		margin: {
+			type: 'object',
+		},
 		text: {
 			type: 'string',
 		},
+		
 	},
+	
 
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
@@ -58,15 +64,15 @@ registerBlockType( 'cgb/block-pm-cta', {
 		const {
 			setAttributes
 		} = props;
-		const { padding, text } = props.attributes;
-	
+		const { padding, text, margin } = props.attributes;
+
+		const onChange = () => {
+
+		}
 
 		return (
-			
-				
 			<div className={ props.className }>
-				
-				<CSSRulerDevicesControl label="Padding" value={padding} onChange={ padding =>setAttributes({padding})}/>
+				<CSSRulerControl value={padding} onChange={ padding =>setAttributes({padding})}/>
 				<p>— Hello from the backend.</p>
 				<TextControl
 						label={__("Meta box", "jsforwpblocks")}

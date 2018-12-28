@@ -1,4 +1,5 @@
 const { __ } = wp.i18n;
+import { defaults } from "lodash";
 const { Component } = wp.element;
 const {
 	TextControl,
@@ -23,6 +24,7 @@ class CSSRulerDevicesControl extends Component {
 			label,
 			devices
 		} = this.props;
+		
 		tabConfigs = [
 			{
 				name: "desktop",
@@ -94,12 +96,15 @@ class CSSRulerDevicesControl extends Component {
 			}
 		}
 		
+		console.log('default_value', default_value);
 
 		let value = this.props.value;
+		
 		if ( typeof value === "undefined" ) {
 			value = {};
 		}
-		this.state = Object.assign( value, default_value );
+		
+		this.state = defaults( this.props.value, default_value );
 	
 		this.onChangeHandler = this.onChangeHandler.bind( this );
 		this.maybeValueTogether = this.maybeValueTogether.bind(this);
