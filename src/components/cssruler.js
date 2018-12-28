@@ -161,3 +161,8 @@ class CSSRulerControl extends Component {
 }
 
 export default withInstanceId(CSSRulerControl);
+
+/**
+ * Using
+ * <CSSRulerControl value={padding} onChange={ padding =>setAttributes({padding})}/>
+ */

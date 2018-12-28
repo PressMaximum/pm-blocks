@@ -10,6 +10,7 @@ import './style.scss';
 import './editor.scss';
 import CSSRulerDevicesControl from '../../components/cssrulerdevice';
 import CSSRulerControl from '../../components/cssruler';
+import ResponsiveDevices from '../../components/responsive-devices';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -72,7 +73,9 @@ registerBlockType( 'cgb/block-pm-cta', {
 
 		return (
 			<div className={ props.className }>
-				<CSSRulerControl value={padding} onChange={ padding =>setAttributes({padding})}/>
+				<ResponsiveDevices>
+					<CSSRulerControl value={padding} onChange={ padding =>setAttributes({padding})}/>
+				</ResponsiveDevices>
 				<p>— Hello from the backend.</p>
 				<TextControl
 						label={__("Meta box", "jsforwpblocks")}
