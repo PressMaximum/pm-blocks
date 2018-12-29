@@ -51,7 +51,6 @@ registerBlockType( 'cgb/block-pm-cta', {
 		
 	},
 	
-
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
@@ -67,14 +66,14 @@ registerBlockType( 'cgb/block-pm-cta', {
 		} = props;
 		const { padding, text, margin } = props.attributes;
 
-		const onChange = () => {
-
-		}
+		const onChildChange = () => {
+			console.log('on css ruler change');
+		};
 
 		return (
 			<div className={ props.className }>
-				<ResponsiveDevices>
-					<CSSRulerControl value={padding} onChange={ padding =>setAttributes({padding})}/>
+				<ResponsiveDevices onChange={ onChildChange }>
+					<CSSRulerControl value={padding} />
 				</ResponsiveDevices>
 				<p>— Hello from the backend.</p>
 				<TextControl
