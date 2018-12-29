@@ -1,13 +1,10 @@
 const { __ } = wp.i18n;
-import { defaults } from "lodash";
 const { Component } = wp.element;
 const {
 	TabPanel,
 	Dashicon,
-	Fragment
 } = wp.components;
 const { withInstanceId } = wp.compose;
-var closest = require("dom-closest");
 var devicesSettings;
 class ResponsiveDevices extends Component {
 	constructor() {
@@ -112,7 +109,7 @@ export default withInstanceId(ResponsiveDevices);
  * Using
  * 
  *  Default if no devicesSettings props => display default 3 tab: desktop, tablet, mobile
- *  <ResponsiveDevices onChange={ onChildChange } >
+ *  <ResponsiveDevices onCSSRulerChange={ onChildChange } >
 		<CSSRulerControl value={padding} />
 	</ResponsiveDevices>
 
@@ -140,12 +137,12 @@ export default withInstanceId(ResponsiveDevices);
 		}
 	};
 	then call:
-	<ResponsiveDevices onChange={ onChildChange } devicesSettings={supportDevices2}>
+	<ResponsiveDevices onCSSRulerChange={ onChildChange } devicesSettings={supportDevices2}>
 		<CSSRulerControl value={padding} />
 	</ResponsiveDevices>
 
 	<CSSRulerControl> is a child of <ResponsiveDevices>
 	All child props will be pass by <ResponsiveDevices> parent
-	Such as: general <CSSRulerControl onChange={ padding =>setAttributes({padding})}/> has props onChange
-	then now it will be <ResponsiveDevices onChange={ onCSSRulerChange }>
+	Such as: general <CSSRulerControl onCSSRulerChange={ padding =>setAttributes({padding})}/> has props onChange
+	then now it will be <ResponsiveDevices onCSSRulerChange={ onCSSRulerChange }>
  */

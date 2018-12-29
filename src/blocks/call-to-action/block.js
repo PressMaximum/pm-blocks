@@ -66,13 +66,14 @@ registerBlockType( 'cgb/block-pm-cta', {
 		} = props;
 		const { padding, text, margin } = props.attributes;
 
-		const onChildChange = () => {
+		const onChildChange = (e) => {
 			console.log('on css ruler change');
+			console.log('value:', e);
 		};
 
 		return (
 			<div className={ props.className }>
-				<ResponsiveDevices onChange={ onChildChange }>
+				<ResponsiveDevices onCSSRulerChange={ onChildChange }>
 					<CSSRulerControl value={padding} />
 				</ResponsiveDevices>
 				<p>— Hello from the backend.</p>

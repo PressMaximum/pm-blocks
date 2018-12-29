@@ -2,15 +2,10 @@ const { __ } = wp.i18n;
 import { defaults } from "lodash";
 const { Component } = wp.element;
 const {
-	TextControl,
-	CheckboxControl,
 	IconButton,
-	TabPanel,
-	Dashicon,
-	Fragment,
 	BaseControl
 } = wp.components;
-const { withState, withInstanceId } = wp.compose;
+const { withInstanceId } = wp.compose;
 var closest = require("dom-closest");
 class CSSRulerControl extends Component {
 	constructor() {
@@ -45,7 +40,7 @@ class CSSRulerControl extends Component {
 
 		let current_state = this.state;
 		let current_data = Object.assign({}, current_state, changeData);
-		this.props.onChange(current_data);
+		this.props.onCSSRulerChange(current_data);
 	};
 
 	maybeValueTogether = data => {
@@ -62,7 +57,7 @@ class CSSRulerControl extends Component {
 
 	render() {
 		const {
-			onChange,
+			onCSSRulerChange,
 			className,
 			label,
 			value,
@@ -164,5 +159,5 @@ export default withInstanceId(CSSRulerControl);
 
 /**
  * Using
- * <CSSRulerControl value={padding} onChange={ padding =>setAttributes({padding})}/>
+ * <CSSRulerControl value={padding} onCSSRulerChange={ padding =>setAttributes({padding})}/>
  */
