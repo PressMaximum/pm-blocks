@@ -8,9 +8,10 @@
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
-import CSSRulerDevicesControl from '../../components/cssrulerdevice';
+import CSSRulerDevicesControl from '../../components/cssrulerdevice-bak';
 import CSSRulerControl from '../../components/cssruler';
 import ResponsiveDevices from '../../components/responsive-devices';
+import CSSRulerDevices from '../../components/cssruler-devices';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -48,6 +49,9 @@ registerBlockType( 'cgb/block-pm-cta', {
 		text: {
 			type: 'string',
 		},
+		cssruler_devices: {
+			type: 'object',
+		}
 		
 	},
 	
@@ -64,18 +68,21 @@ registerBlockType( 'cgb/block-pm-cta', {
 		const {
 			setAttributes
 		} = props;
-		const { padding, text, margin } = props.attributes;
+		const { padding, text, margin, cssruler_devices } = props.attributes;
 
 		const onChildChange = (e) => {
 			console.log('on css ruler change');
 			console.log('value:', e);
 		};
 
+		const onCSSRulerDevicesChange = (value) => {
+			console.log('on css ruler devices change');
+			console.log('value:', value);
+		};
+
 		return (
 			<div className={ props.className }>
-				<ResponsiveDevices onCSSRulerChange={ onChildChange }>
-					<CSSRulerControl value={padding} />
-				</ResponsiveDevices>
+				<CSSRulerDevices value={cssruler_devices} onCSSRulerDevicesChange={onCSSRulerDevicesChange}/>
 				<p>— Hello from the backend.</p>
 				<TextControl
 						label={__("Meta box", "jsforwpblocks")}

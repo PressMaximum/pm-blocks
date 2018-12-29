@@ -10,7 +10,15 @@ class ResponsiveDevices extends Component {
 	constructor() {
 		super(...arguments);
 		devicesSettings = this.getDevicesSetting();
-	}
+
+		if( devicesSettings[0]['name'] ) {
+			this.state = {
+				tab_selected : devicesSettings[0]['name']
+			};
+		}
+
+		this.onTabSelect = this.onTabSelect.bind(this);
+	} 
 
 	getDevicesSetting() {
 		var devices = this.props.devicesSettings;
@@ -66,9 +74,15 @@ class ResponsiveDevices extends Component {
 		return settings;
 	}
 
+	onTabSelect( value ) {
+		this.setState({
+			tab_selected: value
+		});
+		this.props.onDeviceSelected( value );
+	}
+
 	render() {
 		const {
-			onTabSelect,
 			className,
 			label,
 			value,
@@ -92,8 +106,7 @@ class ResponsiveDevices extends Component {
 		return (
 			<TabPanel id={id} className="responsive-devices-wrap" {...props}
 				activeClass="active-tab"
-				onSelect={ onTabSelect }
-				onChange={ this.onChildChange }
+				onSelect={ this.onTabSelect }
 				tabs={ devicesSettings }>
 				{
 					( tab ) => <div className="devices-content">{childrenWithProps}</div>
