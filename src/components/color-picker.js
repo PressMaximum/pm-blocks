@@ -62,6 +62,7 @@ class ColorPickerControl extends Component {
 			value,
 			instanceId,
 			onColorChangeComplete,
+			disableAlpha,
 			...props
 		} = this.props;
 		const id = `color-picker-${instanceId}`;
@@ -81,6 +82,7 @@ class ColorPickerControl extends Component {
 										label={__("Color")}
 										color={this.state.color.rgba}
 										onChangeComplete={ this.onChangeComplete }
+										disableAlpha={disableAlpha}
 									/>
 								</Popover>
 							)}
