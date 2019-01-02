@@ -12,6 +12,7 @@ import CSSRulerDevicesControl from '../../components/cssrulerdevice-bak';
 import CSSRulerControl from '../../components/cssruler';
 import ResponsiveDevices from '../../components/responsive-devices';
 import CSSRulerDevices from '../../components/cssruler-devices';
+import BorderBoxControl from '../../components/border-box';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -70,37 +71,15 @@ registerBlockType( 'cgb/block-pm-cta', {
 		} = props;
 		const { padding, text, margin, cssruler_devices } = props.attributes;
 
-		const onChildChange = (e) => {
-			console.log('on css ruler change');
-			console.log('value:', e);
-		};
-
-		const onCSSRulerDevicesChange = (value) => {
-			console.log('on css ruler devices change');
-			console.log('value:', value);
-			setAttributes({cssruler_devices: value});
-		};
-
 		return (
 			<div className={ props.className }>
-				<CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={onCSSRulerDevicesChange}/>
+				<BorderBoxControl/>
 				<p>— Hello from the backend.</p>
-				<TextControl
-						label={__("Meta box", "jsforwpblocks")}
-						value={text}
-						onChange={text => setAttributes({ text })}
-				/>
+				
 				<p>
 					CGB BLOCK: <code>pm-blocks</code> is a new Gutenberg block
 				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+				
 			</div>
 	
 		);

@@ -1,7 +1,7 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import { defaults } from "lodash";
-const { TabPanel, Dashicon, Fragment } = wp.components;
+//const { TabPanel, Dashicon, Fragment } = wp.components;
 const { withInstanceId } = wp.compose;
 
 import CSSRulerControl from "./cssruler";
@@ -98,10 +98,6 @@ class CSSRulerDevices extends Component {
 
 		this.onCSSRulerChange = this.onCSSRulerChange.bind(this);
 		this.onDeviceSelected = this.onDeviceSelected.bind(this);
-	}
-
-	hasProp(obj, prop) {
-		return Object.prototype.hasOwnProperty.call(obj, prop);
 	}
 
 	onCSSRulerChange(new_value) {
@@ -209,3 +205,7 @@ class CSSRulerDevices extends Component {
 }
 
 export default withInstanceId(CSSRulerDevices);
+/**
+ * Using:
+ * <CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={ (value) => setAttribute({cssruler_devices: value})}/>
+ */

@@ -98,6 +98,19 @@
   .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
     padding-right: 0; }
 
+.color-picker-wrap {
+  padding: 5px;
+  background: #fff;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  cursor: pointer; }
+  .color-picker-wrap .color-picker-preview {
+    width: 36px;
+    height: 14px;
+    border-radius: 2px; }
+
 /**
  * #.# Editor Styles
  *
@@ -210,6 +223,19 @@
     opacity: 1; }
   .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
     padding-right: 0; }
+
+.color-picker-wrap {
+  padding: 5px;
+  background: #fff;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  cursor: pointer; }
+  .color-picker-wrap .color-picker-preview {
+    width: 36px;
+    height: 14px;
+    border-radius: 2px; }
 
 /**
  * #.# Editor Styles
