@@ -27,6 +27,14 @@ class ColorPickerControl extends Component {
 		this.clickOutsidePopover = this.clickOutsidePopover.bind(this);
 		this.onChangeComplete = this.onChangeComplete.bind(this);
 	}
+	
+	isHexColor( color ) {
+		let pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$";
+		if( pattern.test( color ) ) {
+			return true;
+		}
+		return false;
+	}
 
 	onChangeComplete( value ) {
 		let new_color = {
@@ -59,6 +67,7 @@ class ColorPickerControl extends Component {
 	render() {
 		const {
 			className,
+			label,
 			value,
 			instanceId,
 			onColorChangeComplete,
@@ -70,17 +79,30 @@ class ColorPickerControl extends Component {
 		if ("undefined" != typeof className) {
 			wraperClassName += " " + className;
 		}
+		
+		let colorpicker_bg = this.state.color;
+		if( 'undefined' != this.state.color.rgba && '' != this.state.color.rgba ) {
+			colorpicker_bg = {backgroundColor: `rgba(${this.state.color.rgba.r}, ${this.state.color.rgba.g}, ${this.state.color.rgba.b}, ${this.state.color.rgba.a})`};
+		} else if ( this.isHexColor(colorpicker_bg) ||  ( 'undefined' != this.state.color.hex && '' != this.state.color.hex ) )  {
+			colorpicker_bg = {backgroundColor: this.state.color.hex};
+		}
+
+		console.log( 'this state color: ', this.state.color );
+		
 
 		return (
 			<div className={wraperClassName} id={id} {...props}>
 				<div className="popover-color-picker">
+					{label && (
+						<span className="control-label">{label}</span>
+					)}
 					<div className="color-picker-wrap">
-						<div className="color-picker-preview" onClick={this.openColorPicker} style={{backgroundColor: `rgba(${this.state.color.rgba.r}, ${this.state.color.rgba.g}, ${this.state.color.rgba.b}, ${this.state.color.rgba.a})`}}>
+						<div className="color-picker-preview" onClick={this.openColorPicker} style={colorpicker_bg}>
 							{this.state.isVisible && (
 								<Popover onClickOutside={this.clickOutsidePopover}>
 									<ColorPicker
 										label={__("Color")}
-										color={this.state.color.rgba}
+										color={this.state.color.hex}
 										onChangeComplete={ this.onChangeComplete }
 										disableAlpha={disableAlpha}
 									/>

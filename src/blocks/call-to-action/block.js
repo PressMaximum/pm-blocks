@@ -13,6 +13,7 @@ import CSSRulerControl from '../../components/cssruler';
 import ResponsiveDevices from '../../components/responsive-devices';
 import CSSRulerDevices from '../../components/cssruler-devices';
 import BorderBoxControl from '../../components/border-box';
+import RangeDevicesControl from '../../components/rangecontrol-devices';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -52,8 +53,10 @@ registerBlockType( 'cgb/block-pm-cta', {
 		},
 		cssruler_devices: {
 			type: 'object',
+		},
+		border_box: {
+			type: 'object',
 		}
-		
 	},
 	
 	/**
@@ -69,11 +72,14 @@ registerBlockType( 'cgb/block-pm-cta', {
 		const {
 			setAttributes
 		} = props;
-		const { padding, text, margin, cssruler_devices } = props.attributes;
+		const { padding, text, margin, cssruler_devices,border_box } = props.attributes;
+		console.log('saved border_box: ', border_box);
 
 		return (
 			<div className={ props.className }>
-				<BorderBoxControl/>
+				<BorderBoxControl value={border_box} onBorderBoxChange={new_value => {setAttributes({border_box:new_value}); console.log('new border_box: ', new_value)}}/>
+				<CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={new_value => {setAttributes({cssruler_devices: new_value})}}/>
+				<RangeDevicesControl/>
 				<p>— Hello from the backend.</p>
 				
 				<p>

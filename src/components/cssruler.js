@@ -77,7 +77,6 @@ class CSSRulerControl extends Component {
 		const {
 			onCSSRulerChange,
 			className,
-			label,
 			value,
 			instanceId,
 			...props

@@ -4,7 +4,7 @@ import { defaults } from "lodash";
 import CSSRulerControl from './cssruler';
 import ColorPickerControl from './color-picker';
 import BoxShadowControl from './box-shadow';
-const { SelectControl, ColorPicker, BaseControl, CheckboxControl, Popover } = wp.components;
+const { SelectControl } = wp.components;
 const { withInstanceId } = wp.compose;
 
 class BorderBoxControl extends Component {
@@ -21,10 +21,8 @@ class BorderBoxControl extends Component {
 				link: true
 			},
 			color: {
-				rgba: {
-
-				},
-				hex: ''
+				hex: '',
+				rgba: ''
 			},
 			radius: {
 				top: '',
@@ -42,15 +40,39 @@ class BorderBoxControl extends Component {
 				inset: ''
 			}
 		};
-
-		
-
 		//Set state
 		this.state = defaults(this.props.value, default_value);
-
+		this.onChangeHandler = this.onChangeHandler.bind(this);
 	}
 
+	onChangeHandler( data ) {
+		var changed_value = {};
+	
+		switch (data.key) {
+			case "style":
+				changed_value = { style: data.value };
+				break;
+			case "width":
+				changed_value = { width: data.value };
+				break;
+			case "color":
+				changed_value = { color: data.value };
+				break;
+			case "radius":
+				changed_value = { radius: data.value };
+				break;
+			case "shadow":
+				changed_value = { shadow: data.value };
+				break;
+		}
+		this.setState(changed_value);
 
+		if ("function" === typeof this.props.onBorderBoxChange) {
+			let current_state = this.state;
+			let current_data = Object.assign({}, current_state, changed_value);
+			this.props.onBorderBoxChange(current_data);
+		}
+	}
 
 	render() {
 		const {
@@ -58,12 +80,11 @@ class BorderBoxControl extends Component {
 			label,
 			value,
 			instanceId,
-			onBorderChange,
+			onBorderBoxChange,
 			...props
 		} = this.props;
 		const id = `border-control-${instanceId}`;
-		const input_value = this.state.input_value;
-
+		
 		let wraperClassName = "border-control";
 		if ("undefined" != typeof className) {
 			wraperClassName += " " + className;
@@ -71,11 +92,12 @@ class BorderBoxControl extends Component {
 		if ("" != label) {
 			wraperClassName += " has-label";
 		}
-		const prefixId = `border-box-${id}`;
 		
-
 		return (
 			<div className={wraperClassName} id={id} {...props}>
+				{label && (
+					<span className="control-label">{label}</span>
+				)}
 				<SelectControl
 					label={__("Border style")}
 					value={ this.state.style }
@@ -93,14 +115,13 @@ class BorderBoxControl extends Component {
 						{ label: __( "Initial"), value: 'initial' },
 						{ label: __( "Inherit"), value: 'inherit' },
 					] }
-					onChange={ ( size ) => { setState( { size } ) } }
+					onChange={ new_value => this.onChangeHandler( { key: "style", value : new_value} ) }
 				/>
 				
-				<CSSRulerControl label={__("Border width") } value={this.state.width}/>
-				<ColorPickerControl onColorChangeComplete={(new_color) => console.log('new color: ', new_color)} />
-				<CSSRulerControl label={__("Border radius") } value={this.state.radius}/>
-				
-				<BoxShadowControl onBoxShadowChange={(new_value) => { console.log('boxshadow value: ', new_value)}}/>
+				<CSSRulerControl label={__("Border width") } value={this.state.width} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "width", value : new_value} ) }/>
+				<ColorPickerControl label={__("Color")} value={this.state.color} onColorChangeComplete={ new_value => this.onChangeHandler( { key: "color", value : new_value} ) } />
+				<CSSRulerControl label={__("Border radius") } value={this.state.radius} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "radius", value : new_value} ) }/>
+				<BoxShadowControl value={this.state.shadow} onBoxShadowChange={ new_value => this.onChangeHandler( { key: "shadow", value : new_value} ) }/>
 			</div>
 		);
 	}
