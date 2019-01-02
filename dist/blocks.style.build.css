@@ -58,8 +58,12 @@
 .cssruler-control-wrap .components-base-control__field {
   display: -ms-flexbox;
   display: flex; }
-  .cssruler-control-wrap .components-base-control__field span input[type=number] {
-    height: 36px; }
+  .cssruler-control-wrap .components-base-control__field span {
+    -ms-flex: 1;
+        flex: 1; }
+    .cssruler-control-wrap .components-base-control__field span input[type=number] {
+      height: 36px;
+      padding: 5px; }
   .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
     background-color: #fff;
     color: #191e23;
@@ -70,6 +74,29 @@
       color: #fff;
       -webkit-box-shadow: none;
               box-shadow: none; }
+
+.responsive-devices-control.has-label .responsive-devices-wrap {
+  margin-top: -25px; }
+
+.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
+  text-align: right; }
+  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
+    content: '';
+    display: table;
+    clear: both; }
+
+.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
+  background: none;
+  border: none;
+  opacity: 0.4;
+  outline: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  cursor: pointer; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
+    opacity: 1; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
+    padding-right: 0; }
 
 /**
  * #.# Styles
@@ -143,8 +170,12 @@
 .cssruler-control-wrap .components-base-control__field {
   display: -ms-flexbox;
   display: flex; }
-  .cssruler-control-wrap .components-base-control__field span input[type=number] {
-    height: 36px; }
+  .cssruler-control-wrap .components-base-control__field span {
+    -ms-flex: 1;
+        flex: 1; }
+    .cssruler-control-wrap .components-base-control__field span input[type=number] {
+      height: 36px;
+      padding: 5px; }
   .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
     background-color: #fff;
     color: #191e23;
@@ -155,6 +186,29 @@
       color: #fff;
       -webkit-box-shadow: none;
               box-shadow: none; }
+
+.responsive-devices-control.has-label .responsive-devices-wrap {
+  margin-top: -25px; }
+
+.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
+  text-align: right; }
+  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
+    content: '';
+    display: table;
+    clear: both; }
+
+.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
+  background: none;
+  border: none;
+  opacity: 0.4;
+  outline: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  cursor: pointer; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
+    opacity: 1; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
+    padding-right: 0; }
 
 /**
  * #.# Styles
@@ -228,8 +282,12 @@
 .cssruler-control-wrap .components-base-control__field {
   display: -ms-flexbox;
   display: flex; }
-  .cssruler-control-wrap .components-base-control__field span input[type=number] {
-    height: 36px; }
+  .cssruler-control-wrap .components-base-control__field span {
+    -ms-flex: 1;
+        flex: 1; }
+    .cssruler-control-wrap .components-base-control__field span input[type=number] {
+      height: 36px;
+      padding: 5px; }
   .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
     background-color: #fff;
     color: #191e23;
@@ -240,6 +298,29 @@
       color: #fff;
       -webkit-box-shadow: none;
               box-shadow: none; }
+
+.responsive-devices-control.has-label .responsive-devices-wrap {
+  margin-top: -25px; }
+
+.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
+  text-align: right; }
+  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
+    content: '';
+    display: table;
+    clear: both; }
+
+.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
+  background: none;
+  border: none;
+  opacity: 0.4;
+  outline: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  cursor: pointer; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
+    opacity: 1; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
+    padding-right: 0; }
 
 .pm-repeater {
   border: 3px solid #ededed; }

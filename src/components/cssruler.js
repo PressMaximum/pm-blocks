@@ -18,9 +18,27 @@ class CSSRulerControl extends Component {
 			right: "",
 			link: true
 		};
-
 		this.state = defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
+	}
+	componentDidUpdate( oldProps ) {
+		const newValue = this.props.value;
+		const oldValue = oldProps.value;
+		if( newValue.top !== oldValue.top ) {
+			this.setState({top: newValue.top});
+		}
+		if( newValue.right !== oldValue.right ) {
+			this.setState({right: newValue.right});
+		}
+		if( newValue.bottom !== oldValue.bottom ) {
+			this.setState({bottom: newValue.bottom});
+		}
+		if( newValue.left !== oldValue.left ) {
+			this.setState({left: newValue.left});
+		}
+		if( newValue.link !== oldValue.link ) {
+			this.setState({link: newValue.link});
+		}
 	}
 
 	onChangeHandler = data => {
@@ -35,7 +53,6 @@ class CSSRulerControl extends Component {
 			changeData[key] = data.value;
 		}
 
-		this.setState(changeData);
 		this.setState(changeData);
 
 		let current_state = this.state;
@@ -53,6 +70,7 @@ class CSSRulerControl extends Component {
 			button_node.classList.add("active");
 			this.setState({ link: true });
 		}
+		
 	};
 
 	render() {

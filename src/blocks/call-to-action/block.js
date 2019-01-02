@@ -78,11 +78,12 @@ registerBlockType( 'cgb/block-pm-cta', {
 		const onCSSRulerDevicesChange = (value) => {
 			console.log('on css ruler devices change');
 			console.log('value:', value);
+			setAttributes({cssruler_devices: value});
 		};
 
 		return (
 			<div className={ props.className }>
-				<CSSRulerDevices value={cssruler_devices} onCSSRulerDevicesChange={onCSSRulerDevicesChange}/>
+				<CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={onCSSRulerDevicesChange}/>
 				<p>— Hello from the backend.</p>
 				<TextControl
 						label={__("Meta box", "jsforwpblocks")}

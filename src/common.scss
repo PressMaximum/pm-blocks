@@ -92,8 +92,10 @@ $red: orangered;
 	.components-base-control__field{
 		display: flex;
 		span{
+			flex: 1;
 			input[type=number] {
 				height: 36px;
+				padding: 5px;
 			}
 		}
 
@@ -112,3 +114,38 @@ $red: orangered;
 		}
 	}
 }
+.responsive-devices-control {
+	&.has-label{
+		.responsive-devices-wrap{
+			margin-top: -25px;
+		}
+		
+	}
+	.responsive-devices-wrap {
+		[role="tablist"] {
+			text-align: right;
+	
+			&::after{
+				content: '';
+				display:table;
+				clear: both;
+			}
+		}
+		button[role="tab"] {
+			background:none;
+			border: none;
+			opacity: 0.4;
+			outline:0;
+			padding-left: 3px;
+			padding-right: 3px;
+			cursor: pointer;
+		
+			&.active-tab{
+				opacity: 1;
+			}
+			&:last-child{
+				padding-right: 0;
+			}
+		}
+	}
+}	
