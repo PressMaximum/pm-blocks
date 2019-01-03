@@ -27,11 +27,10 @@ registerBlockType( 'pm-blocks/block-border-box', {
 		} = props;
 		const { border_box } = props.attributes;
 
-		console.log( 'border_box attribute: ', border_box );
 		
 		return (
 			<div className={ props.className }>
-				<BorderBoxControl value={border_box} onBorderBoxChange={new_value => {setAttributes({border_box:new_value}); console.log('new border_box: ', new_value)}}/>
+				<BorderBoxControl value={border_box} onBorderBoxChange={new_value => {setAttributes({border_box:new_value}); }}/>
 				<p>Hello, This is Block Border Box</p>
 			</div>
 	

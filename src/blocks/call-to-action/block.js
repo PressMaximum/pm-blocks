@@ -75,7 +75,7 @@ registerBlockType( 'cgb/block-pm-cta', {
 
 		return (
 			<div className={ props.className }>
-				<BorderBoxControl value={border_box} onBorderBoxChange={new_value => {setAttributes({border_box:new_value}); console.log('new border_box: ', new_value)}}/>
+				<BorderBoxControl value={border_box} onBorderBoxChange={new_value => {setAttributes({border_box:new_value}); }}/>
 				<CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={new_value => {setAttributes({cssruler_devices: new_value})}}/>
 				<RangeDevicesControl/>
 				<p>— Hello from the backend.</p>
