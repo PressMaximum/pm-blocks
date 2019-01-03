@@ -1,11 +1,10 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import { defaults } from "lodash";
-//const { TabPanel, Dashicon, Fragment } = wp.components;
 const { withInstanceId } = wp.compose;
 
-import CSSRulerControl from "./cssruler";
-import ResponsiveDevices from "./responsive-devices";
+import CSSRulerControl from "../cssruler/index";
+import ResponsiveDevices from "../responsive-devices/index";
 
 class CSSRulerDevices extends Component {
 	constructor() {

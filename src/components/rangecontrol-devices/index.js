@@ -4,8 +4,7 @@ import { defaults } from "lodash";
 const { RangeControl } = wp.components;
 const { withInstanceId } = wp.compose;
 
-import CSSRulerControl from "./cssruler";
-import ResponsiveDevices from "./responsive-devices";
+import ResponsiveDevices from "../responsive-devices/index";
 
 class RangeDevicesControl extends Component {
 	constructor() {

@@ -1,9 +1,9 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import { defaults } from "lodash";
-import CSSRulerControl from './cssruler';
-import ColorPickerControl from './color-picker';
-import BoxShadowControl from './box-shadow';
+import CSSRulerControl from '../cssruler/index';
+import ColorPickerControl from '../color-picker/index';
+import BoxShadowControl from '../box-shadow/index';
 const { SelectControl } = wp.components;
 const { withInstanceId } = wp.compose;
 
@@ -32,7 +32,10 @@ class BorderBoxControl extends Component {
 				link: true
 			},
 			shadow: {
-				color: '',
+				color: {
+					rgba: '',
+					hex: ''
+				},
 				x: '',
 				y: '',
 				blur: '',
@@ -92,7 +95,7 @@ class BorderBoxControl extends Component {
 		if ("" != label) {
 			wraperClassName += " has-label";
 		}
-		
+
 		return (
 			<div className={wraperClassName} id={id} {...props}>
 				{label && (
@@ -119,7 +122,7 @@ class BorderBoxControl extends Component {
 				/>
 				
 				<CSSRulerControl label={__("Border width") } value={this.state.width} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "width", value : new_value} ) }/>
-				<ColorPickerControl label={__("Color")} value={this.state.color} onColorChangeComplete={ new_value => this.onChangeHandler( { key: "color", value : new_value} ) } />
+				<ColorPickerControl label={__("Color")} disableAlpha="true" value={this.state.color} onColorChangeComplete={ new_value => this.onChangeHandler( { key: "color", value : new_value} ) } />
 				<CSSRulerControl label={__("Border radius") } value={this.state.radius} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "radius", value : new_value} ) }/>
 				<BoxShadowControl value={this.state.shadow} onBoxShadowChange={ new_value => this.onChangeHandler( { key: "shadow", value : new_value} ) }/>
 			</div>

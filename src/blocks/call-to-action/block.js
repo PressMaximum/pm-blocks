@@ -8,12 +8,10 @@
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
-import CSSRulerDevicesControl from '../../components/cssrulerdevice-bak';
-import CSSRulerControl from '../../components/cssruler';
-import ResponsiveDevices from '../../components/responsive-devices';
-import CSSRulerDevices from '../../components/cssruler-devices';
-import BorderBoxControl from '../../components/border-box';
-import RangeDevicesControl from '../../components/rangecontrol-devices';
+
+import CSSRulerDevices from '../../components/cssruler-devices/index';
+import BorderBoxControl from '../../components/border-box/index';
+import RangeDevicesControl from '../../components/rangecontrol-devices/index';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks

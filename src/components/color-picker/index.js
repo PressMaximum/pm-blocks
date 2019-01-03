@@ -9,31 +9,23 @@ class ColorPickerControl extends Component {
 		super(...arguments);
 
 		var default_value = {
-			color: {
-				rgba: {
-					r: '255',
-					g: '255',
-					b: '255',
-					a: '1',
-				},
-				hex: '#ffffff',
+			rgba: {
+				r: '255',
+				g: '255',
+				b: '255',
+				a: '1',
 			},
+			hex: '#ffffff',
+			
 			isVisible: false,
 		};
+		
 		//Set state
 		this.state = defaults(this.props.value, default_value);
 
 		this.openColorPicker = this.openColorPicker.bind(this);
 		this.clickOutsidePopover = this.clickOutsidePopover.bind(this);
 		this.onChangeComplete = this.onChangeComplete.bind(this);
-	}
-	
-	isHexColor( color ) {
-		let pattern = "^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$";
-		if( pattern.test( color ) ) {
-			return true;
-		}
-		return false;
 	}
 
 	onChangeComplete( value ) {
@@ -42,9 +34,7 @@ class ColorPickerControl extends Component {
 			hex: value.hex
 		};
 
-		this.setState({
-			color: new_color
-		});
+		this.setState(new_color);
 
 		if( 'function' === typeof( this.props.onColorChangeComplete ) ) {
 			this.props.onColorChangeComplete( new_color );
@@ -79,16 +69,9 @@ class ColorPickerControl extends Component {
 		if ("undefined" != typeof className) {
 			wraperClassName += " " + className;
 		}
-		
-		let colorpicker_bg = this.state.color;
-		if( 'undefined' != this.state.color.rgba && '' != this.state.color.rgba ) {
-			colorpicker_bg = {backgroundColor: `rgba(${this.state.color.rgba.r}, ${this.state.color.rgba.g}, ${this.state.color.rgba.b}, ${this.state.color.rgba.a})`};
-		} else if ( this.isHexColor(colorpicker_bg) ||  ( 'undefined' != this.state.color.hex && '' != this.state.color.hex ) )  {
-			colorpicker_bg = {backgroundColor: this.state.color.hex};
-		}
 
-		console.log( 'this state color: ', this.state.color );
-		
+		let colorpicker_bg = {backgroundColor: `rgba(${this.state.rgba.r}, ${this.state.rgba.g}, ${this.state.rgba.b}, ${this.state.rgba.a})`};
+	
 
 		return (
 			<div className={wraperClassName} id={id} {...props}>
@@ -101,9 +84,9 @@ class ColorPickerControl extends Component {
 							{this.state.isVisible && (
 								<Popover onClickOutside={this.clickOutsidePopover}>
 									<ColorPicker
-										label={__("Color")}
-										color={this.state.color.hex}
+										color={this.state.hex}
 										onChangeComplete={ this.onChangeComplete }
+										disableHSL
 										disableAlpha={disableAlpha}
 									/>
 								</Popover>
@@ -119,5 +102,5 @@ class ColorPickerControl extends Component {
 export default withInstanceId(ColorPickerControl);
 /**
  * Using
- * <ColorPickerControl value={color:{rgba:'', hex: ''}} onColorChangeComplete={(new_color) => console.log('new color: ', new_color)} />
+ * <ColorPickerControl value={rgba:'', hex: ''} onColorChangeComplete={(new_color) => console.log('new color: ', new_color)} />
  */

@@ -3,14 +3,17 @@ const { Component } = wp.element;
 import { defaults } from "lodash";
 const { BaseControl, CheckboxControl } = wp.components;
 const { withInstanceId } = wp.compose;
-import ColorPickerControl from "./color-picker";
+import ColorPickerControl from "../color-picker/index";
 
 class BoxShadowControl extends Component {
 	constructor() {
 		super(...arguments);
 
 		var default_value = {
-			color: "",
+			color: {
+				hex: '',
+				rgba: ''
+			},
 			x: "",
 			y: "",
 			blur: "",
@@ -43,7 +46,7 @@ class BoxShadowControl extends Component {
 				changed_value = { inset: data.value };
 				break;
 			case "color":
-				changed_value = { color: data.value.hex };
+				changed_value = { color: data.value };
 				break;	
 		}
 		this.setState(changed_value);
@@ -73,7 +76,7 @@ class BoxShadowControl extends Component {
 			<div id={id} className={wraperClassName} {...props}>
 				<span className="control-label">{__("Box shadow")}</span>
 				<ColorPickerControl
-					value="#eeeeee"
+					value={this.state.color}
 					disableAlpha="true"
 					onColorChangeComplete={new_color =>
 						this.onChangeHandler({
