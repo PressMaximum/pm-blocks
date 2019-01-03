@@ -11,7 +11,12 @@ this.state = {
 };
 
 
-<ColorPickerControl label={__("Color")} disableAlpha="true" value={this.state.color} onColorChangeComplete={ new_value => this.onChangeHandler( { key: "color", value : new_value} ) } />
+<ColorPickerControl 
+	label={__("Color")} 
+	disableAlpha="true" 
+	value={this.state.color} 
+	onColorChangeComplete={ new_value => this.onChangeHandler( { key: "color", value : new_value} ) } 
+/>
 ```
 
 # Props
