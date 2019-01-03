@@ -28,8 +28,9 @@
 
 
 import "./blocks/call-to-action/block.js";
-import "./blocks/box-shadow/block.js";
+import "./blocks/border-box/block.js";
 import "./blocks/rangecontrol-devices/block.js";
+import "./blocks/background-box/block.js";
 import "./blocks/posts/block.js";
 import "./blocks/repeater/repeater.js";
 import "./blocks/repeater/item.js";
