@@ -11,44 +11,99 @@ class RangeDevicesControl extends Component {
 		super(...arguments);
 
 		var default_value = {
+			value: '',
+			value_tablet: '',
+			value_mobile: '',
+
 			current_tab: 'desktop',
-			input_value: ''
+			input_value: '',
 		};
 
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		let merge_value = defaults(this.props.value, default_value);
+
+		switch( merge_value.current_tab ) {
+			case 'tablet': 
+				merge_value.input_value = merge_value.value_tablet;
+				break;
+			case 'mobile': 
+				merge_value.input_value = merge_value.value_mobile;
+				break;
+			default: 
+				merge_value.input_value = merge_value.value;
+				break;
+		}
+
+		this.state = merge_value;
 		this.onDeviceSelected = this.onDeviceSelected.bind(this);
 		this.onRangeChanged = this.onRangeChanged.bind(this);
 	}
 
 	onRangeChanged( new_value ) {
-		console.log('new value: ', new_value );
-		this.setState({input_value: new_value});
-	}
+		let new_input = {};
+		switch( this.state.current_tab ) {
+			case 'tablet':
+				new_input.value_tablet = new_value;
+				new_input.input_value = new_value;
+				break;
+			case 'mobile':
+				new_input.value_mobile = new_value;
+				new_input.input_value = new_value;
+				break;	
+			default: 
+				new_input.value = new_value;
+				new_input.input_value = new_value;
+				break;
+		}
+		this.setState(new_input);
 
-	onCSSRulerChange(new_value) {
-		
-	}
+		if( 'function' == typeof( this.props.onRangeDeviceChange ) ) {
+			let current_state = this.state;
+			let current_data = Object.assign({}, current_state, new_input);
+			let return_value = {
+				value: current_data.value,
+				value_mobile: current_data.value_mobile,
+				value_tablet: current_data.value_tablet
+			};
 
+			this.props.onRangeDeviceChange( return_value );
+		}
+	}
 	onDeviceSelected(value) {
 		this.setState({
 			current_tab: value
 		});
 
+		switch( value ) {
+			case 'tablet':
+				this.setState({
+					input_value: this.state.value_tablet
+				});
+				break;
+			case 'mobile':
+				this.setState({
+					input_value: this.state.value_mobile
+				});
+				break;	
+			default: 
+				this.setState({
+					input_value: this.state.value
+				});
+				break;
+		}
 	}
-
 	render() {
 		const {
 			className,
 			label,
 			value,
+			min,
+			max,
 			instanceId,
-			onCSSRulerDevicesChange,
+			onRangeDeviceChange,
 			...props
 		} = this.props;
 		const id = `range-devices-control-${instanceId}`;
-		const input_value = this.state.input_value;
-
 		let wraperClassName = "range-devices-control";
 		if ("undefined" != typeof className) {
 			wraperClassName += " " + className;
@@ -67,13 +122,10 @@ class RangeDevicesControl extends Component {
 					className="range-devices-wrap"
 					{...props}
 				>
-					
 					<RangeControl
-						label="Columns"
 						value={ this.state.input_value }
-						min={ 2 }
-						max={ 10 }
-						
+						min={ min }
+						max={ max }
 					/>
 				</ResponsiveDevices>
 			</div>

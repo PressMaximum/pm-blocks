@@ -1,0 +1,27 @@
+.responsive-devices-wrap{
+	[role="tablist"] {
+		text-align: right;
+
+		&::after{
+			content: '';
+			display:table;
+			clear: both;
+		}
+	}
+	button[role="tab"] {
+		background:none;
+		border: none;
+		opacity: 0.4;
+		outline:0;
+		padding-left: 3px;
+		padding-right: 3px;
+		cursor: pointer;
+	
+		&.active-tab{
+			opacity: 1;
+		}
+		&:last-child{
+			padding-right: 0;
+		}
+	}
+}
