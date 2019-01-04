@@ -11,7 +11,8 @@
  *
  * @package CGB
  */
-
+define( 'PM_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
+define( 'PM_BLOCK_URL', plugin_dir_url( __FILE__ ) );
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,3 +22,4 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Block Initializer.
  */
 require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/components/fonts/fonts.php';

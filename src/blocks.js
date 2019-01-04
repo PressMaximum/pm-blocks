@@ -35,4 +35,5 @@ import "./blocks/background-gradient-box/block.js";
 import "./blocks/posts/block.js";
 import "./blocks/repeater/repeater.js";
 import "./blocks/repeater/item.js";
+import "./blocks/fonts/block.js";
 
