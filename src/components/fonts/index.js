@@ -31,12 +31,14 @@ class FontsControl extends Component {
 				result => {
 					this.setState({ list_fonts: result.data });
 					let saved_font_type = this.state.font_type;
-					let saved_font_data = result.data[saved_font_type]['fonts'][this.state.family];
-					
-					this.setState({
-						list_variants: saved_font_data['variants'],
-						list_subsets: saved_font_data['subsets'],
-					});
+					if( 'undefined' !== typeof( saved_font_type ) && !isEmpty( saved_font_type ) ) {
+						let saved_font_data = result.data[saved_font_type]['fonts'][this.state.family];
+						
+						this.setState({
+							list_variants: saved_font_data['variants'],
+							list_subsets: saved_font_data['subsets'],
+						});
+					}
 				},
 				error => {
 					console.log(__("Fail to load list fonts"));
@@ -129,6 +131,7 @@ class FontsControl extends Component {
 				variant: current_data.variant,
 				font_type: current_data.font_type
 			};
+			
 			this.props.onFontsChange(return_value);
 		}
 	}
