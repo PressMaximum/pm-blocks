@@ -1,34 +1,27 @@
-# BackgroundGradientBoxControl
-Group of gradient background box fields: color, location, second color, second location, type, angle
+# FontsControl
+Group of fonts fields: family, subset, variant
 
 # Usage
 ```js
-var bg_gradient_box = {
-	color: {
-		rgba: '',
-		hex: '',
-	},
-	location: '',
-	second_color: {
-		rgba: '',
-		hex: '',
-	},
-	second_location: '',
-	type: 'linear',
-	angle: '',
+var default_fonts = {
+	family: "",
+	style: "",
+	subsets: [],
+	variant: '',
+	font_type: '',
 };
-<BackgroundGradientBoxControl value={bg_gradient_box} onBgGradientChange={(new_value) => {setAttributes({bg_gradient_box:new_value}); console.log('BG Gradient Box Change Value: ', new_value) }}/>
+<FontsControl value={default_fonts} onFontsChange={(new_value) => {setAttributes({default_fonts:new_value}); console.log('fonts changed: ', new_value) }}/>
 ```
 
 # Props
 The component accepts the following props:
 
 ### value
-The value for onBgGradientChange
+The value for FontsControl
 * Type: Object
 * Required: Yes
 
-### onBgGradientChange
-The callback function for onBgGradientChange
+### onFontsChange
+The callback function for FontsControl
 * Type: Function
 * Required: Yes
