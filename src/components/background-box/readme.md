@@ -1,4 +1,4 @@
-# Border Box
+# BackgroundBoxControl
 Group of normal background box fields: color, image, size, attachment, position, repeat
 
 # Usage
