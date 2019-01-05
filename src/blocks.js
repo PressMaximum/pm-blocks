@@ -36,4 +36,4 @@ import "./blocks/posts/block.js";
 import "./blocks/repeater/repeater.js";
 import "./blocks/repeater/item.js";
 import "./blocks/fonts/block.js";
-
+import "./blocks/typography/block.js";
