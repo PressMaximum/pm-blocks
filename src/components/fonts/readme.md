@@ -17,11 +17,11 @@ var default_fonts = {
 The component accepts the following props:
 
 ### value
-The value for FontsControl
-* Type: Object
-* Required: Yes
+The value for **FontsControl**
+* Type: **Object**
+* Required: **Yes**
 
 ### onFontsChange
-The callback function for FontsControl
-* Type: Function
-* Required: Yes
+The callback function for **FontsControl**
+* Type: **Function**
+* Required: **Yes**

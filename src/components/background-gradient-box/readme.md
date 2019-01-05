@@ -24,11 +24,11 @@ var bg_gradient_box = {
 The component accepts the following props:
 
 ### value
-The value for onBgGradientChange
-* Type: Object
-* Required: Yes
+The value for **onBgGradientChange**
+* Type: **Object**
+* Required: **Yes**
 
 ### onBgGradientChange
-The callback function for onBgGradientChange
-* Type: Function
-* Required: Yes
+The callback function for **onBgGradientChange**
+* Type: **Function**
+* Required: **Yes**

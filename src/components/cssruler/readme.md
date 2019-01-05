@@ -16,11 +16,11 @@ this.state = {
 <CSSRulerControl value={this.state.padding} onCSSRulerChange={ padding =>setAttributes({padding})}/>
 ```
 ### value
-The value for CSSRuler
-* Type: Object
-* Required: Yes
+The value for **CSSRuler**
+* Type: **Object**
+* Required: **Yes**
 
 ### onCSSRulerChange
-The callback function for onCSSRulerChange fire when an input field changed
-* Type: Function
-* Required: Yes
+The callback function for **CSSRulerControl** fire when an input field changed
+* Type: **Function**
+* Required: **Yes**

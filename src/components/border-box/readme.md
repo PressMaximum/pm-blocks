@@ -43,10 +43,10 @@ The component accepts the following props:
 
 ### value
 The value for border box
-* Type: Object
-* Required: Yes
+* Type: **Object**
+* Required: **Yes**
 
 ### onBorderBoxChange
-The callback function for BorderBoxControl
-* Type: Function
-* Required: Yes
+The callback function for **BorderBoxControl**
+* Type: **Function**
+* Required: **Yes**

@@ -27,16 +27,16 @@ const cssruler_devices= {
 <CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={ (value) => setAttribute({cssruler_devices: value})}/>
 ```
 ### label
-The label for CSSRulerDevices
-* Type: String
-* Required: No
+The label for **CSSRulerDevices**
+* Type: **String**
+* Required: **No**
 
 ### value
-The value for CSSRuler
-* Type: Object
-* Required: Yes
+The value for **CSSRulerDevices**
+* Type: **Object**
+* Required: **Yes**
 
 ### onCSSRulerDevicesChange
-The callback function for CSSRulerDevices fire when an input field changed or when device changed
-* Type: Function
-* Required: Yes
+The callback function for **CSSRulerDevices** fire when an input field changed or when device changed
+* Type: **Function**
+* Required: **Yes**

@@ -10,16 +10,16 @@ Range control components with devices: desktop, tablet, mobile
 The component accepts the following props:
 
 ### label
-The label for RangeDevicesControl
-* Type: String
-* Required: No
+The label for **RangeDevicesControl**
+* Type: **String**
+* Required: **No**
 
 ### value
-The value for RangeDevicesControl
-* Type: Object
-* Required: Yes
+The value for **RangeDevicesControl**
+* Type: **Object**
+* Required: **Yes**
 
 ### onCSSRulerDevicesChange
-The callback function for onCSSRulerDevicesChange fire when range control changed
-* Type: Function
-* Required: Yes
+The callback function for **RangeDevicesControl** fire when range control changed
+* Type: **Function**
+* Required: **Yes**

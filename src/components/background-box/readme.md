@@ -24,11 +24,11 @@ var background_box = {
 The component accepts the following props:
 
 ### value
-The value for BackgroundBoxControl
-* Type: Object
-* Required: Yes
+The value for **BackgroundBoxControl**
+* Type: **Object**
+* Required: **Yes**
 
 ### onBackgroundChange
-The callback function for BackgroundBoxControl
-* Type: Function
-* Required: Yes
+The callback function for **BackgroundBoxControl**
+* Type: **Function**
+* Required: **Yes**

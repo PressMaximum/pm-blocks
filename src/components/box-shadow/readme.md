@@ -26,10 +26,10 @@ The component accepts the following props:
 
 ### value
 The value for border box
-* Type: Object
-* Required: Yes
+* Type: **Object**
+* Required: **Yes**
 
 ### onBoxShadowChange
-The callback function for BoxShadowControl
-* Type: Function
-* Required: Yes
+The callback function for **BoxShadowControl**
+* Type: **Function**
+* Required: **Yes**

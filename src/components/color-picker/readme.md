@@ -23,20 +23,20 @@ this.state = {
 The component accepts the following props:
 ### label
 The label for color picker
-* Type: String
-* Required: No
+* Type: **String**
+* Required: **No**
 
 ### disableAlpha
 If set true it will disable alpha option
-* Type: Boolean
-* Required: No
+* Type: **Boolean**
+* Required: **No**
 
 ### value
 The value for color picker
-* Type: Object
-* Required: Yes
+* Type: **Object**
+* Required: **Yes**
 
 ### onColorChangeComplete
 The callback function for ColorPickerControl fire when pick color event done
-* Type: Function
-* Required: Yes
+* Type: **Function**
+* Required: **Yes**
