@@ -122,6 +122,7 @@ class BackgroundGradientBoxControl extends Component {
 					label={__("Type")}
 					value={this.state.type}
 					options={[
+						{ label: __("Select type"), value: "" },
 						{ label: __("Linear"), value: "linear" },
 						{ label: __("Radial"), value: "radial" },
 					]}
