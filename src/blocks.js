@@ -39,3 +39,4 @@ import "./blocks/fonts/block.js";
 import "./blocks/typography/block.js";
 import "./blocks/background-group/block.js";
 import "./blocks/accordion/block.js";
+import "./blocks/styling/block.js";

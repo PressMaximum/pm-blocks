@@ -1456,3 +1456,121 @@
  *
  * CSS for both Frontend+Backend.
  */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.cssruler-together-together.active {
+  background: #000;
+  color: #fff; }
+
+.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
+  background-color: inherit !important;
+  color: inherit !important; }
+
+.cssruler-tab-content .cssruler-settings {
+  display: -ms-flexbox;
+  display: flex; }
+  .cssruler-tab-content .cssruler-settings span {
+    vertical-align: middle;
+    margin-right: 5px; }
+    .cssruler-tab-content .cssruler-settings span input[type=number] {
+      height: 36px; }
+    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
+      margin-right: 0; }
+
+.cssruler-tab-content .components-button.cssruler-together {
+  background-color: #fff;
+  color: #191e23;
+  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
+          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
+  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
+    background-color: #000;
+    color: #fff;
+    -webkit-box-shadow: none;
+            box-shadow: none; }
+
+.cssruler-responsive-tabs {
+  margin-top: -25px; }
+  .cssruler-responsive-tabs [role="tablist"] {
+    text-align: right; }
+    .cssruler-responsive-tabs [role="tablist"]::after {
+      content: '';
+      display: table;
+      clear: both; }
+  .cssruler-responsive-tabs button[role="tab"] {
+    background: none;
+    border: none;
+    opacity: 0.4;
+    outline: 0;
+    padding-left: 3px;
+    padding-right: 3px;
+    cursor: pointer; }
+    .cssruler-responsive-tabs button[role="tab"].active-tab {
+      opacity: 1; }
+    .cssruler-responsive-tabs button[role="tab"]:last-child {
+      padding-right: 0; }
+
+.cssruler-control-wrap .components-base-control__field {
+  display: -ms-flexbox;
+  display: flex; }
+  .cssruler-control-wrap .components-base-control__field span {
+    -ms-flex: 1;
+        flex: 1; }
+    .cssruler-control-wrap .components-base-control__field span input[type=number] {
+      height: 36px;
+      padding: 5px; }
+  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
+    background-color: #fff;
+    color: #191e23;
+    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
+            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
+    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
+      background-color: #000;
+      color: #fff;
+      -webkit-box-shadow: none;
+              box-shadow: none; }
+
+.responsive-devices-control.has-label .responsive-devices-wrap {
+  margin-top: -25px; }
+
+.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
+  text-align: right; }
+  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
+    content: '';
+    display: table;
+    clear: both; }
+
+.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
+  background: none;
+  border: none;
+  opacity: 0.4;
+  outline: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  cursor: pointer; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
+    opacity: 1; }
+  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
+    padding-right: 0; }
+
+.color-picker-wrap {
+  padding: 5px;
+  background: #fff;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  cursor: pointer; }
+  .color-picker-wrap .color-picker-preview {
+    width: 36px;
+    height: 14px;
+    border-radius: 2px; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
