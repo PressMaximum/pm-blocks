@@ -44,7 +44,6 @@ class FontsControl extends Component {
 					console.log(__("Fail to load list fonts"));
 				}
 		);
-			
 	}
 
 	inArray(arr, element) {
@@ -156,7 +155,7 @@ class FontsControl extends Component {
 		}
 
 		const fontsList = this.state.list_fonts;
-
+		
 		return (
 			<div className={wraperClassName} id={id} {...props}>
 				{label && <span className="control-label">{label}</span>}

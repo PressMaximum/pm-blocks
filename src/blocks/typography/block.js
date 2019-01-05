@@ -16,7 +16,7 @@ registerBlockType( 'pm-blocks/block-typography', {
 		__( 'PM Typography' ),
 	],
 	attributes: {
-		typography: {
+		typo: {
 			type: 'object',
 		}
 	},
@@ -24,12 +24,12 @@ registerBlockType( 'pm-blocks/block-typography', {
 		const {
 			setAttributes
 		} = props;
-		const { typography } = props.attributes;
-		console.log('Saved typography: ', typography );
+		const { typo } = props.attributes;
+		console.log('Saved typography: ', typo );
 
 		return (
 			<div className={ props.className }>
-				<TypographyControl value={typography} onTypographyChange={(new_value) => {setAttributes({typography:new_value}); console.log('Typography changed: ', new_value) }}/>
+				<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value}); console.log('Typography changed: ', new_value) }}/>
 				<p>Hello, This is TypographyControl</p>
 			</div>
 	

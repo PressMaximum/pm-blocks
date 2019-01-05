@@ -1,7 +1,7 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import { defaults } from "lodash";
-import FontsControl from "../typography/index";
+import FontsControl from "../fonts/index";
 import RangeDevicesControl from "../rangecontrol-devices/index";
 const { SelectControl } = wp.components;
 const { withInstanceId } = wp.compose;
@@ -11,10 +11,28 @@ class TypographyControl extends Component {
 		super(...arguments);
 
 		var default_value = {
-			fonts: {},
-			font_size: "",
-			line_height: "",
-			letter_spacing: "",
+			font: {
+				family: "",
+				style: "",
+				subsets: [],
+				variant: "",
+				font_type: ""
+			},
+			font_size: {
+				value: "",
+				value_tablet: "",
+				value_mobile: ""
+			},
+			line_height: {
+				value: "",
+				value_tablet: "",
+				value_mobile: ""
+			},
+			letter_spacing: {
+				value: "",
+				value_tablet: "",
+				value_mobile: ""
+			},
 			text_decoration: "",
 			text_transform: ""
 		};
@@ -26,11 +44,26 @@ class TypographyControl extends Component {
 		var changed_value = {};
 
 		switch (data.key) {
-			case "variant":
-				changed_value.variant = data.value;
+			case "font":
+				changed_value.font = data.value;
 				break;
-			case "style":
-				changed_value.style = data.value;
+			case "font_size":
+				changed_value.font_size = data.value;
+				break;
+			case "line_height":
+				changed_value.line_height = data.value;
+				break;
+			case "letter_spacing":
+				changed_value.letter_spacing = data.value;
+				break;
+			case "text_decoration":
+				changed_value.text_decoration = data.value;
+				break;
+			case "text_decoration":
+				changed_value.text_decoration = data.value;
+				break;
+			case "text_transform":
+				changed_value.text_transform = data.value;
 				break;
 		}
 
@@ -60,14 +93,15 @@ class TypographyControl extends Component {
 		if ("" != label) {
 			wraperClassName += " has-label";
 		}
+
 		return (
 			<div className={wraperClassName} id={id} {...props}>
 				{label && <span className="control-label">{label}</span>}
 				<FontsControl
-					value={this.state.fonts}
+					value={this.state.font}
 					onFontsChange={new_value => {
 						this.onChangeHandler({
-							key: "fonts",
+							key: "font",
 							value: new_value
 						})
 					}}
@@ -79,9 +113,10 @@ class TypographyControl extends Component {
 						this.onChangeHandler({
 							key: "font_size",
 							value: new_value
-						})
+						});
 					}}
 				/>
+
 				<RangeDevicesControl
 					value={this.state.line_height}
 					label={__("Line height")}
@@ -89,7 +124,7 @@ class TypographyControl extends Component {
 						this.onChangeHandler({
 							key: "line_height",
 							value: new_value
-						})
+						});
 					}}
 				/>
 				<RangeDevicesControl
