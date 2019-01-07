@@ -1,0 +1,23 @@
+.popover-color-picker {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	.control-label {
+		flex-basis: calc(100% - 46px);
+	}
+}
+
+.color-picker-wrap {
+	padding: 5px;
+	background: #fff;
+	border-radius: 1px;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+	display: inline-block;
+	cursor: pointer;
+
+	.color-picker-preview {
+		width: 36px;
+		height: 14px;
+		border-radius: 2px;
+	}
+}

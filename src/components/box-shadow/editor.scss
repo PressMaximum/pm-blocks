@@ -1,0 +1,41 @@
+.box-shadow-control{
+	.group-label-color{
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+
+		.control-label{
+			flex-basis: calc(100% - 46px);
+		}
+
+		.popover-color-picker{
+			margin-bottom: 0;
+		}
+	}
+	.components-base-control{
+		.components-base-control__field{
+			clear: both;
+			display: flex;
+			align-items: center;
+			flex-direction:row;
+			width: 100%;
+			padding: 2px;
+
+			>span{
+				flex:1 1 auto;
+				margin: 2px;
+
+				input{
+					width: 100%;
+					max-width: 100%;
+				}
+
+				&.boxshadow_inset{
+					.components-checkbox-control__input{
+						margin-right: 0!important;
+					}
+				}
+			}
+		}
+	}
+}

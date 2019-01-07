@@ -1,3 +1,4 @@
+import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import { defaults } from "lodash";
@@ -74,17 +75,19 @@ class BoxShadowControl extends Component {
 
 		return (
 			<div id={id} className={wraperClassName} {...props}>
-				<span className="control-label">{__("Box shadow")}</span>
-				<ColorPickerControl
-					value={this.state.color}
-					disableAlpha="true"
-					onColorChangeComplete={new_color =>
-						this.onChangeHandler({
-							key: "color",
-							value: new_color
-						})
-					}
-				/>
+				<div className="group-label-color">
+					<span className="control-label">{__("Box shadow")}</span>
+					<ColorPickerControl
+						value={this.state.color}
+						disableAlpha="true"
+						onColorChangeComplete={new_color =>
+							this.onChangeHandler({
+								key: "color",
+								value: new_color
+							})
+						}
+					/>
+				</div>
 				<BaseControl>
 					<span>
 						<input

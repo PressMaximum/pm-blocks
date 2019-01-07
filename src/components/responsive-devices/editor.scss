@@ -1,3 +1,12 @@
+.responsive-devices-control{
+	&.has-label{
+		.responsive-devices-wrap{
+			margin-top: -22px;
+		}
+
+		
+	}
+}
 .responsive-devices-wrap{
 	[role="tablist"] {
 		text-align: right;

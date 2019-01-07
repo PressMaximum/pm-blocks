@@ -4,490 +4,9 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
-
-/**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.wp-block-cgb-block-pm-blocks {
-  background: #bada55;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
-
-/**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.wp-block-cgb-block-pm-blocks {
-  background: #bada55;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
-
-/**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.wp-block-cgb-block-pm-blocks {
-  background: #bada55;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -501,88 +20,53 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
+.cssruler-control-wrap .group-input-fields {
   display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  width: 100%;
+  padding: 2px; }
+  .cssruler-control-wrap .group-input-fields > span {
+    -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+    margin: 2px; }
+    .cssruler-control-wrap .group-input-fields > span input {
+      width: 100%;
+      max-width: 100%; }
+    .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button {
+      padding: 4px; }
+      .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button.active, .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button.active:hover {
+        background: #000;
+        color: #fff;
+        border: none;
+        -webkit-box-shadow: none !important;
+                box-shadow: none !important; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 .responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
+  margin-top: -22px; }
 
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
+.responsive-devices-wrap [role="tablist"] {
   text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
+  .responsive-devices-wrap [role="tablist"]::after {
     content: '';
     display: table;
     clear: both; }
 
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
+.responsive-devices-wrap button[role="tab"] {
   background: none;
   border: none;
   opacity: 0.4;
@@ -590,23 +74,92 @@
   padding-left: 3px;
   padding-right: 3px;
   cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
+  .responsive-devices-wrap button[role="tab"].active-tab {
     opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
+  .responsive-devices-wrap button[role="tab"]:last-child {
     padding-right: 0; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.popover-color-picker {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-bottom: 10px; }
+  .popover-color-picker .control-label {
+    -ms-flex-preferred-size: calc(100% - 46px);
+        flex-basis: calc(100% - 46px); }
 
 .color-picker-wrap {
   padding: 5px;
   background: #fff;
   border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
   display: inline-block;
   cursor: pointer; }
   .color-picker-wrap .color-picker-preview {
     width: 36px;
     height: 14px;
     border-radius: 2px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.box-shadow-control .group-label-color {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-bottom: 10px; }
+  .box-shadow-control .group-label-color .control-label {
+    -ms-flex-preferred-size: calc(100% - 46px);
+        flex-basis: calc(100% - 46px); }
+  .box-shadow-control .group-label-color .popover-color-picker {
+    margin-bottom: 0; }
+
+.box-shadow-control .components-base-control .components-base-control__field {
+  clear: both;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  width: 100%;
+  padding: 2px; }
+  .box-shadow-control .components-base-control .components-base-control__field > span {
+    -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+    margin: 2px; }
+    .box-shadow-control .components-base-control .components-base-control__field > span input {
+      width: 100%;
+      max-width: 100%; }
+    .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset .components-checkbox-control__input {
+      margin-right: 0 !important; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -620,238 +173,9 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
-
-/**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.wp-block-cgb-block-pm-blocks {
-  background: #bada55;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -865,112 +189,9 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -984,112 +205,18 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -1103,112 +230,9 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -1222,112 +246,9 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
-
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -1341,112 +262,21 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
-
-.cssruler-tab-content .cssruler-settings {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
-      margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
-      opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
-
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+.fonts-control .fonts-family .fonts-select-font {
+  width: 100%; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 /**
  * #.# Editor Styles
@@ -1460,112 +290,170 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.cssruler-together-together.active {
-  background: #000;
-  color: #fff; }
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
-.cssruler-together-together.components-button:focus, .cssruler-together-together.components-button:focus:enabled, .cssruler-together-together.components-button:hover {
-  background-color: inherit !important;
-  color: inherit !important; }
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
-.cssruler-tab-content .cssruler-settings {
+.bg-group-control .bg-image {
+  margin-bottom: 10px; }
+
+.bg-group-control .bg-2-fields {
   display: -ms-flexbox;
-  display: flex; }
-  .cssruler-tab-content .cssruler-settings span {
-    vertical-align: middle;
-    margin-right: 5px; }
-    .cssruler-tab-content .cssruler-settings span input[type=number] {
-      height: 36px; }
-    .cssruler-tab-content .cssruler-settings span.toggle_value_together {
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin: 0 -2px; }
+  .bg-group-control .bg-2-fields .bg-field {
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+    padding: 0 2px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.accordion-section-control .accoridion-section-header {
+  background-color: #f3f4f5;
+  position: relative;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  cursor: pointer; }
+  .accordion-section-control .accoridion-section-header::after {
+    content: " ";
+    background-color: #f3f4f5;
+    width: 16px;
+    height: 100%;
+    position: absolute;
+    left: 100%;
+    top: 0; }
+  .accordion-section-control .accoridion-section-header::before {
+    content: " ";
+    background-color: #f3f4f5;
+    width: 16px;
+    height: 100%;
+    position: absolute;
+    right: 100%;
+    top: 0; }
+  .accordion-section-control .accoridion-section-header .control-label {
+    font-size: 15px !important;
+    font-weight: bold;
+    color: #000; }
+  .accordion-section-control .accoridion-section-header .accordion-state-icon {
+    display: inline-block;
+    float: right; }
+    .accordion-section-control .accoridion-section-header .accordion-state-icon .accordion-icon .dashicons {
+      display: inline-block;
+      vertical-align: middle; }
+
+.edit-post-visual-editor .accordion-section-control .accoridion-section-header::after, .edit-post-visual-editor .accordion-section-control .accoridion-section-header::before {
+  width: 14px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.styling-control .my-tab-panel > .components-tab-panel__tabs {
+  margin-bottom: 10px; }
+  .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"] {
+    border: 1px solid #000;
+    color: #000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    padding: 3px 15px;
+    margin-right: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0.4; }
+    .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:focus {
+      outline: 0; }
+    .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:last-child {
       margin-right: 0; }
-
-.cssruler-tab-content .components-button.cssruler-together {
-  background-color: #fff;
-  color: #191e23;
-  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-  .cssruler-tab-content .components-button.cssruler-together.active, .cssruler-tab-content .components-button.cssruler-together.active:hover {
-    background-color: #000;
-    color: #fff;
-    -webkit-box-shadow: none;
-            box-shadow: none; }
-
-.cssruler-responsive-tabs {
-  margin-top: -25px; }
-  .cssruler-responsive-tabs [role="tablist"] {
-    text-align: right; }
-    .cssruler-responsive-tabs [role="tablist"]::after {
-      content: '';
-      display: table;
-      clear: both; }
-  .cssruler-responsive-tabs button[role="tab"] {
-    background: none;
-    border: none;
-    opacity: 0.4;
-    outline: 0;
-    padding-left: 3px;
-    padding-right: 3px;
-    cursor: pointer; }
-    .cssruler-responsive-tabs button[role="tab"].active-tab {
+    .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"].active-tab {
       opacity: 1; }
-    .cssruler-responsive-tabs button[role="tab"]:last-child {
-      padding-right: 0; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
-.cssruler-control-wrap .components-base-control__field {
-  display: -ms-flexbox;
-  display: flex; }
-  .cssruler-control-wrap .components-base-control__field span {
-    -ms-flex: 1;
-        flex: 1; }
-    .cssruler-control-wrap .components-base-control__field span input[type=number] {
-      height: 36px;
-      padding: 5px; }
-  .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together {
-    background-color: #fff;
-    color: #191e23;
-    -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
-            box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
-    .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active, .cssruler-control-wrap .components-base-control__field .components-button.cssruler-together.active:hover {
-      background-color: #000;
-      color: #fff;
-      -webkit-box-shadow: none;
-              box-shadow: none; }
-
-.responsive-devices-control.has-label .responsive-devices-wrap {
-  margin-top: -25px; }
-
-.responsive-devices-control .responsive-devices-wrap [role="tablist"] {
-  text-align: right; }
-  .responsive-devices-control .responsive-devices-wrap [role="tablist"]::after {
-    content: '';
-    display: table;
-    clear: both; }
-
-.responsive-devices-control .responsive-devices-wrap button[role="tab"] {
-  background: none;
-  border: none;
-  opacity: 0.4;
-  outline: 0;
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"].active-tab {
-    opacity: 1; }
-  .responsive-devices-control .responsive-devices-wrap button[role="tab"]:last-child {
-    padding-right: 0; }
-
-.color-picker-wrap {
-  padding: 5px;
-  background: #fff;
-  border-radius: 1px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  cursor: pointer; }
-  .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
-    border-radius: 2px; }
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 
 .rfipbtn, .rfipdropdown {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;

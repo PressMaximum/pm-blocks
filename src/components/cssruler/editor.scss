@@ -1,0 +1,32 @@
+.cssruler-control-wrap {
+	.group-input-fields {
+		display: flex;
+		flex-direction:row;
+		width: 100%;
+		padding: 2px;
+
+		>span{
+			flex:1 1 auto;
+			margin: 2px;
+
+			input{
+				width: 100%;
+				max-width: 100%;
+			}
+
+			&.toggle_value_together{
+				.components-icon-button{
+					padding: 4px;
+
+					&.active,
+					&.active:hover{
+						background: #000;
+						color: #fff;
+						border: none;
+						box-shadow:none!important;
+					}
+				}
+			}
+		}
+	}
+}

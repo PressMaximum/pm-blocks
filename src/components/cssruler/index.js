@@ -1,3 +1,4 @@
+import './editor.scss';
 const { __ } = wp.i18n;
 import { defaults } from "lodash";
 const { Component } = wp.element;
@@ -91,82 +92,84 @@ class CSSRulerControl extends Component {
 
 		return (
 			<BaseControl id={id} className="cssruler-control-wrap" {...props}>
-				<span>
-					<input
-						id={`${prefixId}-top`}
-						type="number"
-						placeholder={__("Top")}
-						className="cssruler-top"
-						onChange={e =>
-							this.onChangeHandler({
-								key: "top",
-								value: e.target.value
-							})
-						}
-						value={valueTop}
-						{...props}
-					/>
-				</span>
-				<span>
-					<input
-						id={`${prefixId}-right`}
-						type="number"
-						placeholder={__("Right")}
-						className="cssruler-right"
-						onChange={e =>
-							this.onChangeHandler({
-								key: "right",
-								value: e.target.value
-							})
-						}
-						value={valueRight}
-						{...props}
-					/>
-				</span>
-				<span>
-					<input
-						id={`${prefixId}-bottom`}
-						type="number"
-						placeholder={__("Bottom")}
-						className="cssruler-bottom"
-						onChange={e =>
-							this.onChangeHandler({
-								key: "bottom",
-								value: e.target.value
-							})
-						}
-						value={valueBottom}
-						{...props}
-					/>
-				</span>
-				<span>
-					<input
-						id={`${prefixId}-left`}
-						type="number"
-						placeholder={__("Left")}
-						className="cssruler-left"
-						onChange={e =>
-							this.onChangeHandler({
-								key: "left",
-								value: e.target.value
-							})
-						}
-						value={valueLeft}
-						{...props}
-					/>
-				</span>
-				<span className="toggle_value_together">
-					<IconButton
-						className={
-							this.state['link']
-								? "cssruler-together active"
-								: "cssruler-together"
-						}
-						icon="admin-links"
-						label={__("Set value together")}
-						onClick={e => this.maybeValueTogether()}
-					/>
-				</span>
+				<div className="group-input-fields">
+					<span>
+						<input
+							id={`${prefixId}-top`}
+							type="number"
+							placeholder={__("Top")}
+							className="cssruler-top"
+							onChange={e =>
+								this.onChangeHandler({
+									key: "top",
+									value: e.target.value
+								})
+							}
+							value={valueTop}
+							{...props}
+						/>
+					</span>
+					<span>
+						<input
+							id={`${prefixId}-right`}
+							type="number"
+							placeholder={__("Right")}
+							className="cssruler-right"
+							onChange={e =>
+								this.onChangeHandler({
+									key: "right",
+									value: e.target.value
+								})
+							}
+							value={valueRight}
+							{...props}
+						/>
+					</span>
+					<span>
+						<input
+							id={`${prefixId}-bottom`}
+							type="number"
+							placeholder={__("Bottom")}
+							className="cssruler-bottom"
+							onChange={e =>
+								this.onChangeHandler({
+									key: "bottom",
+									value: e.target.value
+								})
+							}
+							value={valueBottom}
+							{...props}
+						/>
+					</span>
+					<span>
+						<input
+							id={`${prefixId}-left`}
+							type="number"
+							placeholder={__("Left")}
+							className="cssruler-left"
+							onChange={e =>
+								this.onChangeHandler({
+									key: "left",
+									value: e.target.value
+								})
+							}
+							value={valueLeft}
+							{...props}
+						/>
+					</span>
+					<span className="toggle_value_together">
+						<IconButton
+							className={
+								this.state['link']
+									? "cssruler-together active"
+									: "cssruler-together"
+							}
+							icon="admin-links"
+							label={__("Set value together")}
+							onClick={e => this.maybeValueTogether()}
+						/>
+					</span>
+				</div>
 			</BaseControl>
 		);
 	}

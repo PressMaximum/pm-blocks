@@ -1,3 +1,4 @@
+import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import { defaults, isEmpty, map } from "lodash";
