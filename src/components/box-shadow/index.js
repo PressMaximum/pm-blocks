@@ -149,9 +149,10 @@ class BoxShadowControl extends Component {
 							value={this.state.spread}
 						/>
 					</span>
-					<span className="boxshadow_inset">
+					<span className="boxshadow_inset" data-tooltip={__("Inset")}>
 						<CheckboxControl
 							id={`${id}-inset`}
+							
 							className="boxshadow-inset"
 							checked={this.state.inset}
 							onChange={isChecked =>

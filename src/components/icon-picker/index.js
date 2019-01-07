@@ -69,7 +69,7 @@ class IconPickerControl extends Component {
 		return (
 			<div className={wraperClassName} id={id} {...props}>
 				{label && <span className="control-label">{label}</span>}
-				<FontIconPicker value={this.state.value} isMulti={isMulti} onChange={this.onChangeHandler} renderUsing="class" theme="bluegrey" icons={this.state.list_icons}/>
+				<FontIconPicker value={this.state.value} isMulti={isMulti} onChange={this.onChangeHandler} appendTo="body" renderUsing="class" theme="bluegrey" icons={this.state.list_icons}/>
 			</div>
 		);
 	}

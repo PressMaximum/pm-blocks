@@ -101,7 +101,7 @@
 .color-picker-wrap {
   padding: 5px;
   background: #fff;
-  border-radius: 1px;
+  border-radius: 3px;
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
   display: inline-block;
@@ -149,8 +149,60 @@
     .box-shadow-control .components-base-control .components-base-control__field > span input {
       width: 100%;
       max-width: 100%; }
-    .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset .components-checkbox-control__input {
-      margin-right: 0 !important; }
+    .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset {
+      position: relative; }
+      .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset::after {
+        content: attr(data-tooltip);
+        background: #000;
+        color: #fff;
+        padding: 2px 10px;
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        z-index: 9999;
+        line-height: 1.5;
+        font-size: 13px;
+        border-radius: 3px;
+        -webkit-transform: translatex(-50%);
+            -ms-transform: translatex(-50%);
+                transform: translatex(-50%);
+        opacity: 0;
+        visibility: hidden; }
+      .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset::before {
+        content: "";
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #000;
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: -10px;
+        left: 50%;
+        -webkit-transform: translatex(-50%);
+            -ms-transform: translatex(-50%);
+                transform: translatex(-50%);
+        clear: both;
+        opacity: 0;
+        visibility: hidden; }
+      .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset:hover::before, .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset:hover::after {
+        opacity: 1;
+        visibility: visible; }
+      .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset .components-base-control__field {
+        margin-bottom: 0; }
+      .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset .components-checkbox-control__input {
+        margin-right: 0 !important; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.range-devices-control.has-label .responsive-devices-wrap {
+  margin-top: -34px; }
 /**
  * #.# Common SCSS
  *
@@ -208,6 +260,20 @@
 .has-label .control-label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
+
+.background-control .bg-image {
+  margin-bottom: 10px; }
+
+.background-control .bg-2-fields {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  margin: 0 -2px; }
+  .background-control .bg-2-fields .bg-field {
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+    padding: 0 2px; }
 /**
  * #.# Common SCSS
  *
@@ -224,6 +290,15 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
 /**
  * #.# Common SCSS
  *
@@ -310,19 +385,24 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
-.bg-group-control .bg-image {
+.bg-group-control .my-tab-panel > .components-tab-panel__tabs {
   margin-bottom: 10px; }
-
-.bg-group-control .bg-2-fields {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  margin: 0 -2px; }
-  .bg-group-control .bg-2-fields .bg-field {
-    -ms-flex-preferred-size: 50%;
-        flex-basis: 50%;
-    padding: 0 2px; }
+  .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"] {
+    border: 1px solid #000;
+    color: #000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    padding: 3px 15px;
+    margin-right: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0.4; }
+    .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:focus {
+      outline: 0; }
+    .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:last-child {
+      margin-right: 0; }
+    .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"].active-tab {
+      opacity: 1; }
 /**
  * #.# Common SCSS
  *
@@ -2720,3 +2800,6 @@ i.fipicon-angle-right:before {
 i.fipicon-angle-left:before {
   content: "\f341";
   font-family: dashicons; }
+
+.rfipdropdown--bluegrey .rfipsearch input {
+  border-radius: 0 !important; }

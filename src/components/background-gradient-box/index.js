@@ -1,3 +1,4 @@
+import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import { defaults } from "lodash";
@@ -90,7 +91,7 @@ class BackgroundGradientBoxControl extends Component {
 					}
 				/>
 				<div className="bg-gradient-field location-field">
-					<span className="field-label">{__("Location" )}</span>
+					<span className="field-label control-label">{__("Location" )}</span>
 					<RangeControl
 						value={this.state.location}
 						onChange={ ( new_value ) => 
@@ -108,7 +109,7 @@ class BackgroundGradientBoxControl extends Component {
 					}
 				/>
 				<div className="bg-gradient-field second-location-field">
-					<span className="field-label">{__("Second Location" )}</span>
+					<span className="field-label control-label">{__("Second Location" )}</span>
 					<RangeControl
 						value={this.state.second_location}
 						onChange={ ( new_value ) => 
@@ -131,7 +132,7 @@ class BackgroundGradientBoxControl extends Component {
 					}
 				/>
 				<div className="bg-gradient-field angle-field">
-					<span className="field-label">{__("Angle" )}</span>
+					<span className="field-label control-label">{__("Angle" )}</span>
 					<RangeControl
 						value={this.state.angle}
 						onChange={ ( new_value ) => 
