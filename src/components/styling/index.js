@@ -3,9 +3,9 @@ const { Component } = wp.element;
 import { defaults } from "lodash";
 import AccordionControl from "../accordion/index";
 import BackgroundGroupControl from "../background-group/index";
-import ColorPickerControl from '../color-picker/index';
-import BorderBoxControl from '../../components/border-box/index';
-import CSSRulerDevices from '../cssruler-devices/index';
+import ColorPickerControl from "../color-picker/index";
+import BorderBoxControl from "../../components/border-box/index";
+import CSSRulerDevices from "../cssruler-devices/index";
 const { TabPanel } = wp.components;
 const { withInstanceId } = wp.compose;
 
@@ -20,7 +20,7 @@ class StylingControl extends Component {
 				padding: {},
 				margin: {},
 				color: {},
-				link_color: {},
+				link_color: {}
 			},
 			hover: {
 				border_box: {},
@@ -28,31 +28,65 @@ class StylingControl extends Component {
 				padding: {},
 				margin: {},
 				color: {},
-				link_color: {},
+				link_color: {}
 			}
 		};
 		//Set state
 		this.state = defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
+		this.onTabSelect = this.onTabSelect.bind(this);
 	}
 	onChangeHandler(data) {
-		var changed_value = {};
+		var changed_value = this.state;
 
 		switch (data.key) {
-			case "font":
-				changed_value.font = data.value;
+			case "normal_color":
+				changed_value.normal.color = data.value;
 				break;
-			case "font_size":
-				changed_value.font_size = data.value;
+			case "normal_link_color":
+				changed_value.normal.link_color = data.value;
+				break;
+			case "normal_padding":
+				changed_value.normal.padding = data.value;
+				break;
+			case "normal_margin":
+				changed_value.normal.margin = data.value;
+				break;
+			case "normal_background":
+				changed_value.normal.background = data.value;
+				break;
+			case "normal_border_box":
+				changed_value.normal.border_box = data.value;
+				break;
+			case "hover_color":
+				changed_value.hover.color = data.value;
+				break;
+			case "hover_link_color":
+				changed_value.hover.link_color = data.value;
+				break;
+			case "hover_padding":
+				changed_value.hover.padding = data.value;
+				break;
+			case "hover_margin":
+				changed_value.hover.margin = data.value;
+				break;
+			case "hover_background":
+				changed_value.hover.background = data.value;
+				break;
+			case "hover_border_box":
+				changed_value.hover.border_box = data.value;
 				break;
 		}
-
 		this.setState(changed_value);
 		if ("function" === typeof this.props.onStylingChange) {
 			let current_state = this.state;
 			let current_data = Object.assign({}, current_state, changed_value);
 			this.props.onStylingChange(current_data);
 		}
+	}
+
+	onTabSelect( current_tab ) {
+		
 	}
 
 	render() {
@@ -87,22 +121,60 @@ class StylingControl extends Component {
 							title: __("Normal"),
 							className: "tab-normal",
 							tab_content: (
-								<AccordionControl>
-									<div label={__("Color")}>
-										<ColorPickerControl label={__("Color")} disableAlpha="true" value={this.state.normal.color} onColorChangeComplete={ new_value => console.log('color: ', new_value ) } />
-										<ColorPickerControl label={__("Link color")} disableAlpha="true" value={this.state.normal.link_color} onColorChangeComplete={ new_value => console.log('link color: ', new_value ) } />
-									</div>
-									<div label={__("Layout")}>
-										<CSSRulerDevices label={__("Padding")} value={this.state.normal.padding} onCSSRulerDevicesChange={ (value) => console.log('padding: ', new_value ) }/>
-										<CSSRulerDevices label={__("Margin")} value={this.state.normal.margin} onCSSRulerDevicesChange={ (value) => console.log('margin: ', new_value ) }/>
-									</div>
-									<div label={__("Background")}>
-										<BackgroundGroupControl value={this.state.normal.background} onBackgroundGroupChange={(new_value) => {console.log('new value: ', new_value ) }}/>
-									</div>
-									<div label={__("Border")}>
-										<BorderBoxControl value={this.state.normal.border_box} onBorderBoxChange={new_value => { console.log('New value: ', new_value)} }/>
-									</div>
-								</AccordionControl>
+								<div className="normal-tab-content">
+									<AccordionControl key="normal-accordion">
+										<div label={__("Color")}>
+											<ColorPickerControl
+												label={__("Color")}
+												disableAlpha="true"
+												value={this.state.normal.color}
+												onColorChangeComplete={new_value =>
+													this.onChangeHandler( { key: "normal_color", value : new_value} )
+												}
+											/>
+											<ColorPickerControl
+												label={__("Link color")}
+												disableAlpha="true"
+												value={this.state.normal.link_color}
+												onColorChangeComplete={new_value =>
+													this.onChangeHandler( { key: "normal_link_color", value : new_value} )
+												}
+											/>
+										</div>
+										<div label={__("Layout")}>
+											<CSSRulerDevices
+												label={__("Padding")}
+												value={this.state.normal.padding}
+												onCSSRulerDevicesChange={new_value =>
+													this.onChangeHandler( { key: "normal_padding", value : new_value} )
+												}
+											/>
+											<CSSRulerDevices
+												label={__("Margin")}
+												value={this.state.normal.margin}
+												onCSSRulerDevicesChange={new_value =>
+													this.onChangeHandler( { key: "normal_margin", value : new_value} )
+												}
+											/>
+										</div>
+										<div label={__("Background")}>
+											<BackgroundGroupControl
+												value={this.state.normal.background}
+												onBackgroundGroupChange={new_value => {
+													this.onChangeHandler( { key: "normal_background", value : new_value} )
+												}}
+											/>
+										</div>
+										<div label={__("Border")}>
+											<BorderBoxControl
+												value={this.state.normal.border_box}
+												onBorderBoxChange={new_value => {
+													this.onChangeHandler( { key: "normal_border_box", value : new_value} )
+												}}
+											/>
+										</div>
+									</AccordionControl>
+								</div>
 							)
 						},
 						{
@@ -110,27 +182,65 @@ class StylingControl extends Component {
 							title: __("Hover"),
 							className: "tab-hover",
 							tab_content: (
-								<AccordionControl>
-									<div label={__("Color")}>
-										<ColorPickerControl label={__("Color")} disableAlpha="true" value={this.state.hover.color} onColorChangeComplete={ new_value => console.log('color: ', new_value ) } />
-										<ColorPickerControl label={__("Link color")} disableAlpha="true" value={this.state.hover.link_color} onColorChangeComplete={ new_value => console.log('link color: ', new_value ) } />
-									</div>
-									<div label={__("Layout")}>
-										<CSSRulerDevices label={__("Padding")} value={this.state.hover.padding} onCSSRulerDevicesChange={ (value) => console.log('padding: ', new_value ) }/>
-										<CSSRulerDevices label={__("Margin")} value={this.state.hover.margin} onCSSRulerDevicesChange={ (value) => console.log('margin: ', new_value ) }/>
-									</div>
-									<div label={__("Background")}>
-										<BackgroundGroupControl value={this.state.hover.background} onBackgroundGroupChange={(new_value) => {console.log('new value: ', new_value ) }}/>
-									</div>
-									<div label={__("Border")}>
-										<BorderBoxControl value={this.state.hover.border_box} onBorderBoxChange={new_value => { console.log('New value: ', new_value)} }/>
-									</div>
-								</AccordionControl>
+								<div className="hover-tab-content">
+									<AccordionControl key="hover-accordion">
+										<div label={__("Color")}>
+											<ColorPickerControl
+												label={__("Color")}
+												disableAlpha="true"
+												value={this.state.hover.color}
+												onColorChangeComplete={new_value =>
+													this.onChangeHandler( { key: "hover_color", value : new_value} )
+												}
+											/>
+											<ColorPickerControl
+												label={__("Link color")}
+												disableAlpha="true"
+												value={this.state.hover.link_color}
+												onColorChangeComplete={new_value =>
+													this.onChangeHandler( { key: "hover_link_color", value : new_value} )
+												}
+											/>
+										</div>
+										<div label={__("Layout")}>
+											<CSSRulerDevices
+												label={__("Padding")}
+												value={this.state.hover.padding}
+												onCSSRulerDevicesChange={new_value =>
+													this.onChangeHandler( { key: "hover_padding", value : new_value} )
+												}
+											/>
+											<CSSRulerDevices
+												label={__("Margin")}
+												value={this.state.hover.margin}
+												onCSSRulerDevicesChange={new_value =>
+													this.onChangeHandler( { key: "hover_margin", value : new_value} )
+												}
+											/>
+										</div>
+										<div label={__("Background")}>
+											<BackgroundGroupControl
+												value={this.state.hover.background}
+												onBackgroundGroupChange={new_value => {
+													this.onChangeHandler( { key: "hover_background", value : new_value} )
+												}}
+											/>
+										</div>
+										<div label={__("Border")}>
+											<BorderBoxControl
+												value={this.state.hover.border_box}
+												onBorderBoxChange={new_value => {
+													this.onChangeHandler( { key: "hover_border_box", value : new_value} )
+												}}
+											/>
+										</div>
+									</AccordionControl>
+								</div>
 							)
 						}
 					]}
 				>
-					{tab => <p>{tab.tab_content}</p>}
+					{tab => <div className="styling-tab-wrap">{tab.tab_content}</div>}
 				</TabPanel>
 			</div>
 		);

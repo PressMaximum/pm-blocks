@@ -5,6 +5,9 @@ import BackgroundGroupControl from '../../components/background-group/index';
 
 const { __ } = wp.i18n; 
 const { registerBlockType } = wp.blocks;
+const {
+	InspectorControls,
+} = wp.editor;
 
 registerBlockType( 'pm-blocks/block-background-group', {
 	title: __( 'PM Background Group' ), 
@@ -30,6 +33,9 @@ registerBlockType( 'pm-blocks/block-background-group', {
 		return (
 			<div className={ props.className }>
 				<BackgroundGroupControl value={background_group} onBackgroundGroupChange={(new_value) => {setAttributes({background_group:new_value}); console.log('BG Group Changed: ', new_value) }}/>
+				<InspectorControls>
+					<BackgroundGroupControl value={background_group} onBackgroundGroupChange={(new_value) => {setAttributes({background_group:new_value}); console.log('BG Group Changed: ', new_value) }}/>
+				</InspectorControls>
 				<p>Hello, This is BackgroundGroupControl</p>
 			</div>
 	

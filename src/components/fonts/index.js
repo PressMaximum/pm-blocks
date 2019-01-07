@@ -25,9 +25,9 @@ class FontsControl extends Component {
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 	}
 	componentDidMount() {
-		fetch(
-			"http://devgutenberg.local/wp-admin/admin-ajax.php?action=pm_blocks_get_fonts"
-			).then(res => res.json()).then(
+		let ajax_url = pm_blocks_js.ajaxurl;
+		ajax_url += "?action=pm_blocks_get_fonts";
+		fetch( ajax_url ).then(res => res.json()).then(
 				result => {
 					this.setState({ list_fonts: result.data });
 					let saved_font_type = this.state.font_type;

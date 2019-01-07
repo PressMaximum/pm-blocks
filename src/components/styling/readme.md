@@ -1,27 +1,38 @@
-# TypographyControl
-Group of typograply fields: fonts, font size, line-height, letter spacing, text-decoration, text-transform
+# StylingControl
+Group of normal and hover styling fields: color, layout, background, border
 
 # Usage
 ```javascript
-var default_fonts = {
-	family: "",
-	style: "",
-	subsets: [],
-	variant: '',
-	font_type: '',
+var styling = {
+	normal: {
+		border_box: {},
+		background: {},
+		padding: {},
+		margin: {},
+		color: {},
+		link_color: {}
+	},
+	hover: {
+		border_box: {},
+		background: {},
+		padding: {},
+		margin: {},
+		color: {},
+		link_color: {}
+	}
 };
-<TypographyControl value={typography} onTypographyChange={(new_value) => {setAttributes({typography:new_value}); console.log('Typography changed: ', new_value) }}/>
+<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value}); console.log('Styling changed: ', new_value) }}/>
 ```
 
 # Props
 The component accepts the following props:
 
 ### value
-The value for **TypographyControl**
+The value for **StylingControl**
 * Type: **Object**
 * Required: **Yes**
 
-### onTypographyChange
-The callback function for **TypographyControl**
+### onStylingChange
+The callback function for **StylingControl**
 * Type: **Function**
 * Required: **Yes**

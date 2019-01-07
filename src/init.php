@@ -51,6 +51,14 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 		true // Enqueue the script in the footer.
 	);
 
+	wp_localize_script(
+		'pm_blocks-cgb-block-js',
+		'pm_blocks_js',
+		array(
+			'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+		)
+	);
+
 	// Styles.
 	wp_enqueue_style(
 		'pm_blocks-cgb-block-editor-css', // Handle.

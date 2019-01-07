@@ -40,3 +40,4 @@ import "./blocks/typography/block.js";
 import "./blocks/background-group/block.js";
 import "./blocks/accordion/block.js";
 import "./blocks/styling/block.js";
+import "./blocks/icon-picker/block.js";

@@ -8,13 +8,18 @@
     "eject": "cgb-scripts eject"
   },
   "dependencies": {
+    "@fonticonpicker/react-fonticonpicker": "^1.2.0",
     "cgb-scripts": "1.14.0",
     "classnames": "^2.2.6",
     "dom-closest": "^0.2.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react-transition-group": "^2.5.2"
   },
   "devDependencies": {
+    "css-loader": "^2.1.0",
     "grunt": "^1.0.3",
-    "react-trigger-change": "^1.0.2"
+    "react-trigger-change": "^1.0.2",
+    "style-loader": "^0.23.1"
   }
 }

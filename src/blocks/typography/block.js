@@ -5,6 +5,9 @@ import TypographyControl from '../../components/typography/index';
 
 const { __ } = wp.i18n; 
 const { registerBlockType } = wp.blocks;
+const {
+	InspectorControls,
+} = wp.editor;
 
 registerBlockType( 'pm-blocks/block-typography', {
 	title: __( 'PM Typography' ), 
@@ -30,6 +33,9 @@ registerBlockType( 'pm-blocks/block-typography', {
 		return (
 			<div className={ props.className }>
 				<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value}); console.log('Typography changed: ', new_value) }}/>
+				<InspectorControls>
+					<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value}); console.log('Typography changed: ', new_value) }}/>
+				</InspectorControls>
 				<p>Hello, This is TypographyControl</p>
 			</div>
 	
