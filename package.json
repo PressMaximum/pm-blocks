@@ -14,7 +14,8 @@
     "dom-closest": "^0.2.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
-    "react-transition-group": "^2.5.2"
+    "react-transition-group": "^2.5.2",
+    "typy": "^3.0.0"
   },
   "devDependencies": {
     "css-loader": "^2.1.0",
