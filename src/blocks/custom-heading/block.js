@@ -6,7 +6,7 @@ import CustomHeadingToolbar from './heading-toolbar';
 import TypographyControl from '../../components/typography/index';
 import StylingControl from '../../components/styling/index';
 import ColorPickerControl from '../../components/color-picker/index';
-import { range } from 'lodash';
+import { pmUniqueID } from '../../helper/unique-id.js';
 
 const { __, sprintf } = wp.i18n;
 const { data } = wp;
@@ -14,7 +14,6 @@ const { registerBlockType } = wp.blocks;
 const { Fragment, Component } = wp.element;
 const { PanelBody, Toolbar } = wp.components;
 const { createBlock } = wp.blocks;
-const { withInstanceId } = wp.compose;
 const { RichText, BlockControls, InspectorControls, AlignmentToolbar } = wp.editor;
 const schema = {
 	content: {
@@ -39,7 +38,11 @@ const schema = {
 	},
 	color: {
 		type: 'object'
-	}
+	},
+
+	uniqueID: {
+		type: 'string',
+	},
 };
 
 registerBlockType( 'pm-blocks/block-my-heading', {
@@ -61,12 +64,17 @@ registerBlockType( 'pm-blocks/block-my-heading', {
 			onReplace,
 			className,
 			instanceId,
+			clientId
 		} = props;
-		const { styling,typo, color, align, content, level, placeholder } = props.attributes;
+		const { styling,typo, color, align, content, level, placeholder,uniqueID } = props.attributes;
 		const tagName = 'h' + level;
 
+		if( 'undefined' == typeof( uniqueID ) || '' == uniqueID ) {
+			setAttributes( {uniqueID: clientId });
+		}
+		
 		return (
-			<div className={`block-custom-heading ${ props.className }`} id={instanceId}>
+			<div className={`block-custom-heading ${ props.className }`} id={`block-${uniqueID}`}>
 				<Fragment>
 					<BlockControls>
 						<CustomHeadingToolbar minLevel={ 2 } maxLevel={ 5 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
@@ -122,18 +130,16 @@ registerBlockType( 'pm-blocks/block-my-heading', {
 	},
 
 	save: function( props ) {
-		const { heading, align, content, level, placeholder } = props.attributes;
+		const { heading, align, content, level, placeholder, uniqueID } = props.attributes;
 		const tagName = 'h' + level;
-		
-		console.log('props saved: ', props);
-
 		return (
-			<RichText.Content
-				tagName={ tagName }
-				style={ { textAlign: align } }
-				value={ content }
-			/>
-
+			<div className={`block-custom-heading ${ props.className }`} id={`block-${uniqueID}`}>
+				<RichText.Content
+					tagName={ tagName }
+					style={ { textAlign: align } }
+					value={ content }
+				/>
+			</div>
 		);
 	},
 } );
