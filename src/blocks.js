@@ -8,7 +8,7 @@
  * All blocks should be included here since this is the file that
  * Webpack is compiling as the input file.
  */
-import t from 'typy';
+
 import PMLiveCSS from './helper/live-css';
 
 const { subscribe } = wp.data;
@@ -18,9 +18,8 @@ const MyChange = subscribe( ( a ) => {
 	const editor = wp.data.select('core/editor');
 
 	if ( editor.hasChangedContent() && ! editor.isTyping() ) {
-		
 		const blocks = editor.getBlocks();
-		console.log('block css ruler: ',PMLiveCSS(blocks));
+		PMLiveCSS(blocks);
 	}
 	
 } );
