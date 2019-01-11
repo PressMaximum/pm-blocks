@@ -16,10 +16,19 @@ const MyChange = subscribe( ( a ) => {
     // You could use this opportunity to test whether the derived result of a
 	// selector has subsequently changed as the result of a state update.
 	const editor = wp.data.select('core/editor');
+	const currentPost = editor.getCurrentPost();
+	
+	console.log('editor admin: ',editor);
+	console.log('Method getPostEdits: ', editor.getPostEdits());
+	console.log('Method getReferenceByDistinctEdits: ', editor.getReferenceByDistinctEdits());
 
 	if ( editor.hasChangedContent() && ! editor.isTyping() ) {
 		const blocks = editor.getBlocks();
-		PMLiveCSS(blocks);
+		let runableCSS = PMLiveCSS(blocks);
+
+		const currentMeta = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'meta' );
+		console.log('currentMeta: ', currentMeta);
+		
 	}
 	
 } );

@@ -1,5 +1,6 @@
 import t from 'typy';
 import { isEmpty } from "lodash";
+const { applyFilters } =  wp.hooks;
 
 var pmBlocksStyle ={
 	"pm-blocks/block-my-heading" : {
@@ -709,7 +710,7 @@ export default function PMLiveCSS( guternbergBlocks ){
 				}
 			}
 		};
-		return blockCSS;
+		return applyFilters( 'pmLiveCSSGetBlockCSS', blockCSS );
 	};
 
 	const getReadableCSS = ( guternbergBlocks ) => {
@@ -752,7 +753,7 @@ export default function PMLiveCSS( guternbergBlocks ){
 			tablet: cssTablet.join( ' ' ),
 			mobile: cssMobile.join( ' ' ),
 		};
-		return cssReable;
+		return applyFilters( 'pmLiveCSSGetReadableCSS', cssReable );
 	};
 
 	const getRunableCSS = (guternbergBlocks) => {
@@ -776,7 +777,7 @@ export default function PMLiveCSS( guternbergBlocks ){
 			}
 		}
 
-		return runableCSS;
+		return applyFilters( 'pmLiveCSSGetRunableCSS', runableCSS );
 	};
 
 	return getRunableCSS(guternbergBlocks);
