@@ -9,29 +9,55 @@
  * Webpack is compiling as the input file.
  */
 
-import PMLiveCSS from './helper/live-css';
+import PMLiveCSS from "./helper/live-css";
+
 
 const { subscribe } = wp.data;
-const MyChange = subscribe( ( a ) => {
-    // You could use this opportunity to test whether the derived result of a
+const MyChange = subscribe( (sub) => {
+
+	// You could use this opportunity to test whether the derived result of a
 	// selector has subsequently changed as the result of a state update.
-	const editor = wp.data.select('core/editor');
-	const currentPost = editor.getCurrentPost();
+	const editor = wp.data.select("core/editor");
 	
-	console.log('editor admin: ',editor);
-	console.log('Method getPostEdits: ', editor.getPostEdits());
-	console.log('Method getReferenceByDistinctEdits: ', editor.getReferenceByDistinctEdits());
-
-	if ( editor.hasChangedContent() && ! editor.isTyping() ) {
+	if (editor.hasChangedContent() && !editor.isTyping()) {
 		const blocks = editor.getBlocks();
-		let runableCSS = PMLiveCSS(blocks);
+		const selectedBlock = editor.getSelectedBlock();
+		
+		let pmLiveCSS = new PMLiveCSS();
+		let runableCSS = pmLiveCSS.getRunableCSS(selectedBlock);
+		
+		let cssInput = document.getElementById('pm_blocks_style_css');
+		cssInput.value = runableCSS;
 
-		const currentMeta = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'meta' );
-		console.log('currentMeta: ', currentMeta);
+
+		let allBlocksCSS = pmLiveCSS.getAllBlocksCSS( blocks );
+		console.log('allBlocksCSS: ', allBlocksCSS);
+
+		let css;
+		let styles = runableCSS;
+		let headTag = document.getElementsByTagName("head");
+	
+		if( null !== document.getElementById("pm_style_css") ){
+			css = document.getElementById("pm_style_css");
+			if (css.styleSheet) {
+				css.styleSheet.cssText = styles;
+			} else {
+				css.innerHTML = styles;
+			}
+		} else {
+			css = document.createElement("style");
+			css.type = "text/css";
+			css.id = "pm_style_css";
+			if (css.styleSheet) {
+				css.styleSheet.cssText = styles;
+			} else {
+				css.appendChild(document.createTextNode(styles));
+			}
+			headTag[0].appendChild(css);
+		}
 		
 	}
-	
-} );
+});
 
 import "./blocks/call-to-action/block.js";
 import "./blocks/border-box/block.js";

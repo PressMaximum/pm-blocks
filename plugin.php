@@ -24,3 +24,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/components/fonts/fonts.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/components/icon-picker/icon-picker.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/helper/meta-box.php';

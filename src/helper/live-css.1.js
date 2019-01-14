@@ -17,30 +17,30 @@ var pmBlocksStyle ={
 			"paddingDevices": "styling.normal.padding",
 			"borderWidth": "styling.normal.border_box.width",
 			"borderWidthDevices": "styling.normal.margin",
-			
 			"line-height": {
 				"attrValue" : "styling.normal.margin",
-				"outputValue" : "{{VALUE_TOP}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+				"outputValue" : "{{VALUE}}", //{{VALUE_LEFT}}, {{VALUE_MOBILE}}
 			}
 		}
 	}
 };
 
-class PMLiveCSS {
-	constructor( ) {
-		this.pmBlocksStyle = pmBlocksStyle;
-		
-	}
-
-	getCSSRulerCSS( input, cssProp, unit ){
+export default function PMLiveCSS( selectedBlock ){
+	
+	const isHexColor = ( string_color ) => {
+		var isHex  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(string_color);
+		return !!isHex;
+	};
+	
+	const getCSSRulerCSS = ( input, cssProp, unit ) => {
 		let returnValue = '';
-		let link = ( this.definedNotEmpty(input.link) && input.link ) ? true : false;
+		let link = ( definedNotEmpty(input.link) && input.link ) ? true : false;
 		let listAttrs = ['top', 'right', 'bottom', 'left'];
 		
 		for(let i=0;i<listAttrs.length;i++){
 			let key = listAttrs[i];
 			let value = input[key];
-			if( this.definedNotEmpty( value ) ) {
+			if( definedNotEmpty( value ) ) {
 				if( link ) {
 					returnValue = `${cssProp}:${value}${unit};`;
 					break;
@@ -50,9 +50,9 @@ class PMLiveCSS {
 			}
 		}
 		return returnValue;
-	}
+	};
 
-	getCSSRulerDeviceCSS ( input, cssProp, unit ) {
+	const getCSSRulerDeviceCSS = ( input, cssProp, unit ) => {
 		let returnValue = {
 			desktop: '',
 			tablet: '',
@@ -72,7 +72,7 @@ class PMLiveCSS {
 				let key = attrDeviceVal[j];
 				let value = input[key];
 				
-				if( this.definedNotEmpty(value) ) {
+				if( definedNotEmpty(value) ) {
 					if( key.includes( 'top' ) ) {
 						valueObj['top'] = value;
 					} else if( key.includes( 'right' ) ) {
@@ -87,12 +87,12 @@ class PMLiveCSS {
 				}
 			}
 			
-			returnValue[attrDeviceKey] = this.getCSSRulerCSS( valueObj, cssProp, unit);
+			returnValue[attrDeviceKey] = getCSSRulerCSS( valueObj, cssProp, unit);
 		}
 		return returnValue;
-	}
+	};
 	
-	getRangeDeviceCSS ( input, cssProp, unit ) {
+	const getRangeDeviceCSS = ( input, cssProp, unit ) => {
 		let returnValue = {};
 		let listAttr = {
 			desktop : 'value',
@@ -105,7 +105,7 @@ class PMLiveCSS {
 			let objKey = listAttrkeys[i];
 			let inputKey = listAttr[objKey];
 
-			if( this.definedNotEmpty( input[inputKey] ) ) {
+			if( definedNotEmpty( input[inputKey] ) ) {
 				returnValue[objKey] = `${cssProp}:${input[inputKey]}${unit};`;
 			}
 		}
@@ -113,19 +113,19 @@ class PMLiveCSS {
 			return returnValue;
 		}
 		return '';
-	}
+	};
 	
-	getFontCSS ( fontData ) {
+	const getFontCSS = ( fontData ) => {
 		let fontCSS = '';
-		let fontFamily = ( this.definedNotEmpty( fontData.family ) ) ? fontData.family: '';
-		let fontSubset = ( this.definedNotEmpty( fontData.subsets ) ) ? fontData.subsets: [];
+		let fontFamily = ( definedNotEmpty( fontData.family ) ) ? fontData.family: '';
+		let fontSubset = ( definedNotEmpty( fontData.subsets ) ) ? fontData.subsets: [];
 		if( '' !== fontFamily ){ 
 			fontCSS += `font-family:'${fontFamily}';`;
 		}
 
 		let googleFont = {};
 	
-		if( this.definedNotEmpty( fontData.font_type ) ){ 
+		if( definedNotEmpty( fontData.font_type ) ){ 
 			if( 'normal' !== fontData.font_type ) {
 				if( 'google' === fontData.font_type ) {
 					if( '' !== fontFamily ){ 
@@ -154,7 +154,7 @@ class PMLiveCSS {
 					}
 				}
 			} else{
-				if( this.definedNotEmpty( fontData.style ) ){ 
+				if( definedNotEmpty( fontData.style ) ){ 
 					fontCSS += `font-style:${fontData.variant}`;
 				}
 			}
@@ -167,16 +167,15 @@ class PMLiveCSS {
 			returnValue['googleFont'] = googleFont;
 		}
 		return returnValue;
-	}
-
-	definedNotEmpty ( value ) {
-		if( ('undefined' !== typeof ( value )) && '' !== value && null !== value ) {
+	};
+	const definedNotEmpty = ( value ) => {
+		if( 'undefined' !== typeof ( value ) && '' !== value && null !== value ) {
 			return true;
 		}
 		return false;
-	}
+	};
 	
-	getNormalBackgroundCSS ( normalBackground ) {
+	const getNormalBackgroundCSS = ( normalBackground ) => {
 		let cssRule = '';
 		let bgKeys = [
 			'attachment',
@@ -187,17 +186,17 @@ class PMLiveCSS {
 			'color'
 		];
 
-		if( this.definedNotEmpty( normalBackground ) ){
+		if( definedNotEmpty( normalBackground ) ){
 			for( let i=0; i<bgKeys.length; i++ ) {
 				let bgKey = bgKeys[i];
-				if( this.definedNotEmpty( normalBackground[bgKey] ) ) {
+				if( definedNotEmpty( normalBackground[bgKey] ) ) {
 					if( 'color' === bgKey ) {
-						let bgColor = this.getColorCSS(normalBackground[bgKey]);
+						let bgColor = getColorCSS(normalBackground[bgKey]);
 						if( '' !== bgColor ) {
 							cssRule += `background-color:${bgColor};`;
 						}
 					} else if( 'image' === bgKey ) {
-						if( this.definedNotEmpty( normalBackground[bgKey]['url'] ) ) {
+						if( definedNotEmpty( normalBackground[bgKey]['url'] ) ) {
 							cssRule += `background-image:url(${normalBackground[bgKey]['url']});`;
 						}
 					} else { 
@@ -209,15 +208,15 @@ class PMLiveCSS {
 		return cssRule;
 	};
 	
-	getGradientBackgroundCSS ( gradientBackground ) {
+	const getGradientBackgroundCSS = ( gradientBackground ) => {
 		let bgCSS = '';
 		if( 'undefined' !== typeof( gradientBackground ) ){
-			let type = ( this.definedNotEmpty( gradientBackground.type ) ) ? gradientBackground.type : 'linear';
-			let color = ( this.definedNotEmpty( gradientBackground.color ) ) ? gradientBackground.color : '';
-			let second_color = ( this.definedNotEmpty( gradientBackground.second_color ) ) ? gradientBackground.second_color : '';
-			let location = ( this.definedNotEmpty( gradientBackground.location ) ) ? gradientBackground.location : '';
-			let second_location = ( this.definedNotEmpty( gradientBackground.second_location ) ) ? gradientBackground.second_location : '';
-			let angle = ( this.definedNotEmpty( gradientBackground.angle ) ) ? gradientBackground.angle : '';
+			let type = ( definedNotEmpty( gradientBackground.type ) ) ? gradientBackground.type : 'linear';
+			let color = ( definedNotEmpty( gradientBackground.color ) ) ? gradientBackground.color : '';
+			let second_color = ( definedNotEmpty( gradientBackground.second_color ) ) ? gradientBackground.second_color : '';
+			let location = ( definedNotEmpty( gradientBackground.location ) ) ? gradientBackground.location : '';
+			let second_location = ( definedNotEmpty( gradientBackground.second_location ) ) ? gradientBackground.second_location : '';
+			let angle = ( definedNotEmpty( gradientBackground.angle ) ) ? gradientBackground.angle : '';
 	
 			if( '' !== type && '' !== color && '' !== second_color && '' !== location && '' !== second_color && '' !== angle ){
 				bgCSS = `background: rgb(${color.r},${color.g},${color.b});`;
@@ -229,18 +228,18 @@ class PMLiveCSS {
 			}
 		}
 		return bgCSS;
-	}
+	};
 	
-	getBorderWidthCSS (width, unit ) {
+	const getBorderWidthCSS = (width, unit ) => {
 		let borderCSS = '';
 		let listKeys = [
 			'top', 'right', 'bottom', 'left'
 		];
 
-		let link = ( this.definedNotEmpty( width.link ) && width.link ) ? true : false;
+		let link = ( definedNotEmpty( width.link ) && width.link ) ? true : false;
 		for( let i=0; i<listKeys.length; i++ ) {
 			let key = listKeys[i];
-			if( this.definedNotEmpty( width[key] ) ) {
+			if( definedNotEmpty( width[key] ) ) {
 				if( link ) {
 						borderCSS = `border-width: ${width[key]}${unit};`;
 						break;
@@ -251,9 +250,9 @@ class PMLiveCSS {
 			}
 		}
 		return borderCSS;
-	}
+	};
 
-	getBorderWidthDevicesCSS ( input, unit ) {
+	const getBorderWidthDevicesCSS = ( input, unit ) => {
 		let returnValue = {
 			desktop: '',
 			tablet: '',
@@ -273,7 +272,7 @@ class PMLiveCSS {
 				let key = attrDeviceVal[j];
 				let value = input[key];
 				
-				if( this.definedNotEmpty(value) ) {
+				if( definedNotEmpty(value) ) {
 					if( key.includes( 'top' ) ) {
 						valueObj['top'] = value;
 					} else if( key.includes( 'right' ) ) {
@@ -288,14 +287,14 @@ class PMLiveCSS {
 				}
 			}
 			
-			returnValue[attrDeviceKey] = this.getBorderWidthCSS( valueObj, unit);
+			returnValue[attrDeviceKey] = getBorderWidthCSS( valueObj, unit);
 		}
 		return returnValue;
-	}
+	};
 	
-	getBorderRadiusCSS (radius) {
+	const getBorderRadiusCSS = (radius) => {
 		let radiusCSS = '';
-		let link = ( this.definedNotEmpty( radius.link ) && radius.link ) ? true : false;
+		let link = ( definedNotEmpty( radius.link ) && radius.link ) ? true : false;
 		let listKeys = {
 			top: 'top-left',
 			right: 'top-right',
@@ -309,7 +308,7 @@ class PMLiveCSS {
 			let key = keys[i];
 			let keyValue = listKeys[key];
 
-			if( this.definedNotEmpty( radius[key] ) ) {
+			if( definedNotEmpty( radius[key] ) ) {
 				if( link ) {
 					radiusCSS = `border-radius: ${radius[key]};`;
 					break;
@@ -319,9 +318,9 @@ class PMLiveCSS {
 			}
 		}
 		return radiusCSS;
-	}
+	};
 	
-	getColorCSS (color) {
+	const getColorCSS = (color) => {
 		let colorStr = '';
 		if( 'undefined' !== typeof( color.hex ) ) {
 			colorStr = color.hex;
@@ -334,51 +333,51 @@ class PMLiveCSS {
 		}
 	
 		return colorStr;
-	}
+	};
 	
-	getBorderBoxCSS (borderBox){
+	const getBorderBoxCSS = (borderBox) => {
 		let borderCSS = '';
 		if( 'undefined' !== typeof( borderBox ) ){
-			let color = ( this.definedNotEmpty( borderBox.color ) ) ? borderBox.color : {};
-			let radius = ( this.definedNotEmpty( borderBox.radius ) ) ? borderBox.radius : {};
-			let shadow = ( this.definedNotEmpty( borderBox.shadow ) ) ? borderBox.shadow : {};
-			let style = ( this.definedNotEmpty( borderBox.style ) ) ? borderBox.style : '';
-			let width = ( this.definedNotEmpty( borderBox.width ) ) ? borderBox.width : {};
+			let color = ( definedNotEmpty( borderBox.color ) ) ? borderBox.color : {};
+			let radius = ( definedNotEmpty( borderBox.radius ) ) ? borderBox.radius : {};
+			let shadow = ( definedNotEmpty( borderBox.shadow ) ) ? borderBox.shadow : {};
+			let style = ( definedNotEmpty( borderBox.style ) ) ? borderBox.style : '';
+			let width = ( definedNotEmpty( borderBox.width ) ) ? borderBox.width : {};
 	
 			if( '' !== style ) {
 				borderCSS += `border-style: ${style};`;
 			}
 			if( '' !== color ) {
-				let colorVal = this.getColorCSS( color );
+				let colorVal = getColorCSS( color );
 				if( '' !== colorVal ) {
 					borderCSS += `border-color: ${colorVal};`;
 				}
 			}
-			if( this.definedNotEmpty( width ) ) {
-				borderCSS = this.getBorderWidthCSS(width, 'px');
+			if( definedNotEmpty( width ) ) {
+				borderCSS = getBorderWidthCSS(width, 'px');
 			}
-			if( this.definedNotEmpty( radius ) ) {
-				borderCSS = this.getBorderRadiusCSS( radius );
+			if( definedNotEmpty( radius ) ) {
+				borderCSS = getBorderRadiusCSS( radius );
 			}
-			if( this.definedNotEmpty( shadow ) ) {
-				borderCSS += this.getBoxShadowCSS( shadow );
+			if( definedNotEmpty( shadow ) ) {
+				borderCSS += getBoxShadowCSS( shadow );
 			}
 		}
 		return borderCSS;
-	}
+	};
 	
-	getBoxShadowCSS (boxShadow) {
+	const getBoxShadowCSS = (boxShadow) => {
 		let boxShadowCSS = '';
-		if( this.definedNotEmpty( boxShadow ) ){
-			let color = ( this.definedNotEmpty( boxShadow.color ) ) ? boxShadow.color : '';
-			let x = ( this.definedNotEmpty( boxShadow.x ) ) ? boxShadow.x : '';
-			let y = ( this.definedNotEmpty( boxShadow.y ) ) ? boxShadow.y : '';
-			let blur = ( this.definedNotEmpty( boxShadow.blur ) ) ? boxShadow.blur : '';
-			let spread = ( this.definedNotEmpty( boxShadow.spread ) ) ? boxShadow.spread : '';
-			let inset = ( this.definedNotEmpty( boxShadow.inset ) && boxShadow.inset ) ? true : false;
+		if( definedNotEmpty( boxShadow ) ){
+			let color = ( definedNotEmpty( boxShadow.color ) ) ? boxShadow.color : '';
+			let x = ( definedNotEmpty( boxShadow.x ) ) ? boxShadow.x : '';
+			let y = ( definedNotEmpty( boxShadow.y ) ) ? boxShadow.y : '';
+			let blur = ( definedNotEmpty( boxShadow.blur ) ) ? boxShadow.blur : '';
+			let spread = ( definedNotEmpty( boxShadow.spread ) ) ? boxShadow.spread : '';
+			let inset = ( definedNotEmpty( boxShadow.inset ) && boxShadow.inset ) ? true : false;
 	
 			if( '' !== color && '' !== x && '' !== y && '' !== blur && '' !== spread ){
-				let colorStr = this.getColorCSS( color );
+				let colorStr = getColorCSS( color );
 				if( '' !== colorStr ){
 					if ( inset ) {
 						boxShadowCSS = `box-shadow: inset ${x} ${y} ${blur} ${spread} ${colorStr};`;
@@ -390,40 +389,40 @@ class PMLiveCSS {
 			
 		}
 		return boxShadowCSS;
-	}
+	};
 	
-	getStylingCSS (styling){
+	const getStylingCSS = (styling) => {
 		let returnValue = {};
 		let stylingType = [ 'normal', 'hover' ];
 
-		if( this.definedNotEmpty( styling ) ){
+		if( definedNotEmpty( styling ) ){
 			// Styling normal.
 			for( let i=0; i<stylingType.length; i++ ) {
 				let key = stylingType[i];
 				let stylingData = styling[key];
 				let stylingCSS = '', stylingResponsive = [];
-				if( this.definedNotEmpty( stylingData ) ){
+				if( definedNotEmpty( stylingData ) ){
 					// Get background CSS.
-					if( this.definedNotEmpty( stylingData.background ) ){
-						let normalBGType = ( this.definedNotEmpty( stylingData.background.bg_type ) ) ? stylingData.background.bg_type : '';
+					if( definedNotEmpty( stylingData.background ) ){
+						let normalBGType = ( definedNotEmpty( stylingData.background.bg_type ) ) ? stylingData.background.bg_type : '';
 						
 						if( 'normal' === normalBGType ) {
-							if( this.definedNotEmpty( stylingData.background.bg_value.normal ) ){
-								stylingCSS += this.getNormalBackgroundCSS( stylingData.background.bg_value.normal );
+							if( definedNotEmpty( stylingData.background.bg_value.normal ) ){
+								stylingCSS += getNormalBackgroundCSS( stylingData.background.bg_value.normal );
 							}
 						} else if( 'gradient' === normalBGType ) {
-							if( this.definedNotEmpty( stylingData.background.bg_value.gradient ) ){
-								stylingCSS += this.getGradientBackgroundCSS( stylingData.background.bg_value.gradient );
+							if( definedNotEmpty( stylingData.background.bg_value.gradient ) ){
+								stylingCSS += getGradientBackgroundCSS( stylingData.background.bg_value.gradient );
 							}
 						}
 					}
 					// Get border box CSS.
-					if( this.definedNotEmpty( stylingData.border_box ) ){
-						stylingCSS += this.getBorderBoxCSS( stylingData.border_box );
+					if( definedNotEmpty( stylingData.border_box ) ){
+						stylingCSS += getBorderBoxCSS( stylingData.border_box );
 					}
 					// Get color CSS.
-					if( this.definedNotEmpty( stylingData.color ) ){
-						let colorStr = this.getColorCSS(stylingData.color);
+					if( definedNotEmpty( stylingData.color ) ){
+						let colorStr = getColorCSS(stylingData.color);
 						if( '' !== colorStr ) {
 							stylingCSS += `color:${colorStr};`;
 						}
@@ -431,19 +430,19 @@ class PMLiveCSS {
 					// Get link color CSS.
 				
 					// Get margin.
-					if( this.definedNotEmpty( stylingData.margin ) ){
-						let deviceMargin = this.getCSSRulerDeviceCSS( stylingData.margin, 'margin', 'px' );
+					if( definedNotEmpty( stylingData.margin ) ){
+						let deviceMargin = getCSSRulerDeviceCSS( stylingData.margin, 'margin', 'px' );
 						stylingResponsive.push( deviceMargin );
 					}
 		
 					// Get padding.
-					if( this.definedNotEmpty( stylingData.padding ) ){
-						let devicePadding = this.getCSSRulerDeviceCSS( stylingData.padding, 'padding', 'px' );
+					if( definedNotEmpty( stylingData.padding ) ){
+						let devicePadding = getCSSRulerDeviceCSS( stylingData.padding, 'padding', 'px' );
 						stylingResponsive.push( devicePadding );
 					}
 					returnValue[key] = {
 						cssRule: stylingCSS,
-						responsive: this.getGroupStylingResponsive(stylingResponsive)
+						responsive: getGroupStylingResponsive(stylingResponsive)
 					};
 				}
 			}
@@ -452,71 +451,71 @@ class PMLiveCSS {
 			return returnValue;
 		}
 		return '';
-	}
+	};
 	
-	getTypographyCSS (typography) {
+	const getTypographyCSS = (typography) => {
 		let typoCSS = '';
 		let stylingResponsive = [];
 		let googleFont;
-		if( this.definedNotEmpty( typography ) ){
-			if( this.definedNotEmpty( typography.text_decoration ) ){
+		if( definedNotEmpty( typography ) ){
+			if( definedNotEmpty( typography.text_decoration ) ){
 				typoCSS += `text-decoration: ${typography.text_decoration};`;
 			}
-			if( this.definedNotEmpty ( typography.text_transform ) ){
+			if( definedNotEmpty ( typography.text_transform ) ){
 				typoCSS += `text-transform: ${typography.text_transform};`;
 			}
 	
-			if( this.definedNotEmpty( typography.font ) ){
-				let fontCSS = this.getFontCSS( typography.font );
-				if( this.definedNotEmpty( fontCSS.cssRule ) ) {
+			if( definedNotEmpty( typography.font ) ){
+				let fontCSS = getFontCSS( typography.font );
+				if( definedNotEmpty( fontCSS.cssRule ) ) {
 					typoCSS += fontCSS.cssRule;
 				}
 
-				if( this.definedNotEmpty( fontCSS.googleFont ) ) {
+				if( definedNotEmpty( fontCSS.googleFont ) ) {
 					googleFont = fontCSS.googleFont;
 				}
 			}
 	
-			if( this.definedNotEmpty( typography.font_size ) ){
-				let getFontSize = this.getRangeDeviceCSS( typography.font_size, 'font-size', 'px' );
+			if( definedNotEmpty( typography.font_size ) ){
+				let getFontSize = getRangeDeviceCSS( typography.font_size, 'font-size', 'px' );
 				stylingResponsive.push( getFontSize );
 			}
 	
-			if( this.definedNotEmpty( typography.letter_spacing ) ){
-				let getLetterSpacing = this.getRangeDeviceCSS( typography.letter_spacing, 'letter-spacing', 'px' );
+			if( definedNotEmpty( typography.letter_spacing ) ){
+				let getLetterSpacing = getRangeDeviceCSS( typography.letter_spacing, 'letter-spacing', 'px' );
 				stylingResponsive.push( getLetterSpacing );
 			}
-			if( this.definedNotEmpty( typography.line_height ) ){
-				let getLineHeight = this.getRangeDeviceCSS( typography.line_height, 'line-height', 'px' );
+			if( definedNotEmpty( typography.line_height ) ){
+				let getLineHeight = getRangeDeviceCSS( typography.line_height, 'line-height', 'px' );
 				stylingResponsive.push( getLineHeight );
 			}
 		}
 		
 		let returnValue = {
 			cssRule: typoCSS,
-			responsive: this.getGroupStylingResponsive( stylingResponsive )
+			responsive: getGroupStylingResponsive( stylingResponsive )
 		};
 		if ( !isEmpty( googleFont ) ) {
 			returnValue['googleFont'] = googleFont;
 		}
 		return returnValue;
-	}
+	};
 
-	getGroupStylingResponsive (stylingResponsive) {
+	const getGroupStylingResponsive = (stylingResponsive) => {
 		let returnValue = {};
 		if( !isEmpty( stylingResponsive ) ) {
 			let desktop = [], tablet=[], mobile = [];
 			for( let i=0; i<stylingResponsive.length; i++ ) {
 				let value = stylingResponsive[i];
-				if( this.definedNotEmpty( value.desktop ) ) {
+				if( definedNotEmpty( value.desktop ) ) {
 					desktop.push( value.desktop );
 				}
 
-				if( this.definedNotEmpty( value.tablet ) ) {
+				if( definedNotEmpty( value.tablet ) ) {
 					tablet.push( value.tablet );
 				}
 
-				if( this.definedNotEmpty( value.mobile ) ) {
+				if( definedNotEmpty( value.mobile ) ) {
 					mobile.push( value.mobile );
 				}
 			}
@@ -535,65 +534,29 @@ class PMLiveCSS {
 			return returnValue;
 		}
 		return '';
-	}
+	};
 
-	groupCSSByDevice ( storeVal, responsive ) {
-		if( this.definedNotEmpty(responsive.desktop) ) {
+	const groupCSSByDevice = ( storeVal, responsive ) => {
+		if( definedNotEmpty(responsive.desktop) ) {
 			storeVal.desktop.push(responsive.desktop);
 		}
 
-		if( this.definedNotEmpty(responsive.tablet) ) {
+		if( definedNotEmpty(responsive.tablet) ) {
 			storeVal.tablet.push(responsive.tablet);
 		}
 
-		if( this.definedNotEmpty(responsive.mobile) ) {
+		if( definedNotEmpty(responsive.mobile) ) {
 			storeVal.mobile.push(responsive.mobile);
 		}
 		return storeVal;
-	}
+	};
 
-	getOtherCSSRule (blockAttr, propKey, propVal) {
-		let cssOrigin = '';
-		if( this.definedNotEmpty( propVal.attrValue ) && this.definedNotEmpty( propVal.outputValue ) ) {
-			let customVal = t(blockAttr, propVal.attrValue).safeObject;
-			let propOutput = '';
-			let listPropKey = [ '', 'mobile', 'tablet', 'top', 'right', 'bottom', 'left', 'link', 'top_mobile', 'top_tablet', 'right_mobile', 'right_tablet', 'bottom_mobile', 'bottom_tablet', 'left_mobile', 'left_tablet' ];
-			if( this.definedNotEmpty( customVal ) ) {
-				for( let k = 0; k<listPropKey.length; k++ ) {
-					let connectChar = ( listPropKey[k].length > 0 ) ? '_' : '';
-					let key = listPropKey[k];
-					let valueKey = 'value' + connectChar + listPropKey[k];
-					let valueKeyUC = '{{' + valueKey.toUpperCase() + '}}';
-					
-					if( '{{VALUE}}' === valueKeyUC ) {
-						let propval = '';
-						if( 'string' === typeof( customVal ) || !isNaN( customVal ) ) {
-							propval = customVal;
-						} else if( this.definedNotEmpty(customVal.value) && ( 'string' === typeof( customVal.value ) || !isNaN( customVal.value ) ) ) {
-							propval = customVal.value;
-						}
-						if( '' !== propval ) {
-							propOutput = propVal.outputValue.replace( '{{VALUE}}', propval );
-							cssOrigin += `${propKey}:${propOutput};`;
-						}
-					}else if( propVal.outputValue.includes( valueKeyUC )  ) {
-						if( this.definedNotEmpty( customVal[key] ) ) {
-							propOutput = propVal.outputValue.replace( valueKeyUC, customVal[key] );
-							cssOrigin += `${propKey}:${propOutput};`;
-						}
-					}
-				}
-			}
-		}
-		return cssOrigin;
-	}
-
-	getBlockCSS (currentBlock ) {
+	const getBlockCSS = (currentBlock ) => {
 		let blockCSS = {};
-		let blockName = (this.definedNotEmpty(currentBlock.name)) ? currentBlock.name : '';
-		let blockId = (this.definedNotEmpty(currentBlock.clientId)) ? currentBlock.clientId: '';
-		let blockAttr = (this.definedNotEmpty(currentBlock.attributes)) ? currentBlock.attributes : '';
-		let blockOriginContent = (this.definedNotEmpty(currentBlock.originalContent)) ? currentBlock.originalContent : '';
+		let blockName = (definedNotEmpty(currentBlock.name)) ? currentBlock.name : '';
+		let blockId = (definedNotEmpty(currentBlock.clientId)) ? currentBlock.clientId: '';
+		let blockAttr = (definedNotEmpty(currentBlock.attributes)) ? currentBlock.attributes : '';
+		let blockOriginContent = (definedNotEmpty(currentBlock.originalContent)) ? currentBlock.originalContent : '';
 
 		let parser = new DOMParser();
 		let parsedHtml = parser.parseFromString(blockOriginContent, 'text/html');
@@ -601,10 +564,10 @@ class PMLiveCSS {
 		
 		let targetSelector = '';
 		
-		let targetID = (firtChild.length > 0 && this.definedNotEmpty(firtChild[0].id)) ? firtChild[0].id: blockId;
+		let targetID = (firtChild.length > 0 && definedNotEmpty(firtChild[0].id)) ? firtChild[0].id: blockId;
 		
 		let targetClassName = '';
-		if( this.definedNotEmpty(firtChild[0]) && 'function' === typeof( firtChild[0].getAttribute ) ) {
+		if( definedNotEmpty(firtChild[0]) && 'function' === typeof( firtChild[0].getAttribute ) ) {
 			targetClassName = firtChild[0].getAttribute('class');
 		}
 		
@@ -637,24 +600,24 @@ class PMLiveCSS {
 				for( let a=0; a<cssProps.length; a++ ) {
 					let propKey = cssProps[a];
 					let propVal = cssProperties[cssProps[a]];
-					if( this.definedNotEmpty( propKey ) ) {
+					if( definedNotEmpty( propKey ) ) {
 						let getPropVal = t(blockAttr, propVal).safeObject;
 						switch( propKey ) {
 							case "styling":
 								if( 'undefined' !== typeof( getPropVal ) ){ 
-									let stylingCSS = this.getStylingCSS( getPropVal );
+									let stylingCSS = getStylingCSS( getPropVal );
 									if( !isEmpty( stylingCSS ) ) {
 										//CSS Normal.
-										if( this.definedNotEmpty( stylingCSS.normal ) ) {
-											if( this.definedNotEmpty( stylingCSS.normal.cssRule ) ) {
+										if( definedNotEmpty( stylingCSS.normal ) ) {
+											if( definedNotEmpty( stylingCSS.normal.cssRule ) ) {
 												cssOrigin += stylingCSS.normal.cssRule;
 											}
-											cssDevices = this.groupCSSByDevice( cssDevices, stylingCSS.normal.responsive );
+											cssDevices = groupCSSByDevice( cssDevices, stylingCSS.normal.responsive );
 										}
 										//CSS Hover.
-										if( this.definedNotEmpty( stylingCSS.hover ) ) {
-											if( this.definedNotEmpty( stylingCSS.hover.cssRule ) ) {
-												let cssHoverDevices = this.groupCSSByDevice( {desktop:[], tablet: [], mobile: []}, stylingCSS.hover.responsive );
+										if( definedNotEmpty( stylingCSS.hover ) ) {
+											if( definedNotEmpty( stylingCSS.hover.cssRule ) ) {
+												let cssHoverDevices = groupCSSByDevice( {desktop:[], tablet: [], mobile: []}, stylingCSS.hover.responsive );
 												selectorCSS[selector+':hover'] = {
 													css: stylingCSS.hover.cssRule,
 													responsive: {
@@ -671,12 +634,12 @@ class PMLiveCSS {
 								break;
 							case "typography":
 								if( 'undefined' !== typeof( getPropVal ) ){ 
-									let typoCSS = this.getTypographyCSS(getPropVal);
+									let typoCSS = getTypographyCSS(getPropVal);
 									if( !isEmpty( typoCSS ) ) {
-										if( this.definedNotEmpty( typoCSS.cssRule ) ) {
+										if( definedNotEmpty( typoCSS.cssRule ) ) {
 											cssOrigin += typoCSS.cssRule;
 										}
-										cssDevices = this.groupCSSByDevice( cssDevices, typoCSS.responsive );
+										cssDevices = groupCSSByDevice( cssDevices, typoCSS.responsive );
 									}
 								}
 								break;
@@ -686,7 +649,7 @@ class PMLiveCSS {
 							case "background-color":
 								if( 'undefined' !== typeof( getPropVal ) ){
 									let colorRule = '';
-									let colorStr = this.getColorCSS( getPropVal );
+									let colorStr = getColorCSS( getPropVal );
 									if( '' !== colorStr ) {
 										colorRule = `${propKey}:${colorStr};`;
 									}
@@ -695,52 +658,49 @@ class PMLiveCSS {
 								break;
 							case "normal-background":
 								if( 'undefined' !== typeof( getPropVal ) ){
-									if( !isEmpty( this.getNormalBackgroundCSS( getPropVal ) ) ) {
-										cssOrigin += this.getNormalBackgroundCSS( getPropVal );
+									if( !isEmpty( getNormalBackgroundCSS( getPropVal ) ) ) {
+										cssOrigin += getNormalBackgroundCSS( getPropVal );
 									}
 								}
 								break;
 							case "gradient-background":
 								if( 'undefined' !== typeof( getPropVal ) ){
-									if( !isEmpty( this.getGradientBackgroundCSS( getPropVal ) ) ) {
-										cssOrigin += this.getNormalBackgroundCSS( getPropVal );
+									if( !isEmpty( getGradientBackgroundCSS( getPropVal ) ) ) {
+										cssOrigin += getNormalBackgroundCSS( getPropVal );
 									}
 								}
 								break;
 							case "margin":
 							case "padding":
 								if( 'undefined' !== typeof( getPropVal ) ){
-									if( !isEmpty( this.getCSSRulerCSS( getPropVal, propKey, 'px') ) ) {
-										cssOrigin += this.getCSSRulerCSS( getPropVal, propKey, 'px');
+									if( !isEmpty( getCSSRulerCSS( getPropVal, propKey, 'px') ) ) {
+										cssOrigin += getCSSRulerCSS( getPropVal, propKey, 'px');
 									}
 								}
 								break;
 							case "marginDevices": 
 							case "paddingDevices": 
 								if( 'undefined' !== typeof( getPropVal ) ){
-									let spacingResponsive = this.getCSSRulerDeviceCSS( getPropVal, propKey.replace('Devices',''), 'px');
-									cssDevices = this.groupCSSByDevice( cssDevices, spacingResponsive );
+									let spacingResponsive = getCSSRulerDeviceCSS( getPropVal, propKey.replace('Devices',''), 'px');
+									cssDevices = groupCSSByDevice( cssDevices, spacingResponsive );
 								}
 								break;
 							case "borderWidth":
 								if( 'undefined' !== typeof( getPropVal ) ){
-									if( !isEmpty( this.getBorderWidthCSS( getPropVal, 'px' ) ) ) {
-										cssOrigin += this.getBorderWidthCSS( getPropVal, 'px' );
+									if( !isEmpty( getBorderWidthCSS( getPropVal, 'px' ) ) ) {
+										cssOrigin += getBorderWidthCSS( getPropVal, 'px' );
 									}
 								}
 								break;
 							case "borderWidthDevices":
 								if( 'undefined' !== typeof( getPropVal ) ){
-									let borderWidthResponsive = this.getBorderWidthDevicesCSS( getPropVal, 'px');
-									cssDevices = this.groupCSSByDevice( cssDevices, borderWidthResponsive );
+									let borderWidthResponsive = getBorderWidthDevicesCSS( getPropVal, 'px');
+									cssDevices = groupCSSByDevice( cssDevices, borderWidthResponsive );
 								}
 								break;
 							default:
-								if( 'undefined' !== typeof( propVal ) ){
-									let otherCSSRule = this.getOtherCSSRule(blockAttr, propKey, propVal);
-									if( !isEmpty( otherCSSRule ) ) {
-										cssOrigin += otherCSSRule;
-									}
+								if( 'undefined' !== typeof( getPropVal ) ){
+									cssOrigin += `${propKey}:${getPropVal};`;
 								}
 								break;
 						} //End switch.
@@ -760,20 +720,10 @@ class PMLiveCSS {
 		}
 		
 		return applyFilters( 'pmLiveCSSGetBlockCSS', blockCSS );
-	}
-	getAllBlocksCSS (blocks ) {
-		let blockCSS = [];
-		for( let i=0; i<blocks.length; i++ ) {
-			let getBlockCSS = this.getBlockCSS( blocks[i] );
-			if( !isEmpty( getBlockCSS ) ) {
-				blockCSS.push( this.getBlockCSS( blocks[i] ) );
-			}
-		}
-		return applyFilters( 'pmLiveCSSGetAllBlocksCSS', blockCSS );
-	}
+	};
 
-	getReadableCSS ( selectedBlock ){
-		let blockCSS = this.getBlockCSS(selectedBlock);
+	const getReadableCSS = ( selectedBlock ) => {
+		let blockCSS = getBlockCSS(selectedBlock);
 		let cssAll = [], cssDesktop = [], cssTablet = [], cssMobile = [];
 		
 		let targetKeys = Object.keys(blockCSS);
@@ -786,20 +736,20 @@ class PMLiveCSS {
 				let targetSelectorKey = targetSelectorKeys[j];
 				let targetCSSData = targetSelector[targetSelectorKey];
 
-				if( this.definedNotEmpty( targetCSSData.css ) ) {
+				if( definedNotEmpty( targetCSSData.css ) ) {
 					cssAll.push( `${targetSelectorKey} { ${targetCSSData.css} }` );
 				}
 
-				if( this.definedNotEmpty( targetCSSData.responsive ) ) {
-					if( this.definedNotEmpty( targetCSSData.responsive.desktop ) ) {
+				if( definedNotEmpty( targetCSSData.responsive ) ) {
+					if( definedNotEmpty( targetCSSData.responsive.desktop ) ) {
 						cssDesktop.push( `${targetSelectorKey} { ${targetCSSData.responsive.desktop} }` );
 					}
 
-					if( this.definedNotEmpty( targetCSSData.responsive.mobile ) ) {
+					if( definedNotEmpty( targetCSSData.responsive.mobile ) ) {
 						cssTablet.push( `${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
 					}
 
-					if( this.definedNotEmpty( targetCSSData.responsive.tablet ) ) {
+					if( definedNotEmpty( targetCSSData.responsive.tablet ) ) {
 						cssMobile.push( `${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
 					}
 				}
@@ -813,10 +763,10 @@ class PMLiveCSS {
 			mobile: (cssMobile.length > 0) ? cssMobile.join( ' ' ) : '',
 		};
 		return applyFilters( 'pmLiveCSSGetReadableCSS', cssReable );
-	}
+	};
 
-	getRunableCSS (selectedBlock){
-		let readableCSS = this.getReadableCSS( selectedBlock );
+	const getRunableCSS = (selectedBlock) => {
+		let readableCSS = getReadableCSS( selectedBlock );
 		let runableCSS = '';
 		let mediaQueries = {
 			all 	: '{{VALUE}}',
@@ -831,7 +781,7 @@ class PMLiveCSS {
 			let cssByDevice = readableCSS[key];
 			let mediaQuery = mediaQueries[key];
 
-			if( this.definedNotEmpty( cssByDevice ) ) {
+			if( definedNotEmpty( cssByDevice ) ) {
 				runableCSS += mediaQuery.replace('{{VALUE}}', cssByDevice) + '\n';
 			}
 		}
@@ -839,7 +789,7 @@ class PMLiveCSS {
 		return applyFilters( 'pmLiveCSSGetRunableCSS', runableCSS );
 	};
 
+	
 
+	return getRunableCSS(selectedBlock);
 }
-
-export default PMLiveCSS;

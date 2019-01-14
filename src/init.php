@@ -27,6 +27,16 @@ function pm_blocks_cgb_block_assets() { // phpcs:ignore
 		array( 'wp-editor' ) // Dependency to include the CSS after it.
 		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
 	);
+
+	if ( is_single() || is_page() ) {
+		global $post;
+		if ( $post->ID ) {
+			$value = get_post_meta( $post->ID, '_pm_blocks_style_css', true );
+			if ( ! empty( $value ) ) {
+				wp_add_inline_style( 'pm_blocks-cgb-style-css', $value );
+			}
+		}
+	}
 }
 
 // Hook: Frontend assets.
@@ -43,6 +53,7 @@ add_action( 'enqueue_block_assets', 'pm_blocks_cgb_block_assets' );
  */
 function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 	// Scripts.
+	
 	wp_enqueue_script(
 		'pm_blocks-cgb-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
@@ -66,7 +77,40 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
 		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 	);
+
+	global $pagenow;
+	if ( ( 'post.php' == $pagenow ) || ( get_post_type() == 'post' ) ) {
+		global $post;
+		if ( $post->ID ) {
+			$css_saved = get_post_meta( 'pm_style_css', $post->ID, true );
+			if ( ! empty( $css_saved ) ) {
+				wp_add_inline_style( 'pm_blocks-cgb-block-editor-css', $css_saved );
+			}
+		}
+	}
 }
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'pm_blocks_cgb_editor_assets' );
+
+
+function pm_blocks_init() {
+	register_meta(
+		'post',
+		'pm_style_css',
+		array(
+			'show_in_rest' => true,
+		)
+	);
+	register_meta(
+		'post',
+		'_pm_blocks_style_css',
+		array(
+			'show_in_rest' => true,
+		)
+	);
+
+}
+add_action( 'init', 'pm_blocks_init' );
+
+
