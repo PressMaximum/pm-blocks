@@ -203,6 +203,10 @@
 
 .range-devices-control.has-label .responsive-devices-wrap {
   margin-top: -34px; }
+
+.components-panel .range-devices-control.has-label .responsive-devices-wrap,
+.typography-dropdown-content .range-devices-control.has-label .responsive-devices-wrap {
+  margin-top: -22px; }
 /**
  * #.# Common SCSS
  *
@@ -2819,3 +2823,37 @@ i.fipicon-angle-left:before {
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.typography-dropdown-control .components-dropdown-menu__toggle {
+  width: auto;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid transparent;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row; }
+
+.typography-dropdown-control .components-dropdown-menu__indicator {
+  content: "";
+  pointer-events: none;
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 5px solid currentColor;
+  margin-left: 4px;
+  margin-right: 2px; }
+
+.typography-dropdown-content {
+  padding: 15px; }

@@ -1,18 +1,19 @@
 import './style.scss';
 import './editor.scss';
 
-import BorderBoxControl from '../../components/border-box/index';
+import TypographyDropdownControl from '../../components/typography-dropdown/index';
 import CustomHeadingToolbar from './heading-toolbar';
 import TypographyControl from '../../components/typography/index';
 import StylingControl from '../../components/styling/index';
 import ColorPickerControl from '../../components/color-picker/index';
-import { pmUniqueID } from '../../helper/unique-id.js';
+;
+
 
 const { __, sprintf } = wp.i18n;
 const { data } = wp;
 const { registerBlockType } = wp.blocks;
 const { Fragment, Component } = wp.element;
-const { PanelBody, Toolbar } = wp.components;
+const { PanelBody, IconButton, Dropdown } = wp.components;
 const { createBlock } = wp.blocks;
 const { RichText, BlockControls, InspectorControls, AlignmentToolbar } = wp.editor;
 const schema = {
@@ -78,6 +79,7 @@ registerBlockType( 'pm-blocks/block-my-heading', {
 				<Fragment>
 					<BlockControls>
 						<CustomHeadingToolbar minLevel={ 2 } maxLevel={ 5 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+						<TypographyDropdownControl/>
 					</BlockControls>
 					<InspectorControls>
 						<PanelBody title={ __( 'Heading Settings' ) }>

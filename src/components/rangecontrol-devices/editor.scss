@@ -5,3 +5,14 @@
 		}
 	}
 }
+
+.components-panel,
+.typography-dropdown-content{
+	.range-devices-control{
+		&.has-label{
+			.responsive-devices-wrap{
+				margin-top: -22px;
+			}
+		}
+	}
+}
