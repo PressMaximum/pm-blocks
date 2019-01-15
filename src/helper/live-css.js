@@ -1,5 +1,5 @@
 import t from 'typy';
-import { isEmpty } from "lodash";
+import { isEmpty, forOwn } from "lodash";
 const { applyFilters } =  wp.hooks;
 
 var pmBlocksStyle ={
@@ -29,7 +29,7 @@ var pmBlocksStyle ={
 class PMLiveCSS {
 	constructor( ) {
 		this.pmBlocksStyle = pmBlocksStyle;
-		
+		this.googleFonts = {};
 	}
 
 	getCSSRulerCSS( input, cssProp, unit ){
@@ -588,6 +588,47 @@ class PMLiveCSS {
 		return cssOrigin;
 	}
 
+	arrayUnique( arrArg ) {
+		return arrArg.filter(function(elem, pos,arr) {
+			return arr.indexOf(elem) == pos;
+		});
+	}
+
+	maybeHasGoogleFont( typoCSS ) {
+		if( this.definedNotEmpty(typoCSS.googleFont) && this.definedNotEmpty(typoCSS.googleFont.family) ) {
+			let gFont = typoCSS.googleFont;
+			
+			let normalFontFamily = gFont.family;
+			let fontFamily = normalFontFamily.replace(' ', '_');
+			
+			if( this.definedNotEmpty(this.googleFonts[fontFamily]) ) {
+				let gFontSubsets = (this.definedNotEmpty(this.googleFonts[fontFamily]['subsets'])) ? this.googleFonts[fontFamily]['subsets'] : [];
+				let gFontVariant = (this.definedNotEmpty(this.googleFonts[fontFamily]['variant'])) ? this.googleFonts[fontFamily]['variant'] : [];
+				
+				if( this.definedNotEmpty( gFont.subsets ) ) {
+					gFontSubsets = gFontSubsets.concat(gFont.subsets);
+				}
+
+				if( this.definedNotEmpty( gFont.variant ) ) {
+					gFontVariant.push( gFont.variant );
+				}
+				let data = {
+					family: normalFontFamily,
+					subsets: this.arrayUnique( gFontSubsets ),
+					variant: this.arrayUnique( gFontVariant )
+				};
+				this.googleFonts[fontFamily] = data;
+			} else {
+				let data = {
+					family: normalFontFamily,
+					subsets: (this.definedNotEmpty(gFont.subsets) && Array.isArray( gFont.subsets )) ? gFont.subsets : [] ,
+					variant: (this.definedNotEmpty(gFont.variant)) ? [gFont.variant] : []
+				};
+				this.googleFonts[fontFamily] = data;
+			}
+		}
+	}
+
 	getBlockCSS (currentBlock ) {
 		let blockCSS = {};
 		let blockName = (this.definedNotEmpty(currentBlock.name)) ? currentBlock.name : '';
@@ -678,6 +719,7 @@ class PMLiveCSS {
 										}
 										cssDevices = this.groupCSSByDevice( cssDevices, typoCSS.responsive );
 									}
+									this.maybeHasGoogleFont( typoCSS );
 								}
 								break;
 							case "color":
@@ -762,18 +804,23 @@ class PMLiveCSS {
 		return applyFilters( 'pmLiveCSSGetBlockCSS', blockCSS );
 	}
 	getAllBlocksCSS (blocks ) {
-		let blockCSS = [];
+		let blockCSS = {};
 		for( let i=0; i<blocks.length; i++ ) {
 			let getBlockCSS = this.getBlockCSS( blocks[i] );
+			
 			if( !isEmpty( getBlockCSS ) ) {
-				blockCSS.push( this.getBlockCSS( blocks[i] ) );
+				let blockKey = Object.keys(getBlockCSS);
+				for( let j=0; j<blockKey.length; j++ ) {
+					blockCSS[blockKey[j]] = getBlockCSS[blockKey[j]];
+				}
+				
 			}
 		}
 		return applyFilters( 'pmLiveCSSGetAllBlocksCSS', blockCSS );
 	}
 
-	getReadableCSS ( selectedBlock ){
-		let blockCSS = this.getBlockCSS(selectedBlock);
+	getReadableCSS ( allBlockCSS ){
+		let blockCSS = allBlockCSS;
 		let cssAll = [], cssDesktop = [], cssTablet = [], cssMobile = [];
 		
 		let targetKeys = Object.keys(blockCSS);
@@ -815,8 +862,8 @@ class PMLiveCSS {
 		return applyFilters( 'pmLiveCSSGetReadableCSS', cssReable );
 	}
 
-	getRunableCSS (selectedBlock){
-		let readableCSS = this.getReadableCSS( selectedBlock );
+	getRunableCSS (readableCSS){
+		
 		let runableCSS = '';
 		let mediaQueries = {
 			all 	: '{{VALUE}}',
@@ -828,18 +875,69 @@ class PMLiveCSS {
 		let deviceKeys = Object.keys(mediaQueries);
 		for( let i=0;i<deviceKeys.length; i++ ) {
 			let key = deviceKeys[i];
-			let cssByDevice = readableCSS[key];
-			let mediaQuery = mediaQueries[key];
+			if( this.definedNotEmpty( readableCSS[key] ) ) {
+				let cssByDevice = readableCSS[key];
+				let mediaQuery = mediaQueries[key];
 
-			if( this.definedNotEmpty( cssByDevice ) ) {
 				runableCSS += mediaQuery.replace('{{VALUE}}', cssByDevice) + '\n';
 			}
 		}
 
 		return applyFilters( 'pmLiveCSSGetRunableCSS', runableCSS );
-	};
+	}
 
+	getBlockOutputCSS( allBlocks, selectedBlock ) {
+		let allBlocksCSS = this.getAllBlocksCSS( allBlocks );
+		
+		let blockChangedCSS = this.getBlockCSS( selectedBlock );
+		let readableCSS = this.getReadableCSS( allBlocksCSS );
+		let runableCSS = this.getRunableCSS( readableCSS );
 
+		/**
+		let blockChangedKey = Object.keys(blockChangedCSS);
+		for( let i=0; i<blockChangedKey.length; i++ ) {
+			if( this.definedNotEmpty(allBlocksCSS[blockChangedKey[i]]) ) {
+				allBlocksCSS[blockChangedKey[i]] = blockChangedCSS[blockChangedKey[i]];
+			}
+		}
+		 */
+		return runableCSS;
+	}
+
+	getGoogleFontURL () {
+		let gFontURL = '';
+		let maybeGFont = this.googleFonts;
+		let listGFont = Object.keys(this.googleFonts);
+		
+		if( listGFont.length > 0 ) {
+			let gFontFamily = [], gFontSubsets = [];
+			for( let i=0; i<listGFont.length; i++ ) {
+				let fontKey = listGFont[i];
+				let fontItem = maybeGFont[fontKey];
+				let itemFamily = '';
+				if( this.definedNotEmpty(fontItem.family) ) {
+					itemFamily = fontItem.family.replace(' ', '+');
+					if( this.definedNotEmpty(fontItem.variant) && !isEmpty( fontItem.variant ) ) {
+						itemFamily += ':' + fontItem.variant.join(',');
+						gFontFamily.push(itemFamily);
+					}
+				}
+				if( this.definedNotEmpty(fontItem.subsets) ) {
+					gFontSubsets = gFontSubsets.concat(fontItem.subsets);
+				}
+			}
+			
+			if( gFontFamily.length > 0 ) {
+				gFontURL = 'https://fonts.googleapis.com/css?family=' + gFontFamily.join('|');
+				if( gFontSubsets.length > 0 ) {
+					gFontURL += '&subset=' + gFontSubsets.join(',');
+				}
+				
+			}
+			
+		}
+		return gFontURL;
+	}
 }
 
 export default PMLiveCSS;

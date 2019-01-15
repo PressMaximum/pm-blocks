@@ -24,21 +24,35 @@ const MyChange = subscribe( (sub) => {
 		const selectedBlock = editor.getSelectedBlock();
 		
 		let pmLiveCSS = new PMLiveCSS();
-		let runableCSS = pmLiveCSS.getRunableCSS(selectedBlock);
+		let cssRunableInput = document.getElementById('pm_blocks_style_css');
+		let maybeGFontUrlInput = document.getElementById('pm_blocks_maybe_gfont_url');
 		
-		let cssInput = document.getElementById('pm_blocks_style_css');
-		cssInput.value = runableCSS;
-
-
-		let allBlocksCSS = pmLiveCSS.getAllBlocksCSS( blocks );
-		console.log('allBlocksCSS: ', allBlocksCSS);
-
+		// Add style tag.
 		let css;
-		let styles = runableCSS;
+		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
+
+		if( '' !== styles ) {
+			cssRunableInput.value = styles;
+		}
 		let headTag = document.getElementsByTagName("head");
-	
-		if( null !== document.getElementById("pm_style_css") ){
-			css = document.getElementById("pm_style_css");
+		// Add google font link.
+		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
+		if( '' !== maybeGFontUrl )  {
+			if( null !== document.getElementById("pm_blocks-maybe-gfont-url-css") ){
+				let existLinkTag = document.getElementById("pm_blocks-maybe-gfont-url-css");
+				existLinkTag.href = maybeGFontUrl;
+			}else{
+				let linkTag = document.createElement('link');
+				linkTag.rel = 'stylesheet';
+				linkTag.id = 'pm_blocks-maybe-gfont-url-css';
+				linkTag.href = maybeGFontUrl;
+				headTag[0].insertBefore(linkTag, headTag[0].childNodes[0]);
+			}
+			maybeGFontUrlInput.value = maybeGFontUrl;
+		}
+
+		if( null !== document.getElementById("pm_blocks-cgb-block-editor-css-inline-css") ){
+			css = document.getElementById("pm_blocks-cgb-block-editor-css-inline-css");
 			if (css.styleSheet) {
 				css.styleSheet.cssText = styles;
 			} else {
@@ -47,7 +61,7 @@ const MyChange = subscribe( (sub) => {
 		} else {
 			css = document.createElement("style");
 			css.type = "text/css";
-			css.id = "pm_style_css";
+			css.id = "pm_blocks-cgb-block-editor-css-inline-css";
 			if (css.styleSheet) {
 				css.styleSheet.cssText = styles;
 			} else {
