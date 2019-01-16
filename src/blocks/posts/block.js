@@ -1,99 +1,340 @@
-/**
- * BLOCK: pm-blocks
- *
- * Registering a basic block with Gutenberg.
- * Simple block, renders and saves the same content without any interactivity.
- */
-
-//  Import CSS.
 import './style.scss';
 import './editor.scss';
+import classnames from 'classnames';
+import TypographyDropdownControl from '../../components/typography-dropdown/index';
+import TypographyControl from '../../components/typography/index';
+import ColorPickerControl from '../../components/color-picker/index';
+
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+const { isUndefined, pickBy } = lodash;
+const { Component, Fragment } = wp.element;
+
+const {
+	PanelBody,
+	Placeholder,
+	QueryControls,
+	RangeControl,
+	Spinner,
+	ToggleControl,
+	Toolbar,
+	Popover
+} = wp.components;
+const {
+	InspectorControls,
+	BlockAlignmentToolbar,
+	BlockControls,
+} = wp.editor;
+
+const { withSelect } = wp.data;
+const { withState } = wp.compose;
+
+const MAX_POSTS_COLUMNS = 6;
+
+class AdvancePostsEdit extends Component{
+	constructor() {
+		super( ...arguments );
+		this.toggleDisplayPostDate = this.toggleDisplayPostDate.bind( this );
+
+		this.state = {
+			openPopover: false,
+			mustOpen: false
+		};
+	}
+
+	toggleDisplayPostDate() {
+		const { displayPostDate } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes( { displayPostDate: ! displayPostDate } );
+	}
 
 
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+	static extractContent(html, length) {
+		const span = document.createElement("span");
+		span.innerHTML = html;
+
+		// Remove script tag
+		const scripts = span.getElementsByTagName("script");
+		let j = scripts.length;
+		while (j--) {
+			scripts[j].parentNode.removeChild(scripts[j]);
+		}
+
+		// Remove style tag
+		const styles = span.getElementsByTagName("style");
+		let k = styles.length;
+		while (k--) {
+			styles[k].parentNode.removeChild(styles[k]);
+		}
+
+		const children = span.querySelectorAll("*");
+		for (let i = 0; i < children.length; i++) {
+			if (children[i].textContent) children[i].textContent += " ";
+			else children[i].innerText += " ";
+		}
+
+		let text = [span.textContent || span.innerText]
+			.toString()
+			.replace(/\s\s+/g, " ");
+		text = text.slice(0, length).trim();
+
+		if (text.length) text += "…";
+
+		return text;
+	}
 
 
+	render() {
+		const { attributes, categoriesList, setAttributes, advancedPosts, clientId, className } = this.props;
+		const { displayPostDate, align, postLayout, columns, order, orderBy, categories, postsToShow, titleTypo, titleColor, titleFontSize, excerptTypo, excerptColor, uniqueID } = attributes;
 
+		const inspectorControls = (
+			<InspectorControls>
+				<PanelBody title={ __( 'Advanced Posts Settings' ) }>
+					<QueryControls
+						{ ...{ order, orderBy } }
+						numberOfItems={ postsToShow }
+						categoriesList={ categoriesList }
+						selectedCategoryId={ categories }
+						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
+						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
+						onCategoryChange={ ( value ) => setAttributes( { categories: '' !== value ? value : undefined } ) }
+						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
+					/>
+					<ToggleControl
+						label={ __( 'Display post date' ) }
+						checked={ displayPostDate }
+						onChange={ this.toggleDisplayPostDate }
+					/>
+					{ postLayout === 'grid' &&
+						<RangeControl
+							label={ __( 'Columns' ) }
+							value={ columns }
+							onChange={ ( value ) => setAttributes( { columns: value } ) }
+							min={ 2 }
+							max={ ! hasPosts ? MAX_POSTS_COLUMNS : Math.min( MAX_POSTS_COLUMNS, advancedPosts.length ) }
+						/>
+					}
 
+					<TypographyControl label={__("Title typography")} value={titleTypo} onTypographyChange={(new_value) => {setAttributes({titleTypo:new_value}); }}/>
+					<ColorPickerControl
+						label={__("Title color")}
+						disableAlpha="true"
+						value={titleColor}
+						onColorChangeComplete={new_value => {
+							setAttributes( { titleColor: new_value } );
+						} }
+					/>
+					
+					<TypographyControl label={__("Excerpt typography")} value={excerptTypo} onTypographyChange={(new_value) => {setAttributes({excerptTypo:new_value}); }}/>
+					<ColorPickerControl
+						label={__("Excerpt color")}
+						disableAlpha="true"
+						value={excerptColor}
+						onColorChangeComplete={new_value => {
+							setAttributes( { excerptColor: new_value } );
+						} }
+					/>
+				</PanelBody>
+			</InspectorControls>
+		);
 
-/**
- * Register: aa Gutenberg Block.
- *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
- *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
- */
-registerBlockType( 'cgb/block-pm-blocks', {
-	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'PM Posts' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+		const hasPosts = Array.isArray( advancedPosts ) && advancedPosts.length;
+		if ( ! hasPosts ) {
+			return (
+				<Fragment>
+					{ inspectorControls }
+					<Placeholder
+						icon="admin-post"
+						label={ __( 'Advanced Posts' ) }
+					>
+						{ ! Array.isArray( advancedPosts ) ?
+							<Spinner /> :
+							__( 'No posts found.' )
+						}
+					</Placeholder>
+				</Fragment>
+			);
+		}
+		const displayPosts = advancedPosts.length > postsToShow ? advancedPosts.slice( 0, postsToShow ) : advancedPosts;
+
+		const layoutControls = [
+			{
+				icon: 'list-view',
+				title: __( 'List View' ),
+				onClick: () => setAttributes( { postLayout: 'list' } ),
+				isActive: postLayout === 'list',
+			},
+			{
+				icon: 'grid-view',
+				title: __( 'Grid View' ),
+				onClick: () => setAttributes( { postLayout: 'grid' } ),
+				isActive: postLayout === 'grid',
+			},
+		];
+
+		return (
+			<div className={`block-advance-posts ${ this.props.className }`}>
+				<Fragment>
+					{ inspectorControls }
+					<BlockControls>
+						<BlockAlignmentToolbar
+							value={ align }
+							onChange={ ( nextAlign ) => {
+								setAttributes( { align: nextAlign } );
+							} }
+							controls={ [ 'center', 'wide', 'full' ] }
+						/>
+						<Toolbar controls={ layoutControls } />
+					</BlockControls>
+					<div
+						className={ classnames( this.props.className, {
+							'is-grid': postLayout === 'grid',
+							[ `columns-${ columns }` ]: postLayout === 'grid',
+						} ) }
+					>
+						{ displayPosts.map( ( post, i ) =>
+							<div className={`post--item_wrap item-${i}`} key={ i }>
+								{post.featured_img && (
+									<div className="post--item_thumbnail">
+										<a href={post.link} title={post.title.rendered}>
+											<img
+												src={post.featured_img}
+												alt={post.title.rendered}
+											/>
+										</a>
+									</div>
+								)}
+								
+								<div className="post--item_info">
+									<h4 class="post--item_title">
+										<a href={post.link} title={post.title.rendered} >
+											{post.title.rendered.trim() || __( '(Untitled)' )}
+										</a>
+									</h4>
+									<div className="post--item_meta">
+										{post.author_meta &&
+											<span className="post--item_meta__author">
+												<a href={post.author_meta.author_link} className="post--item_meta__author_link">{post.author_meta.display_name}</a>
+											</span>
+										}
+										{post.date_gmt && 
+											<span className="post--item_meta__date">{ moment( post.date_gmt ).local().format( 'MMMM DD, Y' ) }</span>
+										}
+									</div>
+									<div
+										className="post--item_excerpt"
+										dangerouslySetInnerHTML={{
+											__html: AdvancePostsEdit.extractContent( post.content.rendered, 20 )
+										}}
+										
+									/>
+								</div>
+							</div>
+						) }
+					</div>
+				</Fragment>
+			</div>
+		);
+
+	}
+}
+
+registerBlockType( 'pm-blocks/advance-posts', {
+	title: __( 'Advance Posts' ),
+	icon: 'shield',
+	category: 'common',
 	keywords: [
-		__( 'PM Posts' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
+		__( 'Advance posts' ),
+		__( 'Post' ),
+		__( 'Posts' ),
 	],
 
-	/**
-	 * The edit function describes the structure of your block in the context of the editor.
-	 * This represents what the editor will render when the block is used.
-	 *
-	 * The "edit" property must be a valid function.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-	 */
-	edit: function( props ) {
-		// Creates a <p class='wp-block-cgb-block-pm-blocks'></p>.
-		return (
-			<div className={ props.className }>
-				<p>Padding control</p>
-				<p>— Hello from the backend.</p>
-				<p>
-					CGB BLOCK: <code>pm-blocks</code> is a new Gutenberg block
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
-			</div>
-		);
+	attributes: {
+		numberPosts: {
+			type: "integer",
+			default: -1
+		},
+		postExcerptColor: {
+			type: "string",
+			default: "#000"
+		},
+		isEnableThumbnail: {
+			type: "boolean",
+			default: true
+		},
+		order: {
+			type: "string",
+			default: "asc"
+		},
+		orderBy: {
+			type: "string",
+			default: "date"
+		},
+		category: {
+			type: "string"
+		},
+
+		titleTypo: {
+			type: 'object',
+		},
+		titleColor: {
+			type: 'object'
+		},
+
+		excerptTypo: {
+			type: 'object',
+		},
+		excerptColor: {
+			type: 'object'
+		},
+
+		uniqueID: {
+			type: 'string',
+		},
 	},
 
-	/**
-	 * The save function defines the way in which the different attributes should be combined
-	 * into the final markup, which is then serialized by Gutenberg into post_content.
-	 *
-	 * The "save" property must be specified and must be a valid function.
-	 *
-	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-	 */
-	save: function( props ) {
-		return (
-			<div>
-				<p>— Hello from the frontend.</p>
-				<p>
-					CGB BLOCK: <code>pm-blocks</code> is a new Gutenberg block.
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
-			</div>
+	edit: withSelect( (select, props) => {
+		const { getEntityRecords } = select("core");
+		const {
+			numberPosts,
+			order,
+			orderBy,
+			category,
+		} = props.attributes;
+
+		const advancePostsQuery = pickBy(
+			{
+				categories: category,
+				order,
+				orderby: orderBy,
+				//per_page: numberPosts
+				per_page: 2
+			},
+			value => !isUndefined(value)
 		);
+
+		const categoriesListQuery = {
+			per_page: 99
+		};
+
+		return {
+			advancedPosts: getEntityRecords(
+				"postType",
+				"post",
+				advancePostsQuery
+			),
+			categoriesList: getEntityRecords(
+				"taxonomy",
+				"category",
+				categoriesListQuery
+			)
+		};
+
+	})(AdvancePostsEdit),
+
+	save: function( props ) {
+		return null;
 	},
 } );

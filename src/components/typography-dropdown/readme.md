@@ -1,5 +1,5 @@
-# TypographyControl
-Group of typograply fields: fonts, font size, line-height, letter spacing, text-decoration, text-transform
+# TypographyDropdownControl
+Group of typograply fields: fonts, font size, line-height, letter spacing, text-decoration, text-transform in dropdown
 
 # Usage
 ```javascript
@@ -10,18 +10,18 @@ var default_fonts = {
 	variant: '',
 	font_type: '',
 };
-<TypographyControl value={typography} onTypographyChange={(new_value) => {setAttributes({typography:new_value}); console.log('Typography changed: ', new_value) }}/>
+<TypographyDropdownControl value={typography} onTypographyDropdownChange={(new_value) => {setAttributes({typography:new_value}); console.log('Typography changed: ', new_value) }}/>
 ```
 
 # Props
 The component accepts the following props:
 
 ### value
-The value for **TypographyControl**
+The value for **TypographyDropdownControl**
 * Type: **Object**
 * Required: **Yes**
 
-### onTypographyChange
-The callback function for **TypographyControl**
+### onTypographyDropdownChange
+The callback function for **TypographyDropdownControl**
 * Type: **Function**
 * Required: **Yes**

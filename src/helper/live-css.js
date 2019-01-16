@@ -1,7 +1,7 @@
 import t from 'typy';
-import { isEmpty, forOwn } from "lodash";
+import { isEmpty, isUndefined } from "lodash";
 const { applyFilters } =  wp.hooks;
-
+/**
 var pmBlocksStyle ={
 	"pm-blocks/block-my-heading" : {
 		"h2": {
@@ -22,6 +22,25 @@ var pmBlocksStyle ={
 				"attrValue" : "styling.normal.margin",
 				"outputValue" : "{{VALUE_TOP}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
 			}
+		}
+	}
+};
+ */
+var pmBlocksStyle ={
+	"pm-blocks/advance-posts" : {
+		".post--item_title a": {
+			"typography": "titleTypo",
+			"color": "titleColor.hex",
+			"font-size": {
+				"attrValue" : "titleFontSize",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
+		},
+		".post--item_excerpt": {
+			"typography": "excerptTypo",
+			"color": "excerptColor.hex",
+			
+			
 		}
 	}
 };
@@ -124,10 +143,15 @@ class PMLiveCSS {
 		}
 
 		let googleFont = {};
-	
-		if( this.definedNotEmpty( fontData.font_type ) ){ 
-			if( 'normal' !== fontData.font_type ) {
-				if( 'google' === fontData.font_type ) {
+		
+		if( !isUndefined( fontData.font_type ) ){ 
+			let fontType = 'normal';
+			if( 'normal' !== fontData.font_type && '' !== fontData.font_type ) {
+				fontType = fontData.font_type;
+			}
+
+			if( 'normal' !== fontType ) {
+				if( 'google' === fontType ) {
 					if( '' !== fontFamily ){ 
 						googleFont['family'] = fontFamily;
 					}
@@ -155,7 +179,7 @@ class PMLiveCSS {
 				}
 			} else{
 				if( this.definedNotEmpty( fontData.style ) ){ 
-					fontCSS += `font-style:${fontData.variant}`;
+					fontCSS += `font-style:${fontData.style};`;
 				}
 			}
 		}
@@ -630,6 +654,9 @@ class PMLiveCSS {
 	}
 
 	getBlockCSS (currentBlock ) {
+		if( null === currentBlock ){
+			return;
+		}
 		let blockCSS = {};
 		let blockName = (this.definedNotEmpty(currentBlock.name)) ? currentBlock.name : '';
 		let blockId = (this.definedNotEmpty(currentBlock.clientId)) ? currentBlock.clientId: '';
@@ -639,16 +666,21 @@ class PMLiveCSS {
 		let parser = new DOMParser();
 		let parsedHtml = parser.parseFromString(blockOriginContent, 'text/html');
 		let firtChild = parsedHtml.body.childNodes;
+
 		
 		let targetSelector = '';
 		
-		let targetID = (firtChild.length > 0 && this.definedNotEmpty(firtChild[0].id)) ? firtChild[0].id: blockId;
-		
+		let targetID = 'block-' + blockId;;
+		if (firtChild.length > 0 && this.definedNotEmpty(firtChild[0].id)) {
+			targetID = firtChild[0].id;
+		} else if( this.definedNotEmpty(blockAttr.uniqueID)) {
+			targetID = 'block-' + blockAttr.uniqueID;
+		}
+
 		let targetClassName = '';
 		if( this.definedNotEmpty(firtChild[0]) && 'function' === typeof( firtChild[0].getAttribute ) ) {
 			targetClassName = firtChild[0].getAttribute('class');
 		}
-		
 		
 		if( 'undefined' !== typeof( targetID ) && null !== targetID ) {
 			targetSelector = `#${targetID}`;
@@ -729,10 +761,13 @@ class PMLiveCSS {
 								if( 'undefined' !== typeof( getPropVal ) ){
 									let colorRule = '';
 									let colorStr = this.getColorCSS( getPropVal );
+									if( 'string' === typeof( getPropVal ) && this.isHexColor( getPropVal ) ) {
+										colorStr = getPropVal;
+									}
 									if( '' !== colorStr ) {
 										colorRule = `${propKey}:${colorStr};`;
+										cssOrigin += colorRule;
 									}
-									cssOrigin += colorRule;
 								}
 								break;
 							case "normal-background":
@@ -803,6 +838,12 @@ class PMLiveCSS {
 		
 		return applyFilters( 'pmLiveCSSGetBlockCSS', blockCSS );
 	}
+
+	isHexColor ( string_color ) {
+		var isHex  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(string_color);
+		return !!isHex;
+	}
+
 	getAllBlocksCSS (blocks ) {
 		let blockCSS = {};
 		for( let i=0; i<blocks.length; i++ ) {
@@ -919,8 +960,8 @@ class PMLiveCSS {
 					itemFamily = fontItem.family.replace(' ', '+');
 					if( this.definedNotEmpty(fontItem.variant) && !isEmpty( fontItem.variant ) ) {
 						itemFamily += ':' + fontItem.variant.join(',');
-						gFontFamily.push(itemFamily);
 					}
+					gFontFamily.push(itemFamily);
 				}
 				if( this.definedNotEmpty(fontItem.subsets) ) {
 					gFontSubsets = gFontSubsets.concat(fontItem.subsets);
@@ -929,6 +970,7 @@ class PMLiveCSS {
 			
 			if( gFontFamily.length > 0 ) {
 				gFontURL = 'https://fonts.googleapis.com/css?family=' + gFontFamily.join('|');
+				
 				if( gFontSubsets.length > 0 ) {
 					gFontURL += '&subset=' + gFontSubsets.join(',');
 				}
@@ -937,6 +979,51 @@ class PMLiveCSS {
 			
 		}
 		return gFontURL;
+	}
+
+	renderStyleTag( styles, maybeGFontUrl ) {
+		let cssRunableInput = document.getElementById('pm_blocks_style_css');
+		let maybeGFontUrlInput = document.getElementById('pm_blocks_maybe_gfont_url');
+		let css;
+		
+		if( 'string' === typeof (styles) && styles.length > 0 ) {
+			cssRunableInput.value = styles;
+		}
+		let headTag = document.getElementsByTagName("head");
+		// Add google font link.
+
+		if( 'string' === typeof( maybeGFontUrl ) && maybeGFontUrl.length > 0 )  {
+			if( null !== document.getElementById("pm_blocks-maybe-gfont-url-css") ){
+				let existLinkTag = document.getElementById("pm_blocks-maybe-gfont-url-css");
+				existLinkTag.href = maybeGFontUrl;
+			}else{
+				let linkTag = document.createElement('link');
+				linkTag.rel = 'stylesheet';
+				linkTag.id = 'pm_blocks-maybe-gfont-url-css';
+				linkTag.href = maybeGFontUrl;
+				headTag[0].insertBefore(linkTag, headTag[0].childNodes[0]);
+			}
+			maybeGFontUrlInput.value = maybeGFontUrl;
+		}
+
+		if( null !== document.getElementById("pm_blocks-cgb-block-editor-css-inline-css") ){
+			css = document.getElementById("pm_blocks-cgb-block-editor-css-inline-css");
+			if (css.styleSheet) {
+				css.styleSheet.cssText = styles;
+			} else {
+				css.innerHTML = styles;
+			}
+		} else {
+			css = document.createElement("style");
+			css.type = "text/css";
+			css.id = "pm_blocks-cgb-block-editor-css-inline-css";
+			if (css.styleSheet) {
+				css.styleSheet.cssText = styles;
+			} else {
+				css.appendChild(document.createTextNode(styles));
+			}
+			headTag[0].appendChild(css);
+		}
 	}
 }
 

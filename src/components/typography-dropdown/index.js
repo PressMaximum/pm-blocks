@@ -91,10 +91,10 @@ class TypographyDropdownControl extends Component {
 		}
 
 		this.setState(changed_value);
-		if ("function" === typeof this.props.onTypographyChange) {
+		if ("function" === typeof this.props.onTypographyDropdownChange) {
 			let current_state = this.state;
 			let current_data = Object.assign({}, current_state, changed_value);
-			this.props.onTypographyChange(current_data);
+			this.props.onTypographyDropdownChange(current_data);
 		}
 	}
 
@@ -105,7 +105,7 @@ class TypographyDropdownControl extends Component {
 			label,
 			value,
 			instanceId,
-			onTypographyChange,
+			onTypographyDropdownChange,
 			...props
 		} = this.props;
 		const id = `typography-control-${instanceId}`;

@@ -10,7 +10,13 @@
  */
 
 import PMLiveCSS from "./helper/live-css";
-
+const {
+	isEmpty, isUndefined
+} = lodash;
+const { hooks } = wp;
+const {
+    createHigherOrderComponent,
+} = wp.compose;
 
 const { subscribe } = wp.data;
 const MyChange = subscribe( (sub) => {
@@ -24,54 +30,83 @@ const MyChange = subscribe( (sub) => {
 		const selectedBlock = editor.getSelectedBlock();
 		
 		let pmLiveCSS = new PMLiveCSS();
-		let cssRunableInput = document.getElementById('pm_blocks_style_css');
-		let maybeGFontUrlInput = document.getElementById('pm_blocks_maybe_gfont_url');
-		
 		// Add style tag.
-		let css;
 		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
-
-		if( '' !== styles ) {
-			cssRunableInput.value = styles;
-		}
-		let headTag = document.getElementsByTagName("head");
-		// Add google font link.
 		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
-		if( '' !== maybeGFontUrl )  {
-			if( null !== document.getElementById("pm_blocks-maybe-gfont-url-css") ){
-				let existLinkTag = document.getElementById("pm_blocks-maybe-gfont-url-css");
-				existLinkTag.href = maybeGFontUrl;
-			}else{
-				let linkTag = document.createElement('link');
-				linkTag.rel = 'stylesheet';
-				linkTag.id = 'pm_blocks-maybe-gfont-url-css';
-				linkTag.href = maybeGFontUrl;
-				headTag[0].insertBefore(linkTag, headTag[0].childNodes[0]);
-			}
-			maybeGFontUrlInput.value = maybeGFontUrl;
-		}
-
-		if( null !== document.getElementById("pm_blocks-cgb-block-editor-css-inline-css") ){
-			css = document.getElementById("pm_blocks-cgb-block-editor-css-inline-css");
-			if (css.styleSheet) {
-				css.styleSheet.cssText = styles;
-			} else {
-				css.innerHTML = styles;
-			}
-		} else {
-			css = document.createElement("style");
-			css.type = "text/css";
-			css.id = "pm_blocks-cgb-block-editor-css-inline-css";
-			if (css.styleSheet) {
-				css.styleSheet.cssText = styles;
-			} else {
-				css.appendChild(document.createTextNode(styles));
-			}
-			headTag[0].appendChild(css);
-		}
-		
+		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
+		console.log('get live styles: ', styles);
 	}
 });
+
+// Hook to exist pm-block and create a wrapper with uniqueID.
+const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
+	return ( props ) => {
+		if ( !isUndefined(props.name) && props.name.includes('pm-blocks/') ) {
+			const {
+				attributes,
+				setAttributes,
+				clientId
+			} = props;
+	
+			const {
+				uniqueID
+			} = attributes;
+	
+			if( isUndefined( uniqueID ) || '' == uniqueID ) {
+				setAttributes( {uniqueID: clientId });
+			}
+			
+			let listBlocks = wp.data.select("core/editor").getBlocks();
+			let listBlockSelected = wp.data.select("core/editor").getSelectedBlock();
+			console.log('list block: ', listBlocks);
+			if( Array.isArray(listBlocks) && listBlocks.length > 0 ) {
+				let count = 0;
+				for( let i=0; i<listBlocks.length; i++ ) {
+					let blockAttr = listBlocks[i].attributes;
+					let blockUniqueID = blockAttr.uniqueID;
+					if( uniqueID === blockUniqueID ) {
+						console.log('need update uniqueID');
+						if( count > 0 ) {
+							setAttributes( {uniqueID: clientId });
+						}
+						
+						count ++;
+					}
+				}
+			}
+
+			return (
+				<div id={`block-${uniqueID}`}>
+					<BlockEdit { ...props } />
+				</div>
+			);
+		}
+		return (
+			<BlockEdit {...props} />
+		);
+	};
+} );
+
+wp.hooks.addFilter( 'editor.BlockEdit', 'pm-blocks/block-edit', pmBlockEditCB );
+
+wp.hooks.addFilter(
+	'blocks.getSaveElement',
+	'pm-blocks/modify-get-save-content-extra-props',
+	pmBlockGetSaveElementCB
+);
+
+
+function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
+	// Check if that is not a table block.
+	if ( !blockType.name.includes( 'pm-blocks/' ) || isUndefined(attributes.uniqueID) || '' === attributes.uniqueID || null === attributes.uniqueID ) {
+		return element;
+	}
+	return (
+		<div id={`block-${attributes.uniqueID}`}>
+			{element}
+		</div>
+	);
+}
 
 import "./blocks/call-to-action/block.js";
 import "./blocks/border-box/block.js";

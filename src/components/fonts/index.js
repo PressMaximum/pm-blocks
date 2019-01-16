@@ -134,6 +134,7 @@ class FontsControl extends Component {
 			
 			this.props.onFontsChange(return_value);
 		}
+		
 	}
 
 	render() {
