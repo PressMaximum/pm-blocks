@@ -3,6 +3,7 @@ import './editor.scss';
 import classnames from 'classnames';
 import TypographyDropdownControl from '../../components/typography-dropdown/index';
 import TypographyControl from '../../components/typography/index';
+import FontsControl from '../../components/fonts/index';
 import ColorPickerControl from '../../components/color-picker/index';
 
 const { __ } = wp.i18n;
@@ -87,7 +88,7 @@ class AdvancePostsEdit extends Component{
 
 	render() {
 		const { attributes, categoriesList, setAttributes, advancedPosts, clientId, className } = this.props;
-		const { displayPostDate, align, postLayout, columns, order, orderBy, categories, postsToShow, titleTypo, titleColor, titleFontSize, excerptTypo, excerptColor, uniqueID } = attributes;
+		const { displayPostDate, align, postLayout, columns, order, orderBy, categories, postsToShow, titleTypo, titleColor, excerptFonts, excerptTypo, excerptColor, uniqueID } = attributes;
 
 		const inspectorControls = (
 			<InspectorControls>
@@ -136,6 +137,8 @@ class AdvancePostsEdit extends Component{
 							setAttributes( { excerptColor: new_value } );
 						} }
 					/>
+
+					<FontsControl value={excerptFonts} onFontsChange={(new_value) => {setAttributes({excerptFonts:new_value}); }}/>
 				</PanelBody>
 			</InspectorControls>
 		);
@@ -289,7 +292,9 @@ registerBlockType( 'pm-blocks/advance-posts', {
 		excerptColor: {
 			type: 'object'
 		},
-		
+		excerptFonts: {
+			type: 'object'
+		},
 		uniqueID: {
 			type: 'string',
 		},

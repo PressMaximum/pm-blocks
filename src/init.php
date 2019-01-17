@@ -117,6 +117,3 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 add_action( 'enqueue_block_editor_assets', 'pm_blocks_cgb_editor_assets' );
 
 
-
-
-//$output = apply_filters( 'do_block', $output, $block );

@@ -26,8 +26,6 @@ import "./blocks/accordion/block.js";
 import "./blocks/styling/block.js";
 import "./blocks/icon-picker/block.js";
 import "./blocks/custom-heading/block.js";
-import "./blocks/test-spacer/block.js";
-
 
 
 const {
@@ -54,6 +52,8 @@ const MyChange = subscribe( (sub) => {
 		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
 		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
 		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
+
+		console.log('live styles: ', styles);
 	}
 });
 
@@ -124,12 +124,11 @@ function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
 	);
 }
 
-/**
+
 wp.hooks.addFilter(
 	'blocks.registerBlockType',
 	'pm-block/settings/attributes',
 	function( settings, name ) {
-		console.log('block name: ', name);
 		
 		if ( name.includes('pm-blocks/') ) {
 			settings = assign( {}, settings, {
@@ -141,26 +140,6 @@ wp.hooks.addFilter(
 			} ); 
 	
 		}
-		
 		return settings;
 	} 
-); */
-
-function addListBlockClassName( settings, name ) {
-	console.log('name: ', name);
-    if ( name !== 'core/list' ) {
-        return settings;
-    }
-
-    return lodash.assign( {}, settings, {
-        supports: lodash.assign( {}, settings.supports, {
-            className: true
-        } ),
-    } );
-}
-
-wp.hooks.addFilter(
-    'blocks.registerBlockType',
-    'my-plugin/class-names/list-block',
-    addListBlockClassName
 );

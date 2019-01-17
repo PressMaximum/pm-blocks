@@ -39,9 +39,18 @@ var pmBlocksStyle ={
 		".post--item_excerpt": {
 			"typography": "excerptTypo",
 			"color": "excerptColor.hex",
-			
-			
+		},
+		".post--item_meta" : {
+			"fonts" : "excerptFonts"
 		}
+	},
+	"pm-blocks/block-my-heading" : {
+		"h2": {
+			"styling": "styling",
+			"typography": "typo",
+			"color": "color.hex"
+		},
+		
 	}
 };
 
@@ -452,8 +461,7 @@ class PMLiveCSS {
 							stylingCSS += `color:${colorStr};`;
 						}
 					}
-					// Get link color CSS.
-				
+					
 					// Get margin.
 					if( this.definedNotEmpty( stylingData.margin ) ){
 						let deviceMargin = this.getCSSRulerDeviceCSS( stylingData.margin, 'margin', 'px' );
@@ -525,6 +533,7 @@ class PMLiveCSS {
 		}
 		return returnValue;
 	}
+
 
 	getGroupStylingResponsive (stylingResponsive) {
 		let returnValue = {};
@@ -696,6 +705,7 @@ class PMLiveCSS {
 			for( let j=0; j<entries.length; j++ ) {
 				let selector = entries[j][0];
 				selector = `${targetSelector} ${selector}`;
+				
 				let cssOrigin = '', cssHover = ''; 
 				let cssDevices = {
 					desktop: [],
@@ -714,6 +724,7 @@ class PMLiveCSS {
 							case "styling":
 								if( 'undefined' !== typeof( getPropVal ) ){ 
 									let stylingCSS = this.getStylingCSS( getPropVal );
+									
 									if( !isEmpty( stylingCSS ) ) {
 										//CSS Normal.
 										if( this.definedNotEmpty( stylingCSS.normal ) ) {
@@ -721,6 +732,16 @@ class PMLiveCSS {
 												cssOrigin += stylingCSS.normal.cssRule;
 											}
 											cssDevices = this.groupCSSByDevice( cssDevices, stylingCSS.normal.responsive );
+											
+											// Add css for a tag if has value.
+											if( this.definedNotEmpty(getPropVal.normal.link_color)) {
+												let linkColor = this.getColorCSS(getPropVal.normal.link_color);
+												if( '' !== linkColor ) {
+													selectorCSS[selector+' a'] = {
+														css: `color: ${linkColor};`,
+													};
+												}
+											}
 										}
 										//CSS Hover.
 										if( this.definedNotEmpty( stylingCSS.hover ) ) {
@@ -734,6 +755,16 @@ class PMLiveCSS {
 														mobile: (cssHoverDevices.mobile.length > 0 ) ? cssHoverDevices.mobile.join(' ') : '',
 													}
 												};
+
+												// Add css for a tag if has value.
+												if( this.definedNotEmpty(getPropVal.hover.link_color)) {
+													let hoverLinkColor = this.getColorCSS(getPropVal.hover.link_color);
+													if( '' !== hoverLinkColor ) {
+														selectorCSS[selector+' a:hover'] = {
+															css: `color: ${hoverLinkColor};`,
+														};
+													}
+												}
 											}
 										}
 
@@ -750,6 +781,17 @@ class PMLiveCSS {
 										cssDevices = this.groupCSSByDevice( cssDevices, typoCSS.responsive );
 									}
 									this.maybeHasGoogleFont( typoCSS );
+								}
+								break;
+							case "fonts":
+								if( 'undefined' !== typeof( getPropVal ) ){ 
+									let fontsCSS = this.getFontCSS(getPropVal);
+									if( !isEmpty( fontsCSS ) ) {
+										if( this.definedNotEmpty( fontsCSS.cssRule ) ) {
+											cssOrigin += fontsCSS.cssRule;
+										}
+									}
+									this.maybeHasGoogleFont( fontsCSS );
 								}
 								break;
 							case "color":
