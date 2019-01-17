@@ -10,8 +10,28 @@
  */
 
 import PMLiveCSS from "./helper/live-css";
+
+import "./blocks/call-to-action/block.js";
+import "./blocks/border-box/block.js";
+import "./blocks/rangecontrol-devices/block.js";
+import "./blocks/background-box/block.js";
+import "./blocks/background-gradient-box/block.js";
+import "./blocks/posts/block.js";
+import "./blocks/repeater/repeater.js";
+import "./blocks/repeater/item.js";
+import "./blocks/fonts/block.js";
+import "./blocks/typography/block.js";
+import "./blocks/background-group/block.js";
+import "./blocks/accordion/block.js";
+import "./blocks/styling/block.js";
+import "./blocks/icon-picker/block.js";
+import "./blocks/custom-heading/block.js";
+import "./blocks/test-spacer/block.js";
+
+
+
 const {
-	isEmpty, isUndefined
+	isEmpty, isUndefined, assign
 } = lodash;
 const { hooks } = wp;
 const {
@@ -34,7 +54,6 @@ const MyChange = subscribe( (sub) => {
 		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
 		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
 		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
-		console.log('get live styles: ', styles);
 	}
 });
 
@@ -57,20 +76,17 @@ const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
 			}
 			
 			let listBlocks = wp.data.select("core/editor").getBlocks();
-			let listBlockSelected = wp.data.select("core/editor").getSelectedBlock();
-			console.log('list block: ', listBlocks);
+			
 			if( Array.isArray(listBlocks) && listBlocks.length > 0 ) {
 				let count = 0;
 				for( let i=0; i<listBlocks.length; i++ ) {
 					let blockAttr = listBlocks[i].attributes;
 					let blockUniqueID = blockAttr.uniqueID;
 					if( uniqueID === blockUniqueID ) {
-						console.log('need update uniqueID');
 						if( count > 0 ) {
 							setAttributes( {uniqueID: clientId });
-						}
-						
-						count ++;
+						} 
+						count++;
 					}
 				}
 			}
@@ -108,18 +124,43 @@ function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
 	);
 }
 
-import "./blocks/call-to-action/block.js";
-import "./blocks/border-box/block.js";
-import "./blocks/rangecontrol-devices/block.js";
-import "./blocks/background-box/block.js";
-import "./blocks/background-gradient-box/block.js";
-import "./blocks/posts/block.js";
-import "./blocks/repeater/repeater.js";
-import "./blocks/repeater/item.js";
-import "./blocks/fonts/block.js";
-import "./blocks/typography/block.js";
-import "./blocks/background-group/block.js";
-import "./blocks/accordion/block.js";
-import "./blocks/styling/block.js";
-import "./blocks/icon-picker/block.js";
-import "./blocks/custom-heading/block.js";
+/**
+wp.hooks.addFilter(
+	'blocks.registerBlockType',
+	'pm-block/settings/attributes',
+	function( settings, name ) {
+		console.log('block name: ', name);
+		
+		if ( name.includes('pm-blocks/') ) {
+			settings = assign( {}, settings, {
+				attributes: assign( {}, settings.attributes, {
+					uniqueID: {
+						type: 'string',
+					},
+				} ),
+			} ); 
+	
+		}
+		
+		return settings;
+	} 
+); */
+
+function addListBlockClassName( settings, name ) {
+	console.log('name: ', name);
+    if ( name !== 'core/list' ) {
+        return settings;
+    }
+
+    return lodash.assign( {}, settings, {
+        supports: lodash.assign( {}, settings.supports, {
+            className: true
+        } ),
+    } );
+}
+
+wp.hooks.addFilter(
+    'blocks.registerBlockType',
+    'my-plugin/class-names/list-block',
+    addListBlockClassName
+);

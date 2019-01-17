@@ -21,7 +21,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Block Initializer.
  */
-require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/components/fonts/fonts.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/components/icon-picker/icon-picker.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/helper/meta-box.php';
+add_action( 'plugins_loaded', 'pm_blocks_plugin_init' );
+function pm_blocks_plugin_init() {
+	require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
+	require_once plugin_dir_path( __FILE__ ) . 'src/components/fonts/fonts.php';
+	require_once plugin_dir_path( __FILE__ ) . 'src/components/icon-picker/icon-picker.php';
+	require_once plugin_dir_path( __FILE__ ) . 'src/helper/meta-box.php';
+}

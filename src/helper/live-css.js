@@ -666,15 +666,13 @@ class PMLiveCSS {
 		let parser = new DOMParser();
 		let parsedHtml = parser.parseFromString(blockOriginContent, 'text/html');
 		let firtChild = parsedHtml.body.childNodes;
-
-		
 		let targetSelector = '';
 		
-		let targetID = 'block-' + blockId;;
-		if (firtChild.length > 0 && this.definedNotEmpty(firtChild[0].id)) {
-			targetID = firtChild[0].id;
-		} else if( this.definedNotEmpty(blockAttr.uniqueID)) {
+		let targetID = 'block-' + blockId;
+		if( this.definedNotEmpty(blockAttr.uniqueID)) {
 			targetID = 'block-' + blockAttr.uniqueID;
+		} else if (firtChild.length > 0 && this.definedNotEmpty(firtChild[0].id)) {
+			targetID = firtChild[0].id;
 		}
 
 		let targetClassName = '';

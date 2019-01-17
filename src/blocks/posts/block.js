@@ -289,7 +289,7 @@ registerBlockType( 'pm-blocks/advance-posts', {
 		excerptColor: {
 			type: 'object'
 		},
-
+		
 		uniqueID: {
 			type: 'string',
 		},

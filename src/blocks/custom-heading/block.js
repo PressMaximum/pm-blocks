@@ -145,3 +145,4 @@ registerBlockType( 'pm-blocks/block-my-heading', {
 		);
 	},
 } );
+
