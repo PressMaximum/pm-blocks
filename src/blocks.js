@@ -53,8 +53,6 @@ const MyChange = subscribe( (sub) => {
 		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
 		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
 		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
-
-		console.log('output styles: ',styles);
 	}
 });
 

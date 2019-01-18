@@ -83,6 +83,73 @@ var pmBlocksStyle ={
 			"marginDevices": "marginDevices",
 			"paddingDevices": "paddingDevices",
 		}
+	}, 
+	"pm-blocks/test-live-css-boxshadow" : {
+		".boxshadow-test" : {
+			"boxShadow" : "boxShadow"
+		}
+	},
+	"pm-blocks/test-live-css-borderbox" : {
+		".border-box-test" : {
+			"borderBox" : "borderBox"
+		}
+	},
+	"pm-blocks/test-live-css-styling" : {
+		".styling-test" : {
+			"styling" : "styling"
+		}
+	}, 
+	"pm-blocks/test-live-css-typo" : {
+		".typo-test > p" : {
+			"typography" : "typography"
+		}
+	},
+	"pm-blocks/test-live-css-manual" : {
+		".manual-test" : {
+			"border-style": {
+				"attrValue" : "borderStyle",
+				"outputValue" : "{{VALUE}}",
+			},
+			"border-top-width": {
+				"attrValue" : "borderWidth",
+				"outputValue" : "{{VALUE_TOP}}px",
+			},
+			"border-right-width": {
+				"attrValue" : "borderWidth",
+				"outputValue" : "{{VALUE_RIGHT}}px",
+			},
+			"border-bottom-width": {
+				"attrValue" : "borderWidth",
+				"outputValue" : "{{VALUE_BOTTOM}}px",
+			},
+			"border-left-width": {
+				"attrValue" : "borderWidth",
+				"outputValue" : "{{VALUE_LEFT}}px",
+			},
+			"border-color": "borderColor",
+			"border-top-left-radius": {
+				"attrValue" : "borderRadius",
+				"outputValue" : "{{VALUE_TOP}}px",
+			},
+			"border-top-right-radius": {
+				"attrValue" : "borderRadius",
+				"outputValue" : "{{VALUE_RIGHT}}px",
+			},
+			"border-bottom-right-radius": {
+				"attrValue" : "borderRadius",
+				"outputValue" : "{{VALUE_BOTTOM}}px",
+			},
+			"border-bottom-left-radius": {
+				"attrValue" : "borderRadius",
+				"outputValue" : "{{VALUE_LEFT}}px",
+			}
+		},
+		".manual-test .content" : {
+			"line-height": {
+				"attrValue" : "lineHeight",
+				"outputValue" : "{{VALUE}}px",
+			}
+		}
 	}
 };
 
@@ -376,10 +443,10 @@ class PMLiveCSS {
 
 			if( this.definedNotEmpty( radius[key] ) ) {
 				if( link ) {
-					radiusCSS = `border-radius: ${radius[key]};`;
+					radiusCSS = `border-radius: ${radius[key]}px;`;
 					break;
 				} else {
-					radiusCSS += `border-${keyValue}-radius: ${radius[key]};`;
+					radiusCSS += `border-${keyValue}-radius: ${radius[key]}px;`;
 				}
 			}
 		}
@@ -404,11 +471,11 @@ class PMLiveCSS {
 	getBorderBoxCSS (borderBox){
 		let borderCSS = '';
 		if( 'undefined' !== typeof( borderBox ) ){
-			let color = ( this.definedNotEmpty( borderBox.color ) ) ? borderBox.color : {};
-			let radius = ( this.definedNotEmpty( borderBox.radius ) ) ? borderBox.radius : {};
-			let shadow = ( this.definedNotEmpty( borderBox.shadow ) ) ? borderBox.shadow : {};
+			let color = ( this.definedNotEmpty( borderBox.color ) ) ? borderBox.color : '';
+			let radius = ( this.definedNotEmpty( borderBox.radius ) ) ? borderBox.radius : ''
+			let shadow = ( this.definedNotEmpty( borderBox.shadow ) ) ? borderBox.shadow : '';
 			let style = ( this.definedNotEmpty( borderBox.style ) ) ? borderBox.style : '';
-			let width = ( this.definedNotEmpty( borderBox.width ) ) ? borderBox.width : {};
+			let width = ( this.definedNotEmpty( borderBox.width ) ) ? borderBox.width : '';
 	
 			if( '' !== style ) {
 				borderCSS += `border-style: ${style};`;
@@ -420,10 +487,10 @@ class PMLiveCSS {
 				}
 			}
 			if( this.definedNotEmpty( width ) ) {
-				borderCSS = this.getBorderWidthCSS(width, 'px');
+				borderCSS += this.getBorderWidthCSS(width, 'px');
 			}
 			if( this.definedNotEmpty( radius ) ) {
-				borderCSS = this.getBorderRadiusCSS( radius );
+				borderCSS += this.getBorderRadiusCSS( radius );
 			}
 			if( this.definedNotEmpty( shadow ) ) {
 				borderCSS += this.getBoxShadowCSS( shadow );
@@ -446,9 +513,9 @@ class PMLiveCSS {
 				let colorStr = this.getColorCSS( color );
 				if( '' !== colorStr ){
 					if ( inset ) {
-						boxShadowCSS = `box-shadow: inset ${x} ${y} ${blur} ${spread} ${colorStr};`;
+						boxShadowCSS = `box-shadow: inset ${x}px ${y}px ${blur}px ${spread}px ${colorStr};`;
 					} else {
-						boxShadowCSS = `box-shadow: ${x} ${y} ${blur} ${spread} ${colorStr};`;
+						boxShadowCSS = `box-shadow: ${x}px ${y}px ${blur}px ${spread}px ${colorStr};`;
 					}
 				}
 			}
@@ -882,6 +949,27 @@ class PMLiveCSS {
 								if( 'undefined' !== typeof( getPropVal ) ){
 									let borderWidthResponsive = this.getBorderWidthDevicesCSS( getPropVal, 'px');
 									cssDevices = this.groupCSSByDevice( cssDevices, borderWidthResponsive );
+								}
+								break;
+							case "boxShadow" :
+								if( 'undefined' !== typeof( getPropVal ) ){
+									if( !isEmpty( this.getBoxShadowCSS( getPropVal ) ) ) {
+										cssOrigin += this.getBoxShadowCSS( getPropVal );
+									}
+								}
+								break;
+							case "borderBox" : 
+								if( 'undefined' !== typeof( getPropVal ) ){
+									if( !isEmpty( this.getBorderBoxCSS( getPropVal ) ) ) {
+										cssOrigin += this.getBorderBoxCSS( getPropVal );
+									}
+								}
+								break;
+							case "borderRadius": 
+								if( 'undefined' !== typeof( getPropVal ) ){
+									if( !isEmpty( this.getBorderRadiusCSS( getPropVal ) ) ) {
+										cssOrigin += this.getBorderRadiusCSS( getPropVal );
+									}
 								}
 								break;
 							default:

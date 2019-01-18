@@ -1,4 +1,5 @@
-import TypographyControl from '../../../components/typography/index';
+import CSSRulerControl from '../cssruler/index';
+import ColorPickerControl from '../color-picker/index';
 
 const { __ } = wp.i18n; 
 const { registerBlockType } = wp.blocks;
@@ -8,16 +9,16 @@ const {
 
 const { PanelBody } = wp.components;
 
-registerBlockType( 'pm-blocks/test-live-css-typo', {
-	title: __( 'PM CSS: Typography' ), 
+registerBlockType( 'pm-blocks/test-live-css-border', {
+	title: __( 'PM CSS: Border' ), 
 	icon: 'shield',
 	category: 'common',
 	keywords: [
-		__( 'Typo' ),
-		__( 'PM Typo' ),
+		__( 'Border' ),
+		__( 'PM Border' ),
 	],
 	attributes: {
-		typography: {
+		border: {
 			type: 'object',
 		},
 		uniqueID: {
@@ -29,17 +30,17 @@ registerBlockType( 'pm-blocks/test-live-css-typo', {
 		const {
 			setAttributes
 		} = props;
-		const { typography } = props.attributes;
+		const { border } = props.attributes;
 		
 		return (
 			<div className={ props.className }>
 				<InspectorControls>
-					<PanelBody title={ __( 'Typography Settings' ) }>
-						<TypographyControl value={typography} onTypographyChange={(new_value) => {setAttributes({typography:new_value}); }}/>
+					<PanelBody title={ __( 'Border Settings' ) }>
+						<BorderBoxControl value={borderBox} onBorderBoxChange={new_value => {setAttributes({borderBox:new_value});}}/>
 					</PanelBody>
 				</InspectorControls>
-				<div className="typo-test">
-					<p class="content">Live CSS - Typography</p>
+				<div className="border-test">
+					<p class="content">Live CSS - Border</p>
 				</div>
 			</div>
 		);
@@ -48,8 +49,8 @@ registerBlockType( 'pm-blocks/test-live-css-typo', {
 	save: function( props ) {
 		return (
 			<div className={ props.className }>
-				<div className="typo-test">
-					<p class="content">Live CSS - Typography</p>
+				<div className="border-test">
+					<p class="content">Live CSS - Border</p>
 				</div>
 			</div>
 		);
