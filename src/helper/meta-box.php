@@ -93,7 +93,7 @@ class PM_Blocks_Meta_Box {
 		<div class="components-base-control">
 			<div class="components-base-control__field">
 				<label class="components-base-control__label" for="inspector-select-control-0"><?php echo esc_html__( 'Custom CSS for blocks', 'pm-blocks' ); ?></label>
-				<textarea name="pm_blocks_custom_css" id="pm_blocks_custom_css"><?php echo esc_attr( $custom_css ); ?></textarea>
+				<textarea name="pm_blocks_custom_css" id="pm_blocks_custom_css" style="width: 100%;min-height: 200px;"><?php echo esc_attr( $custom_css ); ?></textarea>
 			</div>
 		</div>
 

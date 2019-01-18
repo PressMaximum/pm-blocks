@@ -26,6 +26,7 @@ import "./blocks/accordion/block.js";
 import "./blocks/styling/block.js";
 import "./blocks/icon-picker/block.js";
 import "./blocks/custom-heading/block.js";
+import "./blocks/test-live-css/block.js";
 
 
 const {
@@ -53,7 +54,7 @@ const MyChange = subscribe( (sub) => {
 		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
 		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
 
-		
+		console.log('output styles: ',styles);
 	}
 });
 
@@ -129,7 +130,7 @@ wp.hooks.addFilter(
 	'blocks.registerBlockType',
 	'pm-block/settings/attributes',
 	function( settings, name ) {
-		
+		console.log('block name: ',name);
 		if ( name.includes('pm-blocks/') ) {
 			settings = assign( {}, settings, {
 				attributes: assign( {}, settings.attributes, {

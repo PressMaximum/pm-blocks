@@ -1,6 +1,6 @@
 import './editor.scss';
 const { __ } = wp.i18n;
-import { defaults } from "lodash";
+import { defaults, isUndefined } from "lodash";
 const { Component } = wp.element;
 const {
 	IconButton,
@@ -25,19 +25,24 @@ class CSSRulerControl extends Component {
 	componentDidUpdate( oldProps ) {
 		const newValue = this.props.value;
 		const oldValue = oldProps.value;
-		if( newValue.top !== oldValue.top ) {
+		
+		if( isUndefined( newValue ) || isUndefined( oldValue ) ) {
+			return;
+		}
+
+		if( !isUndefined(newValue.top) && !isUndefined(oldValue.top) && newValue.top !== oldValue.top ) {
 			this.setState({top: newValue.top});
 		}
-		if( newValue.right !== oldValue.right ) {
+		if( !isUndefined(newValue.right) && !isUndefined(oldValue.right) && newValue.right !== oldValue.right ) {
 			this.setState({right: newValue.right});
 		}
-		if( newValue.bottom !== oldValue.bottom ) {
+		if( !isUndefined(newValue.bottom) && !isUndefined(oldValue.bottom) && newValue.bottom !== oldValue.bottom ) {
 			this.setState({bottom: newValue.bottom});
 		}
-		if( newValue.left !== oldValue.left ) {
+		if( !isUndefined(newValue.left) && !isUndefined(oldValue.left) && newValue.left !== oldValue.left ) {
 			this.setState({left: newValue.left});
 		}
-		if( newValue.link !== oldValue.link ) {
+		if( !isUndefined(newValue.link) && !isUndefined(oldValue.link) && newValue.link !== oldValue.link ) {
 			this.setState({link: newValue.link});
 		}
 	}

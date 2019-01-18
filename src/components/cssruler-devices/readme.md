@@ -24,7 +24,7 @@ const cssruler_devices= {
 
 };
 
-<CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={ (value) => setAttribute({cssruler_devices: value})}/>
+<CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={ (value) => setAttributes({cssruler_devices: value})}/>
 ```
 ### label
 The label for **CSSRulerDevices**

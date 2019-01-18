@@ -50,7 +50,39 @@ var pmBlocksStyle ={
 			"typography": "typo",
 			"color": "color.hex"
 		},
-		
+	},
+	"pm-blocks/test-live-css-color" : {
+		".color-test" : {
+			"background": "bgColor",
+			"color": "color",
+		},
+	},
+	"pm-blocks/test-live-css-fonts" : {
+		".font-test" : {
+			"fonts" : "fonts"
+		}
+	}, 
+	"pm-blocks/test-live-gradient-bg" :  {
+		".gradient-bg-test" : {
+			"gradient-background": "gradientBG"
+		}
+	},
+	"pm-blocks/test-live-normal-bg" :  {
+		".normal-bg-test" : {
+			"normal-background": "normalBG"
+		}
+	}, 
+	"pm-blocks/test-live-css-spacing" : {
+		".spacing-test > p" : {
+			"padding" : "padding",
+			"margin"  : "margin"
+		}
+	},
+	"pm-blocks/test-live-css-spacing-devices" : {
+		".spacing-devices-test > p" : {
+			"marginDevices": "marginDevices",
+			"paddingDevices": "paddingDevices",
+		}
 	}
 };
 
@@ -253,11 +285,11 @@ class PMLiveCSS {
 			let angle = ( this.definedNotEmpty( gradientBackground.angle ) ) ? gradientBackground.angle : '';
 	
 			if( '' !== type && '' !== color && '' !== second_color && '' !== location && '' !== second_color && '' !== angle ){
-				bgCSS = `background: rgb(${color.r},${color.g},${color.b});`;
+				bgCSS = `background-color: rgba(${color.rgba.r},${color.rgba.g},${color.rgba.b},${color.rgba.a});`;
 				if( 'linear' === type ) {
-					bgCSS += `background: linear-gradient(${angle}deg, rgba(${color.r},${color.g},${color.b},${color.a}) ${location}%, rgba(${second_color.r},${second_color.g},${second_color.b},${second_color.a}) ${second_location}%);`;
+					bgCSS += `background-image: linear-gradient(${angle}deg, rgba(${color.rgba.r},${color.rgba.g},${color.rgba.b},${color.rgba.a}) ${location}%, rgba(${second_color.rgba.r},${second_color.rgba.g},${second_color.rgba.b},${second_color.rgba.a}) ${second_location}%);`;
 				}else{
-					bgCSS += `background: radial-gradient(circle, rgba(${color.r},${color.g},${color.b},${color.a}) ${location}%, rgba(${second_color.r},${second_color.g},${second_color.b},${second_color.a}) ${second_location}%);`;
+					bgCSS += `background-image: radial-gradient(circle, rgba(${color.rgba.r},${color.rgba.g},${color.rgba.b},${color.rgba.a}) ${location}%, rgba(${second_color.rgba.r},${second_color.rgba.g},${second_color.rgba.b},${second_color.rgba.a}) ${second_location}%);`;
 				}
 			}
 		}
@@ -820,7 +852,7 @@ class PMLiveCSS {
 							case "gradient-background":
 								if( 'undefined' !== typeof( getPropVal ) ){
 									if( !isEmpty( this.getGradientBackgroundCSS( getPropVal ) ) ) {
-										cssOrigin += this.getNormalBackgroundCSS( getPropVal );
+										cssOrigin += this.getGradientBackgroundCSS( getPropVal );
 									}
 								}
 								break;
@@ -876,7 +908,6 @@ class PMLiveCSS {
 				blockCSS[targetID] = selectorCSS;
 			}
 		}
-		
 		return applyFilters( 'pmLiveCSSGetBlockCSS', blockCSS );
 	}
 
@@ -925,11 +956,11 @@ class PMLiveCSS {
 					}
 
 					if( this.definedNotEmpty( targetCSSData.responsive.mobile ) ) {
-						cssTablet.push( `${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
+						cssMobile.push( `${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
 					}
 
 					if( this.definedNotEmpty( targetCSSData.responsive.tablet ) ) {
-						cssMobile.push( `${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
+						cssTablet.push( `${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
 					}
 				}
 			}
@@ -966,7 +997,6 @@ class PMLiveCSS {
 				runableCSS += mediaQuery.replace('{{VALUE}}', cssByDevice) + '\n';
 			}
 		}
-
 		return applyFilters( 'pmLiveCSSGetRunableCSS', runableCSS, readableCSS );
 	}
 

@@ -206,5 +206,5 @@ class CSSRulerDevices extends Component {
 export default withInstanceId(CSSRulerDevices);
 /**
  * Using:
- * <CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={ (value) => setAttribute({cssruler_devices: value})}/>
+ * <CSSRulerDevices label="Padding" value={cssruler_devices} onCSSRulerDevicesChange={ (value) => setAttributes({cssruler_devices: value})}/>
  */
