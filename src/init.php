@@ -73,12 +73,8 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ) // Version: File modification time.
 	);
 
-	wp_localize_script(
-		'pm_blocks-cgb-block-js',
-		'pm_blocks_js',
-		array(
-			'ajaxurl'  => admin_url( 'admin-ajax.php' ),
-		)
+	$localize_script = array(
+		'ajaxurl'  => admin_url( 'admin-ajax.php' ),
 	);
 
 	// Styles.
@@ -111,9 +107,16 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 			}
 		}
 	}
+
+	wp_localize_script(
+		'pm_blocks-cgb-block-js',
+		'pm_blocks_js',
+		$localize_script
+	);
 }
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'pm_blocks_cgb_editor_assets' );
+
 
 

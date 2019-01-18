@@ -974,14 +974,6 @@ class PMLiveCSS {
 		let readableCSS = this.getReadableCSS( allBlocksCSS );
 		let runableCSS = this.getRunableCSS( readableCSS );
 
-		/**
-		let blockChangedKey = Object.keys(blockChangedCSS);
-		for( let i=0; i<blockChangedKey.length; i++ ) {
-			if( this.definedNotEmpty(allBlocksCSS[blockChangedKey[i]]) ) {
-				allBlocksCSS[blockChangedKey[i]] = blockChangedCSS[blockChangedKey[i]];
-			}
-		}
-		 */
 		return runableCSS;
 	}
 
@@ -1031,7 +1023,6 @@ class PMLiveCSS {
 		}
 		let headTag = document.getElementsByTagName("head");
 		// Add google font link.
-
 		if( 'string' === typeof( maybeGFontUrl ) && maybeGFontUrl.length > 0 )  {
 			if( null !== document.getElementById("pm_blocks-maybe-gfont-url-css") ){
 				let existLinkTag = document.getElementById("pm_blocks-maybe-gfont-url-css");

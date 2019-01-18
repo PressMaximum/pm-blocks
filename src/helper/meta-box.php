@@ -1,9 +1,30 @@
 <?php
 class PM_Blocks_Meta_Box {
+	public $metabox_id;
+	public $support_post_types;
+
 	public function __construct() {
-		add_action( 'add_meta_boxes', array( $this, 'add' ) );
+		$this->metabox_id = 'pmblock_style_css';
+		$this->support_post_types = apply_filters( 'pm_metabox_style_css_support_post_types', array( 'post', 'page' ) );
+
+		add_action( 'add_meta_boxes', array( $this, 'add' ), PHP_INT_MAX );
 		add_action( 'save_post', array( $this, 'save' ) );
 		add_action( 'init', array( $this, 'init' ) );
+
+		add_filter( 'default_hidden_meta_boxes', array( $this, 'hidden_meta_boxes' ), PHP_INT_MAX, 2 );
+		add_filter( 'hidden_meta_boxes', array( $this, 'hidden_meta_boxes' ), PHP_INT_MAX, 2 );
+	}
+
+	/**
+	 * Add metabox default hidden.
+	 *
+	 * @param array  $hidden
+	 * @param object $screen
+	 * @return array
+	 */
+	public function hidden_meta_boxes( $hidden, $screen ) {
+		$hidden[] = $this->metabox_id;
+		return $hidden;
 	}
 
 	public function init() {
@@ -21,14 +42,15 @@ class PM_Blocks_Meta_Box {
 				'show_in_rest' => true,
 			)
 		);
+
 	}
 
 	public function add() {
 		add_meta_box(
-			'pmblock_style_css',
-			esc_html__( 'PM Style CSS', 'pm-blocks' ),
+			$this->metabox_id,
+			esc_html__( 'PM CSS', 'pm-blocks' ),
 			array( $this, 'html' ),
-			array( 'post', 'page' ),
+			$this->support_post_types,
 			'normal',
 			'default'
 		);
@@ -36,30 +58,34 @@ class PM_Blocks_Meta_Box {
 
 	public function save( $post_id ) {
 		$style_css = ( isset( $_POST['pm_blocks_style_css'] ) && sanitize_text_field( wp_unslash( $_POST['pm_blocks_style_css'] ) ) ) ? sanitize_text_field( wp_unslash( $_POST['pm_blocks_style_css'] ) ) : '';
-		update_post_meta(
-			$post_id,
-			'_pm_blocks_style_css',
-			$style_css
-		);
+		if ( '' !== $style_css ) {
+			update_post_meta(
+				$post_id,
+				'_pm_blocks_style_css',
+				$style_css
+			);
+		}
 
 		$maybe_gfont_url = ( isset( $_POST['pm_blocks_maybe_gfont_url'] ) && sanitize_text_field( wp_unslash( $_POST['pm_blocks_maybe_gfont_url'] ) ) ) ? sanitize_text_field( wp_unslash( $_POST['pm_blocks_maybe_gfont_url'] ) ) : '';
-		update_post_meta(
-			$post_id,
-			'_pm_blocks_maybe_gfont_url',
-			$maybe_gfont_url
-		);
+		if ( '' !== $maybe_gfont_url ) {
+			update_post_meta(
+				$post_id,
+				'_pm_blocks_maybe_gfont_url',
+				$maybe_gfont_url
+			);
+		}
 	}
 
 	public function html( $post ) {
 		$value = get_post_meta( $post->ID, '_pm_blocks_style_css', true );
 		$maybe_gfont_url = get_post_meta( $post->ID, '_pm_blocks_maybe_gfont_url', true );
 		?>
-		<textarea type="text" name="pm_blocks_style_css" id="pm_blocks_style_css" style="width: 100%;min-height: 200px;" class="postbox"><?php echo esc_attr( $value ); ?></textarea>
+		<p><?php echo esc_html__( "This meta box store your block's custom css", 'pm-blocks' ); ?></p>
+		<input type="hidden" name="pm_blocks_style_css" id="pm_blocks_style_css" class="postbox" value="<?php echo esc_attr( $value ); ?>" />
 		<input type="hidden" name="pm_blocks_maybe_gfont_url" id="pm_blocks_maybe_gfont_url" class="postbox" value="<?php echo esc_attr( $maybe_gfont_url ); ?>" />
 		<?php
 	}
+
 }
 
 new PM_Blocks_Meta_Box();
-
-

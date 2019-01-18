@@ -37,6 +37,7 @@ const {
 } = wp.compose;
 
 const { subscribe } = wp.data;
+
 const MyChange = subscribe( (sub) => {
 
 	// You could use this opportunity to test whether the derived result of a

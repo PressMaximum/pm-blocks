@@ -31,3 +31,28 @@ var pmBlocksStyle ={
 	}
 };
 ```
+
+Now ready to listen all blocks attributes change to get live css.
+``` javascript
+const { subscribe } = wp.data;
+const MyChange = subscribe( (sub) => {
+
+	// You could use this opportunity to test whether the derived result of a
+	// selector has subsequently changed as the result of a state update.
+	const editor = wp.data.select("core/editor");
+	
+	if (editor.hasChangedContent() && !editor.isTyping()) {
+		const blocks = editor.getBlocks();
+		const selectedBlock = editor.getSelectedBlock();
+		
+		let pmLiveCSS = new PMLiveCSS();
+		// Add style tag.
+		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
+		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
+		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
+
+		console.log('live styles: ', styles);
+	}
+});
+```
+
