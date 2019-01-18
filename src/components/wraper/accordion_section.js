@@ -20,7 +20,6 @@ class AccordionSectionControl extends Component {
 
 	onClickAccordionSection() {
 		this.setState((state)=> {
-			console.log('this state: ', state );
 			return {isOpen: !state.isOpen};
 		});
 	}

@@ -28,11 +28,11 @@ registerBlockType( 'pm-blocks/block-fonts', {
 			setAttributes
 		} = props;
 		const { google_fonts, fonts_02 } = props.attributes;
-		console.log('Saved google fonts: ', google_fonts );
+		
 
 		return (
 			<div className={ props.className }>
-				<FontsControl value={google_fonts} onFontsChange={(new_value) => {setAttributes({google_fonts:new_value}); console.log('fonts changed: ', new_value) }}/>
+				<FontsControl value={google_fonts} onFontsChange={(new_value) => {setAttributes({google_fonts:new_value});  }}/>
 				
 				<p>Hello, This is FontsControl</p>
 			</div>

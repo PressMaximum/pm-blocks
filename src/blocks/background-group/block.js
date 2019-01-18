@@ -29,12 +29,12 @@ registerBlockType( 'pm-blocks/block-background-group', {
 			setAttributes
 		} = props;
 		const { background_group } = props.attributes;
-		console.log('Saved background_group: ', background_group );
+		
 		return (
 			<div className={ props.className }>
-				<BackgroundGroupControl value={background_group} onBackgroundGroupChange={(new_value) => {setAttributes({background_group:new_value}); console.log('BG Group Changed: ', new_value) }}/>
+				<BackgroundGroupControl value={background_group} onBackgroundGroupChange={(new_value) => {setAttributes({background_group:new_value});  }}/>
 				<InspectorControls>
-					<BackgroundGroupControl value={background_group} onBackgroundGroupChange={(new_value) => {setAttributes({background_group:new_value}); console.log('BG Group Changed: ', new_value) }}/>
+					<BackgroundGroupControl value={background_group} onBackgroundGroupChange={(new_value) => {setAttributes({background_group:new_value});  }}/>
 				</InspectorControls>
 				<p>Hello, This is BackgroundGroupControl</p>
 			</div>

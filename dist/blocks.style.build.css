@@ -8,20 +8,9 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.has-label .control-label {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-size: 13px; }
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 /**
  * #.# Styles
@@ -38,20 +27,9 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
-*/
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.has-label .control-label {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-size: 13px; }
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 /**
  * #.# Styles
@@ -68,11 +46,15 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
+
 /**
  * #.# Styles
  *
  * CSS for both Frontend+Backend.
- */
+*/
 /**
  * #.# Common SCSS
  *
@@ -82,6 +64,10 @@
 .has-label .control-label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 /**
  * #.# Styles
@@ -97,6 +83,48 @@
 .has-label .control-label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 .pm-repeater {
   border: 3px solid #ededed; }
@@ -113,20 +141,9 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.has-label .control-label {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-size: 13px; }
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 /**
  * #.# Styles
@@ -143,20 +160,9 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.has-label .control-label {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-size: 13px; }
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 /**
  * #.# Styles
@@ -173,20 +179,9 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.has-label .control-label {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-size: 13px; }
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 /**
  * #.# Styles
@@ -202,6 +197,67 @@
 .has-label .control-label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
+
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+#pm_blocks_custom_css {
+  width: 100%;
+  min-height: 200px; }
 
 /**
  * #.# Styles

@@ -29,7 +29,7 @@ registerBlockType( 'pm-blocks/block-bg-gradient-box', {
 
 		return (
 			<div className={ props.className }>
-				<BackgroundGradientBoxControl value={bg_gradient_box} onBgGradientChange={(new_value) => {setAttributes({bg_gradient_box:new_value}); console.log('BG Gradient Box Change Value: ', new_value) }}/>
+				<BackgroundGradientBoxControl value={bg_gradient_box} onBgGradientChange={(new_value) => {setAttributes({bg_gradient_box:new_value});  }}/>
 				<p>Hello, This is BG Gradient Box</p>
 			</div>
 	

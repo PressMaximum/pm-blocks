@@ -31,9 +31,9 @@ registerBlockType( 'pm-blocks/block-icon-picker', {
 		
 		return (
 			<div className={ props.className }>
-				<IconPickerControl value={icon_picker} onIconChange={(new_value) => {setAttributes({icon_picker:new_value}); console.log('IconPicker changed: ', new_value) }}/>
+				<IconPickerControl value={icon_picker} onIconChange={(new_value) => {setAttributes({icon_picker:new_value});  }}/>
 				<InspectorControls>
-					<IconPickerControl value={icon_picker} onIconChange={(new_value) => {setAttributes({icon_picker:new_value}); console.log('IconPicker changed: ', new_value) }}/>
+					<IconPickerControl value={icon_picker} onIconChange={(new_value) => {setAttributes({icon_picker:new_value}); }}/>
 				</InspectorControls>
 				<p>Hello, This is IconPickerControl</p>
 			</div>

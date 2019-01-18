@@ -71,7 +71,7 @@ registerBlockType( 'cgb/block-pm-cta', {
 			setAttributes
 		} = props;
 		const { padding, text, margin, cssruler_devices,border_box } = props.attributes;
-		console.log('saved border_box: ', border_box);
+		
 
 		return (
 			<div className={ props.className }>

@@ -101,8 +101,8 @@ registerBlockType( 'pm-blocks/block-my-heading', {
 								setAttributes( { color: new_value } );
 							} }
 						/>
-						<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value}); console.log('Styling changed: ', new_value) }}/>
-						<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value}); console.log('Typography changed: ', new_value) }}/>
+						<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value});  }}/>
+						<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value});  }}/>
 					</InspectorControls>
 					<RichText
 						wrapperClassName="wp-block-heading"

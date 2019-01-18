@@ -39,7 +39,6 @@ const {
 const { subscribe } = wp.data;
 
 const MyChange = subscribe( (sub) => {
-
 	// You could use this opportunity to test whether the derived result of a
 	// selector has subsequently changed as the result of a state update.
 	const editor = wp.data.select("core/editor");
@@ -54,7 +53,7 @@ const MyChange = subscribe( (sub) => {
 		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
 		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
 
-		console.log('live styles: ', styles);
+		
 	}
 });
 
@@ -125,7 +124,7 @@ function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
 	);
 }
 
-
+/**
 wp.hooks.addFilter(
 	'blocks.registerBlockType',
 	'pm-block/settings/attributes',
@@ -144,3 +143,4 @@ wp.hooks.addFilter(
 		return settings;
 	} 
 );
+ */

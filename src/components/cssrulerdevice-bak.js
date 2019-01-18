@@ -96,7 +96,6 @@ class CSSRulerDevicesControl extends Component {
 			}
 		}
 		
-		console.log('default_value', default_value);
 
 		let value = this.props.value;
 		

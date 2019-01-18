@@ -28,13 +28,13 @@ registerBlockType( 'pm-blocks/block-typography', {
 			setAttributes
 		} = props;
 		const { typo } = props.attributes;
-		console.log('Saved typography: ', typo );
+		
 
 		return (
 			<div className={ props.className }>
-				<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value}); console.log('Typography changed: ', new_value) }}/>
+				<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value});  }}/>
 				<InspectorControls>
-					<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value}); console.log('Typography changed: ', new_value) }}/>
+					<TypographyControl value={typo} onTypographyChange={(new_value) => {setAttributes({typo:new_value}); }}/>
 				</InspectorControls>
 				<p>Hello, This is TypographyControl</p>
 			</div>

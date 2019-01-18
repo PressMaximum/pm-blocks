@@ -74,13 +74,29 @@ class PM_Blocks_Meta_Box {
 				$maybe_gfont_url
 			);
 		}
+
+		$custom_css = ( isset( $_POST['pm_blocks_custom_css'] ) && sanitize_text_field( wp_unslash( $_POST['pm_blocks_custom_css'] ) ) ) ? sanitize_text_field( wp_unslash( $_POST['pm_blocks_custom_css'] ) ) : '';
+		if ( '' !== $custom_css ) {
+			update_post_meta(
+				$post_id,
+				'_pm_blocks_custom_css',
+				$custom_css
+			);
+		}
 	}
 
 	public function html( $post ) {
 		$value = get_post_meta( $post->ID, '_pm_blocks_style_css', true );
+		$custom_css = get_post_meta( $post->ID, '_pm_blocks_custom_css', true );
 		$maybe_gfont_url = get_post_meta( $post->ID, '_pm_blocks_maybe_gfont_url', true );
 		?>
-		<p><?php echo esc_html__( "This meta box store your block's custom css", 'pm-blocks' ); ?></p>
+		<div class="components-base-control">
+			<div class="components-base-control__field">
+				<label class="components-base-control__label" for="inspector-select-control-0"><?php echo esc_html__( 'Custom CSS for blocks', 'pm-blocks' ); ?></label>
+				<textarea name="pm_blocks_custom_css" id="pm_blocks_custom_css"><?php echo esc_attr( $custom_css ); ?></textarea>
+			</div>
+		</div>
+
 		<input type="hidden" name="pm_blocks_style_css" id="pm_blocks_style_css" class="postbox" value="<?php echo esc_attr( $value ); ?>" />
 		<input type="hidden" name="pm_blocks_maybe_gfont_url" id="pm_blocks_maybe_gfont_url" class="postbox" value="<?php echo esc_attr( $maybe_gfont_url ); ?>" />
 		<?php

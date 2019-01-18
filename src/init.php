@@ -48,6 +48,11 @@ function pm_blocks_cgb_block_assets() { // phpcs:ignore
 			if ( ! empty( $value ) ) {
 				wp_add_inline_style( 'pm_blocks-cgb-style-css', $value );
 			}
+
+			$custom_css = get_post_meta( $post->ID, '_pm_blocks_custom_css', true );
+			if ( ! empty( $custom_css ) ) {
+				wp_add_inline_style( 'wp-editor', $custom_css );
+			}
 		}
 	}
 }
@@ -104,6 +109,11 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 			$css_saved = get_post_meta( $post->ID, '_pm_blocks_style_css', true );
 			if ( ! empty( $css_saved ) ) {
 				wp_add_inline_style( 'pm_blocks-cgb-block-editor-css', $css_saved );
+			}
+
+			$custom_css = get_post_meta( $post->ID, '_pm_blocks_custom_css', true );
+			if ( ! empty( $custom_css ) ) {
+				wp_add_inline_style( 'wp-edit-blocks', $custom_css );
 			}
 		}
 	}

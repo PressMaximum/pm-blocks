@@ -28,7 +28,7 @@ registerBlockType( 'pm-blocks/block-rangecontrol-devices', {
 		const { rangecontrol_devices } = props.attributes;
 		return (
 			<div className={ props.className }>
-				<RangeDevicesControl value={rangecontrol_devices} label={__("Range Control Devices")} onRangeDeviceChange={(new_value) => { setAttributes({rangecontrol_devices: new_value}); console.log('onRangeDeviceChange new value: ', new_value)}}/>
+				<RangeDevicesControl value={rangecontrol_devices} label={__("Range Control Devices")} onRangeDeviceChange={(new_value) => { setAttributes({rangecontrol_devices: new_value}); }}/>
 				<p>Hello, This is Range Control Devices.</p>
 			</div>
 	

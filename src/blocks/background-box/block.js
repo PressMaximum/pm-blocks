@@ -30,7 +30,7 @@ registerBlockType( 'pm-blocks/block-background-box', {
 		
 		return (
 			<div className={ props.className }>
-				<BackgroundBoxControl value={background_box} onBackgroundChange={(new_value) => {setAttributes({background_box:new_value}); console.log('BG Box Change Value: ', new_value) }}/>
+				<BackgroundBoxControl value={background_box} onBackgroundChange={(new_value) => {setAttributes({background_box:new_value});  }}/>
 				<p>Hello, This is Block Border Box</p>
 			</div>
 	

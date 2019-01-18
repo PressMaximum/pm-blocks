@@ -856,6 +856,7 @@ class PMLiveCSS {
 								if( 'undefined' !== typeof( propVal ) ){
 									let otherCSSRule = this.getOtherCSSRule(blockAttr, propKey, propVal);
 									if( !isEmpty( otherCSSRule ) ) {
+										otherCSSRule = applyFilters( 'pmLiveCSSGetOtherCSSRule', otherCSSRule );
 										cssOrigin += otherCSSRule;
 									}
 								}
@@ -897,7 +898,7 @@ class PMLiveCSS {
 				
 			}
 		}
-		return applyFilters( 'pmLiveCSSGetAllBlocksCSS', blockCSS );
+		return applyFilters( 'pmLiveCSSGetAllBlocksCSS', blockCSS, blocks );
 	}
 
 	getReadableCSS ( allBlockCSS ){
@@ -940,7 +941,7 @@ class PMLiveCSS {
 			tablet: (cssTablet.length > 0) ? cssTablet.join( ' ' ) : '',
 			mobile: (cssMobile.length > 0) ? cssMobile.join( ' ' ) : '',
 		};
-		return applyFilters( 'pmLiveCSSGetReadableCSS', cssReable );
+		return applyFilters( 'pmLiveCSSGetReadableCSS', cssReable, allBlockCSS );
 	}
 
 	getRunableCSS (readableCSS){
@@ -953,6 +954,8 @@ class PMLiveCSS {
 			mobile  : '@media screen and (max-width: 568px) { {{VALUE}} }',
 		};
 
+		mediaQueries = applyFilters( 'pmLiveCSSMediaQueries', mediaQueries, readableCSS );
+
 		let deviceKeys = Object.keys(mediaQueries);
 		for( let i=0;i<deviceKeys.length; i++ ) {
 			let key = deviceKeys[i];
@@ -964,7 +967,7 @@ class PMLiveCSS {
 			}
 		}
 
-		return applyFilters( 'pmLiveCSSGetRunableCSS', runableCSS );
+		return applyFilters( 'pmLiveCSSGetRunableCSS', runableCSS, readableCSS );
 	}
 
 	getBlockOutputCSS( allBlocks, selectedBlock ) {
@@ -974,7 +977,7 @@ class PMLiveCSS {
 		let readableCSS = this.getReadableCSS( allBlocksCSS );
 		let runableCSS = this.getRunableCSS( readableCSS );
 
-		return runableCSS;
+		return applyFilters( 'pmLiveCSSGetBlockOutputCSS', runableCSS, allBlocks, selectedBlock );
 	}
 
 	getGoogleFontURL () {
@@ -1001,16 +1004,18 @@ class PMLiveCSS {
 			}
 			
 			if( gFontFamily.length > 0 ) {
+				gFontFamily = applyFilters( 'pmLiveCSSGoogleFontFamily', gFontFamily, maybeGFont );
 				gFontURL = 'https://fonts.googleapis.com/css?family=' + gFontFamily.join('|');
 				
 				if( gFontSubsets.length > 0 ) {
+					gFontSubsets = applyFilters( 'pmLiveCSSGoogleFontSubsets', gFontSubsets, maybeGFont );
 					gFontURL += '&subset=' + gFontSubsets.join(',');
 				}
 				
 			}
 			
 		}
-		return gFontURL;
+		return applyFilters( 'pmLiveCSSGoogleFontURL', gFontURL, maybeGFont );
 	}
 
 	renderStyleTag( styles, maybeGFontUrl ) {

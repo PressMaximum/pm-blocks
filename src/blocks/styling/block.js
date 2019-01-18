@@ -28,13 +28,13 @@ registerBlockType( 'pm-blocks/block-styling', {
 			setAttributes
 		} = props;
 		const { styling } = props.attributes;
-		console.log('Saved styling: ', styling );
+		
 		
 		return (
 			<div className={ props.className }>
-				<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value}); console.log('Styling changed: ', new_value) }}/>
+				<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value});  }}/>
 				<InspectorControls>
-					<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value}); console.log('Styling changed: ', new_value) }}/>
+					<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value});  }}/>
 				</InspectorControls>
 				<p>Hello, This is StylingControl</p>
 			</div>
