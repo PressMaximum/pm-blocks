@@ -27,6 +27,11 @@ import "./blocks/styling/block.js";
 import "./blocks/icon-picker/block.js";
 import "./blocks/custom-heading/block.js";
 import "./blocks/test-live-css/block.js";
+import "./blocks/test/block.js";
+
+
+import "./extends/blocks.js";
+
 
 
 const {
@@ -47,7 +52,7 @@ const MyChange = subscribe( (sub) => {
 	if (editor.hasChangedContent() && !editor.isTyping()) {
 		const blocks = editor.getBlocks();
 		const selectedBlock = editor.getSelectedBlock();
-		
+		console.log('all blocks changed: ', blocks);
 		let pmLiveCSS = new PMLiveCSS();
 		// Add style tag.
 		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
@@ -56,10 +61,14 @@ const MyChange = subscribe( (sub) => {
 	}
 });
 
-// Hook to exist pm-block and create a wrapper with uniqueID.
+// Filter to exists blocks structure.
+const pmCoreBlockWithUniqueID = [
+	'core/heading',
+	'core/latest-posts'
+];
 const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
-		if ( !isUndefined(props.name) && props.name.includes('pm-blocks/') ) {
+		if ( !isUndefined(props.name) && (props.name.includes('pm-blocks/') || pmCoreBlockWithUniqueID.includes(props.name)) ) {
 			const {
 				attributes,
 				setAttributes,
@@ -104,42 +113,31 @@ const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
 
 wp.hooks.addFilter( 'editor.BlockEdit', 'pm-blocks/block-edit', pmBlockEditCB );
 
-wp.hooks.addFilter(
-	'blocks.getSaveElement',
-	'pm-blocks/modify-get-save-content-extra-props',
-	pmBlockGetSaveElementCB
-);
-
-
-function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
-	// Check if that is not a table block.
-	if ( !blockType.name.includes( 'pm-blocks/' ) || isUndefined(attributes.uniqueID) || '' === attributes.uniqueID || null === attributes.uniqueID ) {
-		return element;
+const registerCoreUniqueID = ( settings, name ) => {
+	// console.log('block name: ', name);
+	if ( pmCoreBlockWithUniqueID.includes(name) ) {
+		settings.attributes = Object.assign( settings.attributes, {
+			uniqueID: {
+				type: 'string'
+			},
+		} );
 	}
-	return (
-		<div id={`block-${attributes.uniqueID}`}>
-			{element}
-		</div>
-	);
-}
 
-/**
-wp.hooks.addFilter(
-	'blocks.registerBlockType',
-	'pm-block/settings/attributes',
-	function( settings, name ) {
-		console.log('block name: ',name);
-		if ( name.includes('pm-blocks/') ) {
-			settings = assign( {}, settings, {
-				attributes: assign( {}, settings.attributes, {
-					uniqueID: {
-						type: 'string',
-					},
-				} ),
-			} ); 
-	
+	return settings;
+};
+wp.hooks.addFilter( 'blocks.registerBlockType', 'pm-blocks/core-blocks/uniqueID', registerCoreUniqueID );
+
+wp.hooks.addFilter( 'blocks.getSaveElement', 'pm-blocks/modify-get-save-content-extra-props', pmBlockGetSaveElementCB );
+function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
+	if ( (blockType.name.includes( 'pm-blocks/' ) || pmCoreBlockWithUniqueID.includes(blockType.name) ) && !isUndefined(attributes.uniqueID) && '' !== attributes.uniqueID && null !== attributes.uniqueID ) {
+		if( pmCoreBlockWithUniqueID.includes(blockType.name) ) {
+			if( null !== element && !isUndefined(element) && !isUndefined(element.props) && !isUndefined( element.props.id ) ) {
+				element.props.id = undefined; // Should remove exist id to prevent expected error.
+			}
 		}
-		return settings;
-	} 
-);
- */
+		return (
+			<div id={`block-${attributes.uniqueID}`}>{element}</div>
+		);
+	}
+	return element;
+}

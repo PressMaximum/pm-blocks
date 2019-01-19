@@ -88,7 +88,7 @@ class AdvancePostsEdit extends Component{
 
 	render() {
 		const { attributes, categoriesList, setAttributes, advancedPosts, clientId, className } = this.props;
-		const { displayPostDate, align, postLayout, columns, order, orderBy, categories, postsToShow, titleTypo, titleColor, excerptFonts, excerptTypo, excerptColor, uniqueID } = attributes;
+		const { displayPostDate, align, postLayout, columns, order, orderBy, categories, postsToShow, titleTypo, titleColor, excerptFonts, excerptTypo, excerptColor, divHeight } = attributes;
 
 		const inspectorControls = (
 			<InspectorControls>
@@ -139,6 +139,12 @@ class AdvancePostsEdit extends Component{
 					/>
 
 					<FontsControl value={excerptFonts} onFontsChange={(new_value) => {setAttributes({excerptFonts:new_value}); }}/>
+					<RangeControl
+						label="Height"
+						value={ divHeight }
+						onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+						min={ 1 }
+					/>
 				</PanelBody>
 			</InspectorControls>
 		);
@@ -294,6 +300,9 @@ registerBlockType( 'pm-blocks/advance-posts', {
 		},
 		excerptFonts: {
 			type: 'object'
+		},
+		divHeight: {
+			type: 'number'
 		},
 		uniqueID: {
 			type: 'string',

@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-css-borderbox', {
 	title: __( 'PM CSS: Border Box' ), 
@@ -20,6 +20,9 @@ registerBlockType( 'pm-blocks/test-live-css-borderbox', {
 		borderBox: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number',
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -29,13 +32,19 @@ registerBlockType( 'pm-blocks/test-live-css-borderbox', {
 		const {
 			setAttributes
 		} = props;
-		const { borderBox } = props.attributes;
+		const { borderBox, divHeight } = props.attributes;
 		
 		return (
 			<div className={ props.className }>
 				<InspectorControls>
 					<PanelBody title={ __( 'Styling Settings' ) }>
 						<BorderBoxControl value={borderBox} onBorderBoxChange={new_value => {setAttributes({borderBox:new_value});}}/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="border-box-test">

@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-css-spacing', {
 	title: __( 'PM CSS: Spacing' ), 
@@ -23,6 +23,9 @@ registerBlockType( 'pm-blocks/test-live-css-spacing', {
 		padding: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number',
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -32,7 +35,7 @@ registerBlockType( 'pm-blocks/test-live-css-spacing', {
 		const {
 			setAttributes
 		} = props;
-		const { margin, padding } = props.attributes;
+		const { margin, padding, divHeight } = props.attributes;
 		
 		return (
 			<div className={ props.className }>
@@ -40,6 +43,12 @@ registerBlockType( 'pm-blocks/test-live-css-spacing', {
 					<PanelBody title={ __( 'Spacing Settings' ) }>
 						<CSSRulerControl value={margin} onCSSRulerChange={ new_margin =>setAttributes({margin: new_margin})}/>
 						<CSSRulerControl value={padding} onCSSRulerChange={ new_padding =>setAttributes({padding: new_padding})}/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="spacing-test"><p style={{border: '1px solid #eee'}}>Live CSS Margin - Padding</p></div>

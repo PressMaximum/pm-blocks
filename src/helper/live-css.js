@@ -27,6 +27,7 @@ var pmBlocksStyle ={
 };
  */
 var pmBlocksStyle ={
+	
 	"pm-blocks/advance-posts" : {
 		".post--item_title a": {
 			"typography": "titleTypo",
@@ -34,7 +35,8 @@ var pmBlocksStyle ={
 			"font-size": {
 				"attrValue" : "titleFontSize",
 				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
-			}
+			},
+			
 		},
 		".post--item_excerpt": {
 			"typography": "excerptTypo",
@@ -42,6 +44,12 @@ var pmBlocksStyle ={
 		},
 		".post--item_meta" : {
 			"fonts" : "excerptFonts"
+		},
+		".block-advance-posts" : {
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	},
 	"pm-blocks/block-my-heading" : {
@@ -55,53 +63,95 @@ var pmBlocksStyle ={
 		".color-test" : {
 			"background": "bgColor",
 			"color": "color",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		},
 	},
 	"pm-blocks/test-live-css-fonts" : {
 		".font-test" : {
-			"fonts" : "fonts"
+			"fonts" : "fonts",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	}, 
 	"pm-blocks/test-live-gradient-bg" :  {
 		".gradient-bg-test" : {
-			"gradient-background": "gradientBG"
+			"gradient-background": "gradientBG",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	},
 	"pm-blocks/test-live-normal-bg" :  {
 		".normal-bg-test" : {
-			"normal-background": "normalBG"
-		}
+			"normal-background": "normalBG",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
+		},
+		
 	}, 
+	
 	"pm-blocks/test-live-css-spacing" : {
 		".spacing-test > p" : {
 			"padding" : "padding",
-			"margin"  : "margin"
+			"margin"  : "margin",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	},
 	"pm-blocks/test-live-css-spacing-devices" : {
 		".spacing-devices-test > p" : {
 			"marginDevices": "marginDevices",
 			"paddingDevices": "paddingDevices",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	}, 
 	"pm-blocks/test-live-css-boxshadow" : {
 		".boxshadow-test" : {
-			"boxShadow" : "boxShadow"
+			"boxShadow" : "boxShadow",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	},
 	"pm-blocks/test-live-css-borderbox" : {
 		".border-box-test" : {
-			"borderBox" : "borderBox"
+			"borderBox" : "borderBox",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	},
 	"pm-blocks/test-live-css-styling" : {
 		".styling-test" : {
-			"styling" : "styling"
+			"styling" : "styling",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	}, 
 	"pm-blocks/test-live-css-typo" : {
 		".typo-test > p" : {
-			"typography" : "typography"
+			"typography" : "typography",
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
+			}
 		}
 	},
 	"pm-blocks/test-live-css-manual" : {
@@ -148,9 +198,30 @@ var pmBlocksStyle ={
 			"line-height": {
 				"attrValue" : "lineHeight",
 				"outputValue" : "{{VALUE}}px",
+			},
+			"height": {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px", // {{VALUE}} - {{VALUE_MOBILE}} - {{VALUE_TABLET}} - {{VALUE_TOP}} - {{VALUE_RIGHT}} - {{VALUE_BOTTOM}} - {{VALUE_LEFT}} - {{VALUE_LINK}} - {{VALUE_TOP_MOBILE}} - {{VALUE_TOP_TABLET}} - {{VALUE_RIGHT_MOBILE}} - {{VALUE_RIGHT_TABLET}} - {{VALUE_BOTTOM_MOBILE}} - {{VALUE_BOTTOM_TABLET}} - {{VALUE_LEFT_MOBILE}} - {{VALUE_LEFT_TABLET}}
 			}
 		}
-	}
+	},
+	"core/heading" : {
+		"h2" : {
+			"fonts" : "fonts"
+		}
+	},
+	"core/latest-posts" : {
+		".wp-block-latest-posts li a" : {
+			"typography" : "typography"
+		},
+		".wp-block-latest-posts" : {
+			"height" : {
+				"attrValue" : "divHeight",
+				"outputValue" : "{{VALUE}}px",
+			}
+		}
+	},
+	
 };
 
 class PMLiveCSS {
@@ -268,7 +339,7 @@ class PMLiveCSS {
 						googleFont['subsets'] = fontSubset;
 					}
 				}
-				if( 'undefined' !== typeof ( fontData.variant ) && '' !== fontData.variant ){
+				if( !isUndefined( fontData.variant ) && '' !== fontData.variant ){
 					if( 'regular' == fontData.variant || !isNaN( fontData.variant ) ) {
 						fontCSS += `font-weight:${fontData.variant};`;
 					} else if( fontData.variant.includes( "italic" ) ) {
@@ -302,7 +373,7 @@ class PMLiveCSS {
 	}
 
 	definedNotEmpty ( value ) {
-		if( ('undefined' !== typeof ( value )) && '' !== value && null !== value ) {
+		if( (!isUndefined( value )) && '' !== value && null !== value ) {
 			return true;
 		}
 		return false;
@@ -318,10 +389,11 @@ class PMLiveCSS {
 			'size',
 			'color'
 		];
-
+		
 		if( this.definedNotEmpty( normalBackground ) ){
 			for( let i=0; i<bgKeys.length; i++ ) {
 				let bgKey = bgKeys[i];
+				
 				if( this.definedNotEmpty( normalBackground[bgKey] ) ) {
 					if( 'color' === bgKey ) {
 						let bgColor = this.getColorCSS(normalBackground[bgKey]);
@@ -455,11 +527,11 @@ class PMLiveCSS {
 	
 	getColorCSS (color) {
 		let colorStr = '';
-		if( 'undefined' !== typeof( color.hex ) ) {
+		if( !isUndefined( color.hex ) ) {
 			colorStr = color.hex;
 	
-			if( 'undefined' !== typeof( color.rgba ) ) {
-				if( 'undefined' !== typeof( color.rgba.a ) && color.rgba.a < 1 ){ 
+			if( !isUndefined( color.rgba ) ) {
+				if( !isUndefined( color.rgba.a ) && color.rgba.a < 1 ){ 
 					colorStr = `rgba(${color.rgba.r}, ${color.rgba.g}, ${color.rgba.b}, ${color.rgba.a})`;
 				}
 			}
@@ -470,7 +542,7 @@ class PMLiveCSS {
 	
 	getBorderBoxCSS (borderBox){
 		let borderCSS = '';
-		if( 'undefined' !== typeof( borderBox ) ){
+		if( !isUndefined( borderBox ) ){
 			let color = ( this.definedNotEmpty( borderBox.color ) ) ? borderBox.color : '';
 			let radius = ( this.definedNotEmpty( borderBox.radius ) ) ? borderBox.radius : ''
 			let shadow = ( this.definedNotEmpty( borderBox.shadow ) ) ? borderBox.shadow : '';
@@ -527,13 +599,14 @@ class PMLiveCSS {
 	getStylingCSS (styling){
 		let returnValue = {};
 		let stylingType = [ 'normal', 'hover' ];
-
+		
 		if( this.definedNotEmpty( styling ) ){
 			// Styling normal.
 			for( let i=0; i<stylingType.length; i++ ) {
 				let key = stylingType[i];
 				let stylingData = styling[key];
 				let stylingCSS = '', stylingResponsive = [];
+				
 				if( this.definedNotEmpty( stylingData ) ){
 					// Get background CSS.
 					if( this.definedNotEmpty( stylingData.background ) ){
@@ -788,16 +861,16 @@ class PMLiveCSS {
 			targetClassName = firtChild[0].getAttribute('class');
 		}
 		
-		if( 'undefined' !== typeof( targetID ) && null !== targetID ) {
+		if( !isUndefined( targetID ) && null !== targetID ) {
 			targetSelector = `#${targetID}`;
-		} else if( 'undefined' !== typeof( targetClassName ) && null !== targetClassName ) {
+		} else if( !isUndefined( targetClassName ) && null !== targetClassName ) {
 			targetClassName = targetClassName.split(' ').join('.').replace('.undefined', '');
 			if( '' != targetClassName ) {
 				targetSelector = `.${targetClassName}`;
 			}
 		}
 		
-		if( 'undefined' !== typeof( pmBlocksStyle[ blockName ] ) ) {
+		if( !isUndefined( pmBlocksStyle[ blockName ] ) ) {
 			let blockStyle = pmBlocksStyle[ blockName ];
 			let selectorCSS = {};
 			let entries = Object.entries(blockStyle);
@@ -814,16 +887,21 @@ class PMLiveCSS {
 				let cssProperties = entries[j][1];
 				
 				let cssProps = Object.keys(cssProperties);
+			
 				for( let a=0; a<cssProps.length; a++ ) {
 					let propKey = cssProps[a];
 					let propVal = cssProperties[cssProps[a]];
-					if( this.definedNotEmpty( propKey ) ) {
-						let getPropVal = t(blockAttr, propVal).safeObject;
-						switch( propKey ) {
-							case "styling":
-								if( 'undefined' !== typeof( getPropVal ) ){ 
+					if( this.definedNotEmpty( propKey ) && !isUndefined( propVal ) ) {
+						let getPropVal = propVal;
+						
+						if( 'string' === typeof( propVal ) ) {
+							getPropVal = t(blockAttr, propVal).safeObject;
+						}
+						
+						if( !isUndefined( getPropVal ) ){ 
+							switch( propKey ) {
+								case "styling":
 									let stylingCSS = this.getStylingCSS( getPropVal );
-									
 									if( !isEmpty( stylingCSS ) ) {
 										//CSS Normal.
 										if( this.definedNotEmpty( stylingCSS.normal ) ) {
@@ -868,10 +946,9 @@ class PMLiveCSS {
 										}
 
 									}
-								}
-								break;
-							case "typography":
-								if( 'undefined' !== typeof( getPropVal ) ){ 
+									
+									break;
+								case "typography":
 									let typoCSS = this.getTypographyCSS(getPropVal);
 									if( !isEmpty( typoCSS ) ) {
 										if( this.definedNotEmpty( typoCSS.cssRule ) ) {
@@ -880,10 +957,8 @@ class PMLiveCSS {
 										cssDevices = this.groupCSSByDevice( cssDevices, typoCSS.responsive );
 									}
 									this.maybeHasGoogleFont( typoCSS );
-								}
-								break;
-							case "fonts":
-								if( 'undefined' !== typeof( getPropVal ) ){ 
+									break;
+								case "fonts":
 									let fontsCSS = this.getFontCSS(getPropVal);
 									if( !isEmpty( fontsCSS ) ) {
 										if( this.definedNotEmpty( fontsCSS.cssRule ) ) {
@@ -891,13 +966,11 @@ class PMLiveCSS {
 										}
 									}
 									this.maybeHasGoogleFont( fontsCSS );
-								}
-								break;
-							case "color":
-							case "border-color":
-							case "background":
-							case "background-color":
-								if( 'undefined' !== typeof( getPropVal ) ){
+									break;
+								case "color":
+								case "border-color":
+								case "background":
+								case "background-color":
 									let colorRule = '';
 									let colorStr = this.getColorCSS( getPropVal );
 									if( 'string' === typeof( getPropVal ) && this.isHexColor( getPropVal ) ) {
@@ -907,81 +980,65 @@ class PMLiveCSS {
 										colorRule = `${propKey}:${colorStr};`;
 										cssOrigin += colorRule;
 									}
-								}
-								break;
-							case "normal-background":
-								if( 'undefined' !== typeof( getPropVal ) ){
+									
+									break;
+								case "normal-background":
 									if( !isEmpty( this.getNormalBackgroundCSS( getPropVal ) ) ) {
 										cssOrigin += this.getNormalBackgroundCSS( getPropVal );
 									}
-								}
-								break;
-							case "gradient-background":
-								if( 'undefined' !== typeof( getPropVal ) ){
+									
+									break;
+								case "gradient-background":
 									if( !isEmpty( this.getGradientBackgroundCSS( getPropVal ) ) ) {
 										cssOrigin += this.getGradientBackgroundCSS( getPropVal );
 									}
-								}
-								break;
-							case "margin":
-							case "padding":
-								if( 'undefined' !== typeof( getPropVal ) ){
+									
+									break;
+								case "margin":
+								case "padding":
 									if( !isEmpty( this.getCSSRulerCSS( getPropVal, propKey, 'px') ) ) {
 										cssOrigin += this.getCSSRulerCSS( getPropVal, propKey, 'px');
 									}
-								}
-								break;
-							case "marginDevices": 
-							case "paddingDevices": 
-								if( 'undefined' !== typeof( getPropVal ) ){
+									break;
+								case "marginDevices": 
+								case "paddingDevices": 
 									let spacingResponsive = this.getCSSRulerDeviceCSS( getPropVal, propKey.replace('Devices',''), 'px');
 									cssDevices = this.groupCSSByDevice( cssDevices, spacingResponsive );
-								}
-								break;
-							case "borderWidth":
-								if( 'undefined' !== typeof( getPropVal ) ){
+									break;
+								case "borderWidth":
 									if( !isEmpty( this.getBorderWidthCSS( getPropVal, 'px' ) ) ) {
 										cssOrigin += this.getBorderWidthCSS( getPropVal, 'px' );
 									}
-								}
-								break;
-							case "borderWidthDevices":
-								if( 'undefined' !== typeof( getPropVal ) ){
+									break;
+								case "borderWidthDevices":
 									let borderWidthResponsive = this.getBorderWidthDevicesCSS( getPropVal, 'px');
 									cssDevices = this.groupCSSByDevice( cssDevices, borderWidthResponsive );
-								}
-								break;
-							case "boxShadow" :
-								if( 'undefined' !== typeof( getPropVal ) ){
+									break;
+								case "boxShadow" :
 									if( !isEmpty( this.getBoxShadowCSS( getPropVal ) ) ) {
 										cssOrigin += this.getBoxShadowCSS( getPropVal );
 									}
-								}
-								break;
-							case "borderBox" : 
-								if( 'undefined' !== typeof( getPropVal ) ){
+									break;
+								case "borderBox" : 
 									if( !isEmpty( this.getBorderBoxCSS( getPropVal ) ) ) {
 										cssOrigin += this.getBorderBoxCSS( getPropVal );
 									}
-								}
-								break;
-							case "borderRadius": 
-								if( 'undefined' !== typeof( getPropVal ) ){
+									break;
+								case "borderRadius": 
 									if( !isEmpty( this.getBorderRadiusCSS( getPropVal ) ) ) {
 										cssOrigin += this.getBorderRadiusCSS( getPropVal );
 									}
-								}
-								break;
-							default:
-								if( 'undefined' !== typeof( propVal ) ){
+									break;
+								default:
 									let otherCSSRule = this.getOtherCSSRule(blockAttr, propKey, propVal);
+									
 									if( !isEmpty( otherCSSRule ) ) {
 										otherCSSRule = applyFilters( 'pmLiveCSSGetOtherCSSRule', otherCSSRule );
 										cssOrigin += otherCSSRule;
 									}
-								}
-								break;
-						} //End switch.
+									break;
+							} //End switch.
+						}//IF propVal
 					}
 				}
 				

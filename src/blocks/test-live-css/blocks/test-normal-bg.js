@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-normal-bg', {
 	title: __( 'PM CSS: Normal BG' ), 
@@ -20,6 +20,9 @@ registerBlockType( 'pm-blocks/test-live-normal-bg', {
 		normalBG: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number',
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -29,7 +32,7 @@ registerBlockType( 'pm-blocks/test-live-normal-bg', {
 		const {
 			setAttributes
 		} = props;
-		const { normalBG } = props.attributes;
+		const { normalBG, divHeight } = props.attributes;
 		
 		
 		return (
@@ -37,6 +40,12 @@ registerBlockType( 'pm-blocks/test-live-normal-bg', {
 				<InspectorControls>
 					<PanelBody title={ __( 'Normal Background Settings' ) }>
 						<BackgroundBoxControl value={normalBG} onBackgroundChange={(new_value) => {setAttributes({normalBG:new_value});  }}/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="normal-bg-test" ><p style={{padding: '20px', border: '1px solid #eee'}}>Live CSS Normal BG</p></div>

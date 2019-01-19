@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-css-color', {
 	title: __( 'PM CSS: Color' ), 
@@ -23,6 +23,9 @@ registerBlockType( 'pm-blocks/test-live-css-color', {
 		bgColor: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number'
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -32,7 +35,7 @@ registerBlockType( 'pm-blocks/test-live-css-color', {
 		const {
 			setAttributes
 		} = props;
-		const { color } = props.attributes;
+		const { color, divHeight } = props.attributes;
 		
 		
 		return (
@@ -41,6 +44,12 @@ registerBlockType( 'pm-blocks/test-live-css-color', {
 					<PanelBody title={ __( 'Color Settings' ) }>
 						<ColorPickerControl label={__("Color")} value={color} onColorChangeComplete={(new_color) => setAttributes({color: new_color})} />
 						<ColorPickerControl label={__("Background color")} value={color} onColorChangeComplete={(new_color) => setAttributes({bgColor: new_color})} />
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="color-test"><p>Live CSS Color</p></div>

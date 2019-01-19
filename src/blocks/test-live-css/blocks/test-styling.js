@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-css-styling', {
 	title: __( 'PM CSS: Styling' ), 
@@ -20,6 +20,9 @@ registerBlockType( 'pm-blocks/test-live-css-styling', {
 		styling: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number',
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -29,13 +32,19 @@ registerBlockType( 'pm-blocks/test-live-css-styling', {
 		const {
 			setAttributes
 		} = props;
-		const { styling } = props.attributes;
+		const { styling, divHeight } = props.attributes;
 		
 		return (
 			<div className={ props.className }>
 				<InspectorControls>
 					<PanelBody title={ __( 'Styling Settings' ) }>
 						<StylingControl value={styling} onStylingChange={(new_value) => {setAttributes({styling:new_value}); }}/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="styling-test">

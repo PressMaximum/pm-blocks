@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-css-fonts', {
 	title: __( 'PM CSS: Fonts' ), 
@@ -20,6 +20,9 @@ registerBlockType( 'pm-blocks/test-live-css-fonts', {
 		fonts: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number'
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -29,14 +32,20 @@ registerBlockType( 'pm-blocks/test-live-css-fonts', {
 		const {
 			setAttributes
 		} = props;
-		const { fonts } = props.attributes;
+		const { fonts, divHeight } = props.attributes;
 		
 		
 		return (
 			<div className={ props.className }>
 				<InspectorControls>
 					<PanelBody title={ __( 'Fonts Settings' ) }>
-					<FontsControl value={fonts} onFontsChange={(new_value) => {setAttributes({fonts:new_value});  }}/>
+						<FontsControl value={fonts} onFontsChange={(new_value) => {setAttributes({fonts:new_value});  }}/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="font-test"><p>Live CSS Fonts</p></div>

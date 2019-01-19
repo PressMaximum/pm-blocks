@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-gradient-bg', {
 	title: __( 'PM CSS: Gradient BG' ), 
@@ -20,6 +20,9 @@ registerBlockType( 'pm-blocks/test-live-gradient-bg', {
 		gradientBG: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number'
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -29,7 +32,7 @@ registerBlockType( 'pm-blocks/test-live-gradient-bg', {
 		const {
 			setAttributes
 		} = props;
-		const { gradientBG } = props.attributes;
+		const { gradientBG, divHeight } = props.attributes;
 		
 		
 		return (
@@ -37,6 +40,12 @@ registerBlockType( 'pm-blocks/test-live-gradient-bg', {
 				<InspectorControls>
 					<PanelBody title={ __( 'Gradient Background Settings' ) }>
 						<BackgroundGradientBoxControl value={gradientBG} onBgGradientChange={(new_value) => {setAttributes({gradientBG:new_value});  }}/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="gradient-bg-test" ><p style={{padding: '20px', border: '1px solid #eee'}}>Live CSS Gradient BG</p></div>

@@ -33,6 +33,9 @@ registerBlockType( 'pm-blocks/test-live-css-manual', {
 		lineHeight: {
 			type: 'string',
 		},
+		divHeight: {
+			type: 'number',
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -42,7 +45,7 @@ registerBlockType( 'pm-blocks/test-live-css-manual', {
 		const {
 			setAttributes
 		} = props;
-		const { borderStyle, borderWidth, borderColor, borderRadius, lineHeight } = props.attributes;
+		const { borderStyle, borderWidth, borderColor, borderRadius, lineHeight, divHeight } = props.attributes;
 		
 		return (
 			<div className={ props.className }>
@@ -78,6 +81,12 @@ registerBlockType( 'pm-blocks/test-live-css-manual', {
 							min={ 0 }
 							max={ 100 }
 							onChange={ new_value => setAttributes({lineHeight: new_value})}
+						/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
 						/>
 					</PanelBody>
 				</InspectorControls>

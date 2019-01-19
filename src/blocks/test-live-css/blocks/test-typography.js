@@ -6,7 +6,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody } = wp.components;
+const { PanelBody, RangeControl } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-css-typo', {
 	title: __( 'PM CSS: Typography' ), 
@@ -20,6 +20,9 @@ registerBlockType( 'pm-blocks/test-live-css-typo', {
 		typography: {
 			type: 'object',
 		},
+		divHeight: {
+			type: 'number',
+		},
 		uniqueID: {
 			type: 'string',
 		}
@@ -29,13 +32,19 @@ registerBlockType( 'pm-blocks/test-live-css-typo', {
 		const {
 			setAttributes
 		} = props;
-		const { typography } = props.attributes;
+		const { typography, divHeight } = props.attributes;
 		
 		return (
 			<div className={ props.className }>
 				<InspectorControls>
 					<PanelBody title={ __( 'Typography Settings' ) }>
 						<TypographyControl value={typography} onTypographyChange={(new_value) => {setAttributes({typography:new_value}); }}/>
+						<RangeControl
+							label="Height"
+							value={ divHeight }
+							onChange={ ( new_value ) => setAttributes( { divHeight: new_value } ) }
+							min={ 1 }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className="typo-test">
