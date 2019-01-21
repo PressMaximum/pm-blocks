@@ -55,6 +55,14 @@ class BorderBoxControl extends Component {
 		switch (data.key) {
 			case "style":
 				changed_value = { style: data.value };
+				if( 'none' !== data.value && '' === this.state.width.top && '' === this.state.width.right && '' === this.state.width.bottom && '' === this.state.width.left ) {
+					changed_value.width = {
+						top: 1,
+						right: 1,
+						bottom: 1, 
+						left: 1
+					};
+				}
 				break;
 			case "width":
 				changed_value = { width: data.value };

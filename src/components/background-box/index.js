@@ -10,10 +10,11 @@ const { MediaUpload, MediaPlaceholder } = wp.editor;
 import ColorPickerControl from "../color-picker/index";
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
+const pmHelper = new PMHelper();
+
 export const pmPickRelevantMediaFiles = ( image ) => {
-	const pmHelper = new PMHelper();
 	return {
-		id: !pmHelper.isUndefined( image.id ) ? pmHelper: '',
+		id: !pmHelper.isUndefined( image.id ) ? image.id: '',
 		url: !pmHelper.isUndefined( image.url ) ? image.url : ''
 	}
 };
@@ -36,7 +37,6 @@ class BackgroundBoxControl extends Component {
 			attachment: ''
 		};
 		//Set state
-		const pmHelper = new PMHelper();
 		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 		this.onSelectImage = this.onSelectImage.bind(this);
@@ -50,6 +50,9 @@ class BackgroundBoxControl extends Component {
 				break;
 			case "image" :
 				changed_value.image = data.value;
+				if( !isNaN( data.value.id ) && '' !== data.value.url && '' === this.state.size ) {
+					changed_value.size = 'cover';
+				}
 				break;
 			case "size" :
 				changed_value.size = data.value;

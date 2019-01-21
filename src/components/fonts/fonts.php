@@ -44,7 +44,7 @@ class PM_Blocks_Fonts {
 		$fonts = array(
 			'Arial' => array(
 				'family' => 'Arial',
-				'category' => ' sans-serif',
+				'category' => 'sans-serif',
 			),
 			'Baskerville' => array(
 				'family' => 'Baskerville',
@@ -72,15 +72,15 @@ class PM_Blocks_Fonts {
 			),
 			'Arial Narrow' => array(
 				'family' => 'Arial Narrow',
-				'category' => ' sans-serif',
+				'category' => 'sans-serif',
 			),
 			'Trebuchet MS' => array(
 				'family' => 'Trebuchet MS',
-				'category' => ' sans-serif',
+				'category' => 'sans-serif',
 			),
 			'Consolas' => array(
 				'family' => 'Consolas',
-				'category' => ' sans-serif',
+				'category' => 'sans-serif',
 			),
 		);
 		return $fonts;

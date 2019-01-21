@@ -26,26 +26,28 @@ class FontsControl extends Component {
 		//Set state
 		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
+
 	}
 	componentDidMount() {
 		let ajax_url = pm_blocks_js.ajaxurl;
 		ajax_url += "?action=pm_blocks_get_fonts";
 		fetch( ajax_url ).then(res => res.json()).then(
-				result => {
-					this.setState({ list_fonts: result.data });
-					let saved_font_type = this.state.font_type;
-					if( 'undefined' !== typeof( saved_font_type ) && '' !== saved_font_type ) {
-						let saved_font_data = result.data[saved_font_type]['fonts'][this.state.family];
-						
-						this.setState({
-							list_variants: saved_font_data['variants'],
-							list_subsets: saved_font_data['subsets'],
-						});
-					}
-				},
-				error => {
-					console.log(__("Fail to load list fonts"));
+			result => {
+				this.setState({ list_fonts: result.data });
+				let saved_font_type = this.state.font_type;
+				if( 'undefined' !== typeof( saved_font_type ) && '' !== saved_font_type ) {
+					let saved_font_data = result.data[saved_font_type]['fonts'][this.state.family];
+					
+					this.setState({
+						list_variants: saved_font_data['variants'],
+						list_subsets: saved_font_data['subsets'],
+					});
 				}
+				console.log('Result: ', result);
+			},
+			error => {
+				console.log(__("Fail to load list fonts"));
+			}
 		);
 	}
 
@@ -159,7 +161,6 @@ class FontsControl extends Component {
 		}
 
 		const fontsList = this.state.list_fonts;
-		
 		return (
 			<div className={wraperClassName} id={id} {...props}>
 				{label && <span className="control-label">{label}</span>}
@@ -179,9 +180,9 @@ class FontsControl extends Component {
 							})
 						}
 					>
-						{pmHelper.map(fontsList, (option, index) => (
+						{pmHelper.mapObject(fontsList, (option, index) => (
 							<optgroup label={option.title} data-type={index}>
-								{pmHelper.map(option.fonts, (value, key) => (
+								{pmHelper.mapObject(option.fonts, (value, key) => (
 									<option key={key} value={value.family}>
 										{value.family}
 									</option>
@@ -191,7 +192,7 @@ class FontsControl extends Component {
 					</select>
 				</BaseControl>
 
-				{this.state.list_subsets && '' !== this.state.list_subsets && (
+				{this.state.list_subsets && this.state.list_subsets.length > 0 && (
 					<div className="font-subsets">
 						<span className="field-label">
 							{__("Font Languages")}
@@ -224,15 +225,15 @@ class FontsControl extends Component {
 					</div>
 				)}
 				{this.state.list_variants &&
-				'' !== this.state.list_variants ? (
+				this.state.list_variants.length > 0 ? (
 					<SelectControl
 						label={__("Font weight")}
 						value={this.state.variant}
-						options={pmHelper.map(
+						options={pmHelper.mapObject(
 							this.state.list_variants,
 							(value, index) => ({
 								value: value,
-								label: value
+								label: (value.includes('italic')) ? value.replace('italic', ' Italic') : value,
 							})
 						)}
 						onChange={new_value =>

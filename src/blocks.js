@@ -112,7 +112,7 @@ const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
 wp.hooks.addFilter( 'editor.BlockEdit', 'pm-blocks/block-edit', pmBlockEditCB );
 
 const registerCoreUniqueID = ( settings, name ) => {
-	console.log('block name: ', name);
+	//console.log('block name: ', name);
 	if ( pmCoreBlockWithUniqueID.includes(name) ) {
 		settings.attributes = Object.assign( settings.attributes, {
 			uniqueID: {

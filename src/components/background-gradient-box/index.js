@@ -13,13 +13,23 @@ class BackgroundGradientBoxControl extends Component {
 
 		var default_value = {
 			color: {
-				rgba: '',
-				hex: '',
+				rgba: {
+					r: 255,
+					g: 255,
+					b: 255,
+					a: 1,
+				},
+				hex: '#ffffff',
 			},
 			location: '',
 			second_color: {
-				rgba: '',
-				hex: '',
+				rgba: {
+					r: 255,
+					g: 255,
+					b: 255,
+					a: 1,
+				},
+				hex: '#ffffff',
 			},
 			second_location: '',
 			type: 'linear',

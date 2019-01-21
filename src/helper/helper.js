@@ -43,28 +43,14 @@ class PMHelper{
 		return result;
 	}
 
-	isEmpty(value) {
-		if (value == null) {
-			return true
-		}
-		if (isArrayLike(value) &&
-			(Array.isArray(value) || typeof value == 'string' || typeof value.splice == 'function' ||
-				isBuffer(value) || isTypedArray(value) || isArguments(value))) {
-			return !value.length;
-		}
-		const tag = getTag(value)
-		if (tag == '[object Map]' || tag == '[object Set]') {
-			return !value.size;
-		}
-		if (isPrototype(value)) {
-			return !Object.keys(value).length;
-		}
-		for (const key in value) {
-			if (this.hasOwnProperty.call(value, key)) {
-				return false;
-			}
-		}
-		return true;
+	mapObject(object, iteratee) {
+		const props = Object.keys(object)
+		const result = new Array(props.length)
+		
+		props.forEach((key, index) => {
+			result[index] = iteratee(object[key], key, object)
+		})
+		return result
 	}
 
 }
