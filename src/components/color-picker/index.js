@@ -11,12 +11,12 @@ class ColorPickerControl extends Component {
 
 		var default_value = {
 			rgba: {
-				r: '255',
-				g: '255',
-				b: '255',
-				a: '1',
+				r: '',//255
+				g: '',//255
+				b: '',//255
+				a: '',//1
 			},
-			hex: '#ffffff',
+			hex: '',//#ffffff
 			
 			isVisible: false,
 		};

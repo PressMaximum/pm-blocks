@@ -30,6 +30,9 @@ const registerCoreHeadingAttributes = ( settings, name ) => {
 			},
 			divHeight : {
 				type: 'number'
+			},
+			colorPicker : {
+				type: 'string'
 			}
 		} );
 		
@@ -54,14 +57,15 @@ const pmRegisterCoreHeadingFields = createHigherOrderComponent( ( BlockEdit ) =>
 
 		const {
 			typography,
-			divHeight
+			divHeight,
+			colorPicker
 		} = attributes;
 		
 		return (
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'PM Fonts Settings' ) }>
-					<TypographyControl value={typography} onTypographyChange={(new_value) => {setAttributes({typography:new_value}); }}/>
+						<TypographyControl value={typography} onTypographyChange={(new_value) => {setAttributes({typography:new_value}); }}/>
 						<RangeControl
 							label="Height"
 							value={ divHeight }
