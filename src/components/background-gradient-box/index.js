@@ -23,7 +23,7 @@ class BackgroundGradientBoxControl extends Component {
 			},
 			second_location: '',
 			type: 'linear',
-			angle: '',
+			angle: 0,
 		};
 		//Set state
 		this.state = defaults(this.props.value, default_value);
@@ -138,7 +138,7 @@ class BackgroundGradientBoxControl extends Component {
 						onChange={ ( new_value ) => 
 							this.onChangeHandler({ key: "angle", value: new_value })
 						}
-						min={ 0 }
+						min={ -360 }
 						max={ 360 }
 					/>
 				</div>

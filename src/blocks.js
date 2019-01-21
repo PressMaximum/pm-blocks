@@ -11,23 +11,23 @@
 
 import PMLiveCSS from "./helper/live-css";
 
-import "./blocks/call-to-action/block.js";
-import "./blocks/border-box/block.js";
-import "./blocks/rangecontrol-devices/block.js";
-import "./blocks/background-box/block.js";
-import "./blocks/background-gradient-box/block.js";
-import "./blocks/posts/block.js";
-import "./blocks/repeater/repeater.js";
-import "./blocks/repeater/item.js";
-import "./blocks/fonts/block.js";
-import "./blocks/typography/block.js";
-import "./blocks/background-group/block.js";
-import "./blocks/accordion/block.js";
-import "./blocks/styling/block.js";
-import "./blocks/icon-picker/block.js";
-import "./blocks/custom-heading/block.js";
+//import "./blocks/call-to-action/block.js";
+//import "./blocks/border-box/block.js";
+//import "./blocks/rangecontrol-devices/block.js";
+//import "./blocks/background-box/block.js";
+//import "./blocks/background-gradient-box/block.js";
+//import "./blocks/posts/block.js";
+//import "./blocks/repeater/repeater.js";
+//import "./blocks/repeater/item.js";
+//import "./blocks/fonts/block.js";
+//import "./blocks/typography/block.js";
+//import "./blocks/background-group/block.js";
+//import "./blocks/accordion/block.js";
+//import "./blocks/styling/block.js";
+//import "./blocks/icon-picker/block.js";
+//import "./blocks/custom-heading/block.js";
 import "./blocks/test-live-css/block.js";
-import "./blocks/test/block.js";
+//import "./blocks/test/block.js";
 
 
 import "./extends/blocks.js";
