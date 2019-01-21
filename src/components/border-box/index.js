@@ -130,9 +130,9 @@ class BorderBoxControl extends Component {
 					onChange={ new_value => this.onChangeHandler( { key: "style", value : new_value} ) }
 				/>
 				
-				<CSSRulerControl label={__("Border width") } value={this.state.width} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "width", value : new_value} ) }/>
+				<CSSRulerControl label={__("Border width") } min={0} value={this.state.width} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "width", value : new_value} ) }/>
 				<ColorPickerControl label={__("Color")} disableAlpha="true" value={this.state.color} onColorChangeComplete={ new_value => this.onChangeHandler( { key: "color", value : new_value} ) } />
-				<CSSRulerControl label={__("Border radius") } value={this.state.radius} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "radius", value : new_value} ) }/>
+				<CSSRulerControl label={__("Border radius") } min={0} value={this.state.radius} onCSSRulerChange={ new_value => this.onChangeHandler( { key: "radius", value : new_value} ) }/>
 				<BoxShadowControl value={this.state.shadow} onBoxShadowChange={ new_value => this.onChangeHandler( { key: "shadow", value : new_value} ) }/>
 			</div>
 		);

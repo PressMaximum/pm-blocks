@@ -1,10 +1,12 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import PMHelper from '../../helper/helper.js';
+const pmHelper = new PMHelper();
 const { withInstanceId } = wp.compose;
 
 import CSSRulerControl from "../cssruler/index";
 import ResponsiveDevices from "../responsive-devices/index";
+
 
 class CSSRulerDevices extends Component {
 	constructor() {
@@ -93,7 +95,7 @@ class CSSRulerDevices extends Component {
 		
 
 		//Set state
-		const pmHelper = new PMHelper();
+		
 		this.state = pmHelper.defaults(this.props.value, default_value);
 
 		this.onCSSRulerChange = this.onCSSRulerChange.bind(this);
@@ -139,9 +141,8 @@ class CSSRulerDevices extends Component {
 
 	onDeviceSelected(value) {
 		this.setState({
-			current_tab: value
+			current_tab: value,
 		});
-
 		var key_top = "top";
 		var key_right = "right";
 		var key_bottom = "bottom";
@@ -165,6 +166,17 @@ class CSSRulerDevices extends Component {
 		};
 
 		this.setState({ input_value: new_value_state });
+
+		
+		let deviceBtnClass = '.cssruler-'+value+'-tab';
+		if( 'desktop' === value ) {
+			deviceBtnClass = '.cssruler-desk-tab';
+		}
+		const mobileTabEl = document.querySelectorAll( deviceBtnClass );
+		pmHelper.map(mobileTabEl, (value, index) => {
+			value.click();
+		});
+		
 	}
 
 	render() {
@@ -174,6 +186,8 @@ class CSSRulerDevices extends Component {
 			value,
 			instanceId,
 			onCSSRulerDevicesChange,
+			min,
+			max,
 			...props
 		} = this.props;
 		const id = `responsive-devices-control-${instanceId}`;
@@ -194,6 +208,9 @@ class CSSRulerDevices extends Component {
 					onDeviceSelected={this.onDeviceSelected}
 					onCSSRulerChange={this.onCSSRulerChange}
 					id={id}
+					min={min}
+					max={max}
+					initialTabName={ window.pmCurrentDevice }
 					className="cssruler-devices-wrap"
 					{...props}
 				>

@@ -88,6 +88,8 @@ class CSSRulerControl extends Component {
 			className,
 			value,
 			instanceId,
+			min,
+			max,
 			...props
 		} = this.props;
 		const id = `css-ruler-control-${instanceId}`;
@@ -113,6 +115,8 @@ class CSSRulerControl extends Component {
 									value: e.target.value
 								})
 							}
+							min={min}
+							max={max}
 							value={valueTop}
 							{...props}
 						/>
@@ -129,6 +133,8 @@ class CSSRulerControl extends Component {
 									value: e.target.value
 								})
 							}
+							min={min}
+							max={max}
 							value={valueRight}
 							{...props}
 						/>
@@ -145,6 +151,8 @@ class CSSRulerControl extends Component {
 									value: e.target.value
 								})
 							}
+							min={min}
+							max={max}
 							value={valueBottom}
 							{...props}
 						/>
@@ -161,6 +169,8 @@ class CSSRulerControl extends Component {
 									value: e.target.value
 								})
 							}
+							min={min}
+							max={max}
 							value={valueLeft}
 							{...props}
 						/>

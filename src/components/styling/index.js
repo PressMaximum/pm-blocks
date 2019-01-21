@@ -211,6 +211,7 @@ class StylingControl extends Component {
 												onCSSRulerDevicesChange={new_value =>
 													this.onChangeHandler( { key: "hover_padding", value : new_value} )
 												}
+												min={ 0 }
 											/>
 											<CSSRulerDevices
 												label={__("Margin")}

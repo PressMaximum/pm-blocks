@@ -103,7 +103,7 @@ class ResponsiveDevices extends Component {
 		}
 		parentProps['parentStates'] = this.state;
 		var childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, parentProps));
-
+		
 		return (
 			<TabPanel id={id} className="responsive-devices-wrap" {...props}
 				activeClass="active-tab"
