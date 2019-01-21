@@ -1,7 +1,7 @@
 import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults } from "lodash";
+import PMHelper from '../../helper/helper.js';
 const { RangeControl } = wp.components;
 const { withInstanceId } = wp.compose;
 
@@ -21,7 +21,8 @@ class RangeDevicesControl extends Component {
 		};
 
 		//Set state
-		let merge_value = defaults(this.props.value, default_value);
+		const pmHelper = new PMHelper();
+		let merge_value = pmHelper.defaults(this.props.value, default_value);
 
 		switch( merge_value.current_tab ) {
 			case 'tablet': 

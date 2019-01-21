@@ -1,6 +1,7 @@
 import './editor.scss';
 const { __ } = wp.i18n;
-import { defaults, isUndefined } from "lodash";
+
+import PMHelper from '../../helper/helper.js';
 const { Component } = wp.element;
 const {
 	IconButton,
@@ -8,6 +9,7 @@ const {
 } = wp.components;
 const { withInstanceId } = wp.compose;
 var closest = require("dom-closest");
+const pmHelper = new PMHelper();
 class CSSRulerControl extends Component {
 	constructor() {
 		super(...arguments);
@@ -19,30 +21,31 @@ class CSSRulerControl extends Component {
 			right: "",
 			link: true
 		};
-		this.state = defaults(this.props.value, default_value);
+		
+		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 	}
 	componentDidUpdate( oldProps ) {
 		const newValue = this.props.value;
 		const oldValue = oldProps.value;
 		
-		if( isUndefined( newValue ) || isUndefined( oldValue ) ) {
+		if( pmHelper.isUndefined( newValue ) || pmHelper.isUndefined( oldValue ) ) {
 			return;
 		}
 
-		if( !isUndefined(newValue.top) && !isUndefined(oldValue.top) && newValue.top !== oldValue.top ) {
+		if( !pmHelper.isUndefined(newValue.top) && !pmHelper.isUndefined(oldValue.top) && newValue.top !== oldValue.top ) {
 			this.setState({top: newValue.top});
 		}
-		if( !isUndefined(newValue.right) && !isUndefined(oldValue.right) && newValue.right !== oldValue.right ) {
+		if( !pmHelper.isUndefined(newValue.right) && !pmHelper.isUndefined(oldValue.right) && newValue.right !== oldValue.right ) {
 			this.setState({right: newValue.right});
 		}
-		if( !isUndefined(newValue.bottom) && !isUndefined(oldValue.bottom) && newValue.bottom !== oldValue.bottom ) {
+		if( !pmHelper.isUndefined(newValue.bottom) && !pmHelper.isUndefined(oldValue.bottom) && newValue.bottom !== oldValue.bottom ) {
 			this.setState({bottom: newValue.bottom});
 		}
-		if( !isUndefined(newValue.left) && !isUndefined(oldValue.left) && newValue.left !== oldValue.left ) {
+		if( !pmHelper.isUndefined(newValue.left) && !pmHelper.isUndefined(oldValue.left) && newValue.left !== oldValue.left ) {
 			this.setState({left: newValue.left});
 		}
-		if( !isUndefined(newValue.link) && !isUndefined(oldValue.link) && newValue.link !== oldValue.link ) {
+		if( !pmHelper.isUndefined(newValue.link) && !pmHelper.isUndefined(oldValue.link) && newValue.link !== oldValue.link ) {
 			this.setState({link: newValue.link});
 		}
 	}

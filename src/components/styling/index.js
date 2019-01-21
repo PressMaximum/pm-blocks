@@ -1,7 +1,7 @@
 import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults } from "lodash";
+import PMHelper from '../../helper/helper.js';
 import AccordionControl from "../accordion/index";
 import BackgroundGroupControl from "../background-group/index";
 import ColorPickerControl from "../color-picker/index";
@@ -33,7 +33,8 @@ class StylingControl extends Component {
 			}
 		};
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		const pmHelper = new PMHelper();
+		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 		this.onTabSelect = this.onTabSelect.bind(this);
 	}

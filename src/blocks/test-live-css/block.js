@@ -10,3 +10,4 @@ import * as typography from './blocks/test-typography.js';
 import * as boxShadow from './blocks/test-box-shadow.js';
 import * as borderBox from './blocks/test-border-box.js';
 import * as iconPicker from './blocks/test-icon-picker.js';
+import * as colorPickerPalette from './blocks/test-color-picker-palette.js';

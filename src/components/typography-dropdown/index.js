@@ -2,7 +2,7 @@ import classnames from 'classnames';
 const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 import './editor.scss';
-import { defaults } from "lodash";
+import PMHelper from '../../helper/helper.js';
 import FontsControl from "../fonts/index";
 import icons from "./icons";
 import RangeDevicesControl from "../rangecontrol-devices/index";
@@ -44,7 +44,8 @@ class TypographyDropdownControl extends Component {
 			isVisible: false,
 		};
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		pmHelper = new PMHelper();
+		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 
 		this.openPopover = this.openPopover.bind(this);

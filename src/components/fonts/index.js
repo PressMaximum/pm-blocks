@@ -1,10 +1,12 @@
 import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults, isEmpty, map } from "lodash";
 const closest = require('dom-closest');
 const { SelectControl, BaseControl } = wp.components;
 const { withInstanceId } = wp.compose;
+
+import PMHelper from '../../helper/helper.js';
+const pmHelper = new PMHelper();
 
 class FontsControl extends Component {
 	constructor() {
@@ -22,7 +24,7 @@ class FontsControl extends Component {
 			list_fonts: []
 		};
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 	}
 	componentDidMount() {
@@ -32,7 +34,7 @@ class FontsControl extends Component {
 				result => {
 					this.setState({ list_fonts: result.data });
 					let saved_font_type = this.state.font_type;
-					if( 'undefined' !== typeof( saved_font_type ) && !isEmpty( saved_font_type ) ) {
+					if( 'undefined' !== typeof( saved_font_type ) && '' !== saved_font_type ) {
 						let saved_font_data = result.data[saved_font_type]['fonts'][this.state.family];
 						
 						this.setState({
@@ -77,7 +79,7 @@ class FontsControl extends Component {
 					this.setState({
 						list_variants: font_data.variants
 					});
-					if( !isEmpty( font_data.variants ) && font_data.variants.length > 0 ) {
+					if( '' !== font_data.variants && font_data.variants.length > 0 ) {
 						changed_value.variant = font_data.variants[0];
 					}
 				} else {
@@ -177,9 +179,9 @@ class FontsControl extends Component {
 							})
 						}
 					>
-						{map(fontsList, (option, index) => (
+						{pmHelper.map(fontsList, (option, index) => (
 							<optgroup label={option.title} data-type={index}>
-								{map(option.fonts, (value, key) => (
+								{pmHelper.map(option.fonts, (value, key) => (
 									<option key={key} value={value.family}>
 										{value.family}
 									</option>
@@ -189,7 +191,7 @@ class FontsControl extends Component {
 					</select>
 				</BaseControl>
 
-				{this.state.list_subsets && !isEmpty(this.state.list_subsets) && (
+				{this.state.list_subsets && '' !== this.state.list_subsets && (
 					<div className="font-subsets">
 						<span className="field-label">
 							{__("Font Languages")}
@@ -222,11 +224,11 @@ class FontsControl extends Component {
 					</div>
 				)}
 				{this.state.list_variants &&
-				!isEmpty(this.state.list_variants) ? (
+				'' !== this.state.list_variants ? (
 					<SelectControl
 						label={__("Font weight")}
 						value={this.state.variant}
-						options={map(
+						options={pmHelper.map(
 							this.state.list_variants,
 							(value, index) => ({
 								value: value,

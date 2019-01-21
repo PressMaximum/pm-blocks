@@ -1,7 +1,7 @@
 import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults } from "lodash";
+import PMHelper from '../../helper/helper.js';
 const { withInstanceId } = wp.compose;
 import AccordionSectionControl from './accordion_section';
 class AccordionControl extends Component {
@@ -12,7 +12,8 @@ class AccordionControl extends Component {
 			
 		};
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		const pmHelper = new PMHelper();
+		this.state = pmHelper.defaults(this.props.value, default_value);
 		
 	}
 	

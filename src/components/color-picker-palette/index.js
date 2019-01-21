@@ -5,7 +5,7 @@ import PMHelper from '../../helper/helper.js';
 const { Popover, ColorPicker } = wp.components;
 const { withInstanceId } = wp.compose;
 
-class ColorPickerControl extends Component {
+class ColorPickerPaletteControl extends Component {
 	constructor() {
 		super(...arguments);
 
@@ -42,6 +42,7 @@ class ColorPickerControl extends Component {
 			this.props.onColorChangeComplete( new_color );
 		}
 	}
+
 
 	openColorPicker() {
 		this.setState({
@@ -100,8 +101,8 @@ class ColorPickerControl extends Component {
 	}
 }
 
-export default withInstanceId(ColorPickerControl);
+export default withInstanceId(ColorPickerPaletteControl);
 /**
  * Using
- * <ColorPickerControl value={rgba:'', hex: ''} onColorChangeComplete={(new_color) => console.log('new color: ', new_color)} />
+ * <ColorPickerPaletteControl value={rgba:'', hex: ''} onColorChangeComplete={(new_color) => console.log('new color: ', new_color)} />
  */

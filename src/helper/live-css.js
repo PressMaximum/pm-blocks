@@ -1,6 +1,8 @@
 import t from 'typy';
-import { isEmpty, isUndefined } from "lodash";
+
+import PMHelper from './helper.js';
 const { applyFilters } =  wp.hooks;
+const pmHelper = new PMHelper();
 /**
 var pmBlocksStyle ={
 	"pm-blocks/block-my-heading" : {
@@ -307,7 +309,7 @@ class PMLiveCSS {
 				returnValue[objKey] = `${cssProp}:${input[inputKey]}${unit};`;
 			}
 		}
-		if( !isEmpty( returnValue ) ){
+		if( '' !== returnValue ){
 			return returnValue;
 		}
 		return '';
@@ -323,7 +325,7 @@ class PMLiveCSS {
 
 		let googleFont = {};
 		
-		if( !isUndefined( fontData.font_type ) ){ 
+		if( !pmHelper.isUndefined( fontData.font_type ) ){ 
 			let fontType = 'normal';
 			if( 'normal' !== fontData.font_type && '' !== fontData.font_type ) {
 				fontType = fontData.font_type;
@@ -339,7 +341,7 @@ class PMLiveCSS {
 						googleFont['subsets'] = fontSubset;
 					}
 				}
-				if( !isUndefined( fontData.variant ) && '' !== fontData.variant ){
+				if( !pmHelper.isUndefined( fontData.variant ) && '' !== fontData.variant ){
 					if( 'regular' == fontData.variant || !isNaN( fontData.variant ) ) {
 						fontCSS += `font-weight:${fontData.variant};`;
 					} else if( fontData.variant.includes( "italic" ) ) {
@@ -366,14 +368,14 @@ class PMLiveCSS {
 		let returnValue = {
 			cssRule: fontCSS,
 		}
-		if( !isEmpty( googleFont ) ) {
+		if( '' !== googleFont ) {
 			returnValue['googleFont'] = googleFont;
 		}
 		return returnValue;
 	}
 
 	definedNotEmpty ( value ) {
-		if( (!isUndefined( value )) && '' !== value && null !== value ) {
+		if( (!pmHelper.isUndefined( value )) && '' !== value && null !== value ) {
 			return true;
 		}
 		return false;
@@ -527,11 +529,11 @@ class PMLiveCSS {
 	
 	getColorCSS (color) {
 		let colorStr = '';
-		if( !isUndefined( color.hex ) ) {
+		if( !pmHelper.isUndefined( color.hex ) ) {
 			colorStr = color.hex;
 	
-			if( !isUndefined( color.rgba ) ) {
-				if( !isUndefined( color.rgba.a ) && color.rgba.a < 1 ){ 
+			if( !pmHelper.isUndefined( color.rgba ) ) {
+				if( !pmHelper.isUndefined( color.rgba.a ) && color.rgba.a < 1 ){ 
 					colorStr = `rgba(${color.rgba.r}, ${color.rgba.g}, ${color.rgba.b}, ${color.rgba.a})`;
 				}
 			}
@@ -542,7 +544,7 @@ class PMLiveCSS {
 	
 	getBorderBoxCSS (borderBox){
 		let borderCSS = '';
-		if( !isUndefined( borderBox ) ){
+		if( !pmHelper.isUndefined( borderBox ) ){
 			let color = ( this.definedNotEmpty( borderBox.color ) ) ? borderBox.color : '';
 			let radius = ( this.definedNotEmpty( borderBox.radius ) ) ? borderBox.radius : ''
 			let shadow = ( this.definedNotEmpty( borderBox.shadow ) ) ? borderBox.shadow : '';
@@ -652,7 +654,7 @@ class PMLiveCSS {
 				}
 			}
 		}
-		if( !isEmpty( returnValue ) ){
+		if( '' !== returnValue ){
 			return returnValue;
 		}
 		return '';
@@ -700,7 +702,7 @@ class PMLiveCSS {
 			cssRule: typoCSS,
 			responsive: this.getGroupStylingResponsive( stylingResponsive )
 		};
-		if ( !isEmpty( googleFont ) ) {
+		if ( '' !== googleFont ) {
 			returnValue['googleFont'] = googleFont;
 		}
 		return returnValue;
@@ -709,7 +711,7 @@ class PMLiveCSS {
 
 	getGroupStylingResponsive (stylingResponsive) {
 		let returnValue = {};
-		if( !isEmpty( stylingResponsive ) ) {
+		if( '' !== stylingResponsive ) {
 			let desktop = [], tablet=[], mobile = [];
 			for( let i=0; i<stylingResponsive.length; i++ ) {
 				let value = stylingResponsive[i];
@@ -726,17 +728,17 @@ class PMLiveCSS {
 				}
 			}
 			
-			if( !isEmpty( desktop ) ) {
+			if( '' !== desktop ) {
 				returnValue['desktop'] = desktop.join(' ');
 			}
-			if( !isEmpty( tablet ) ) {
+			if( '' !== tablet ) {
 				returnValue['tablet'] = tablet.join(' ');
 			}
-			if( !isEmpty( mobile ) ) {
+			if( '' !== mobile ) {
 				returnValue['mobile'] = mobile.join(' ');
 			}
 		}
-		if( !isEmpty( returnValue ) ){
+		if( '' !== returnValue ){
 			return returnValue;
 		}
 		return '';
@@ -861,16 +863,16 @@ class PMLiveCSS {
 			targetClassName = firtChild[0].getAttribute('class');
 		}
 		
-		if( !isUndefined( targetID ) && null !== targetID ) {
+		if( !pmHelper.isUndefined( targetID ) && null !== targetID ) {
 			targetSelector = `#${targetID}`;
-		} else if( !isUndefined( targetClassName ) && null !== targetClassName ) {
+		} else if( !pmHelper.isUndefined( targetClassName ) && null !== targetClassName ) {
 			targetClassName = targetClassName.split(' ').join('.').replace('.undefined', '');
 			if( '' != targetClassName ) {
 				targetSelector = `.${targetClassName}`;
 			}
 		}
 		
-		if( !isUndefined( pmBlocksStyle[ blockName ] ) ) {
+		if( !pmHelper.isUndefined( pmBlocksStyle[ blockName ] ) ) {
 			let blockStyle = pmBlocksStyle[ blockName ];
 			let selectorCSS = {};
 			let entries = Object.entries(blockStyle);
@@ -891,18 +893,18 @@ class PMLiveCSS {
 				for( let a=0; a<cssProps.length; a++ ) {
 					let propKey = cssProps[a];
 					let propVal = cssProperties[cssProps[a]];
-					if( this.definedNotEmpty( propKey ) && !isUndefined( propVal ) ) {
+					if( this.definedNotEmpty( propKey ) && !pmHelper.isUndefined( propVal ) ) {
 						let getPropVal = propVal;
 						
 						if( 'string' === typeof( propVal ) ) {
 							getPropVal = t(blockAttr, propVal).safeObject;
 						}
 						
-						if( !isUndefined( getPropVal ) ){ 
+						if( !pmHelper.isUndefined( getPropVal ) ){ 
 							switch( propKey ) {
 								case "styling":
 									let stylingCSS = this.getStylingCSS( getPropVal );
-									if( !isEmpty( stylingCSS ) ) {
+									if( '' !== stylingCSS ) {
 										//CSS Normal.
 										if( this.definedNotEmpty( stylingCSS.normal ) ) {
 											if( this.definedNotEmpty( stylingCSS.normal.cssRule ) ) {
@@ -950,7 +952,7 @@ class PMLiveCSS {
 									break;
 								case "typography":
 									let typoCSS = this.getTypographyCSS(getPropVal);
-									if( !isEmpty( typoCSS ) ) {
+									if( '' !== typoCSS ) {
 										if( this.definedNotEmpty( typoCSS.cssRule ) ) {
 											cssOrigin += typoCSS.cssRule;
 										}
@@ -960,7 +962,7 @@ class PMLiveCSS {
 									break;
 								case "fonts":
 									let fontsCSS = this.getFontCSS(getPropVal);
-									if( !isEmpty( fontsCSS ) ) {
+									if( '' !== fontsCSS ) {
 										if( this.definedNotEmpty( fontsCSS.cssRule ) ) {
 											cssOrigin += fontsCSS.cssRule;
 										}
@@ -983,20 +985,20 @@ class PMLiveCSS {
 									
 									break;
 								case "normal-background":
-									if( !isEmpty( this.getNormalBackgroundCSS( getPropVal ) ) ) {
+									if( '' !== this.getNormalBackgroundCSS( getPropVal ) ) {
 										cssOrigin += this.getNormalBackgroundCSS( getPropVal );
 									}
 									
 									break;
 								case "gradient-background":
-									if( !isEmpty( this.getGradientBackgroundCSS( getPropVal ) ) ) {
+									if( '' !== this.getGradientBackgroundCSS( getPropVal ) ) {
 										cssOrigin += this.getGradientBackgroundCSS( getPropVal );
 									}
 									
 									break;
 								case "margin":
 								case "padding":
-									if( !isEmpty( this.getCSSRulerCSS( getPropVal, propKey, 'px') ) ) {
+									if( '' !== this.getCSSRulerCSS( getPropVal, propKey, 'px') ) {
 										cssOrigin += this.getCSSRulerCSS( getPropVal, propKey, 'px');
 									}
 									break;
@@ -1006,7 +1008,7 @@ class PMLiveCSS {
 									cssDevices = this.groupCSSByDevice( cssDevices, spacingResponsive );
 									break;
 								case "borderWidth":
-									if( !isEmpty( this.getBorderWidthCSS( getPropVal, 'px' ) ) ) {
+									if( '' !== this.getBorderWidthCSS( getPropVal, 'px' ) ) {
 										cssOrigin += this.getBorderWidthCSS( getPropVal, 'px' );
 									}
 									break;
@@ -1015,24 +1017,24 @@ class PMLiveCSS {
 									cssDevices = this.groupCSSByDevice( cssDevices, borderWidthResponsive );
 									break;
 								case "boxShadow" :
-									if( !isEmpty( this.getBoxShadowCSS( getPropVal ) ) ) {
+									if( '' !== this.getBoxShadowCSS( getPropVal ) ) {
 										cssOrigin += this.getBoxShadowCSS( getPropVal );
 									}
 									break;
 								case "borderBox" : 
-									if( !isEmpty( this.getBorderBoxCSS( getPropVal ) ) ) {
+									if( '' !== this.getBorderBoxCSS( getPropVal ) ) {
 										cssOrigin += this.getBorderBoxCSS( getPropVal );
 									}
 									break;
 								case "borderRadius": 
-									if( !isEmpty( this.getBorderRadiusCSS( getPropVal ) ) ) {
+									if( '' !== this.getBorderRadiusCSS( getPropVal ) ) {
 										cssOrigin += this.getBorderRadiusCSS( getPropVal );
 									}
 									break;
 								default:
 									let otherCSSRule = this.getOtherCSSRule(blockAttr, propKey, propVal);
 									
-									if( !isEmpty( otherCSSRule ) ) {
+									if( '' !== otherCSSRule ) {
 										otherCSSRule = applyFilters( 'pmLiveCSSGetOtherCSSRule', otherCSSRule );
 										cssOrigin += otherCSSRule;
 									}
@@ -1066,7 +1068,7 @@ class PMLiveCSS {
 		for( let i=0; i<blocks.length; i++ ) {
 			let getBlockCSS = this.getBlockCSS( blocks[i] );
 			
-			if( !isEmpty( getBlockCSS ) ) {
+			if( '' !== getBlockCSS ) {
 				let blockKey = Object.keys(getBlockCSS);
 				for( let j=0; j<blockKey.length; j++ ) {
 					blockCSS[blockKey[j]] = getBlockCSS[blockKey[j]];
@@ -1168,7 +1170,7 @@ class PMLiveCSS {
 				let itemFamily = '';
 				if( this.definedNotEmpty(fontItem.family) ) {
 					itemFamily = fontItem.family.replace(' ', '+');
-					if( this.definedNotEmpty(fontItem.variant) && !isEmpty( fontItem.variant ) ) {
+					if( this.definedNotEmpty(fontItem.variant) && '' !== fontItem.variant ) {
 						itemFamily += ':' + fontItem.variant.join(',');
 					}
 					gFontFamily.push(itemFamily);

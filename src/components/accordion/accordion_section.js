@@ -1,6 +1,5 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults } from "lodash";
 const { withInstanceId } = wp.compose;
 
 class AccordionSectionControl extends Component {

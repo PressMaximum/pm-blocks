@@ -1,6 +1,6 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults } from "lodash";
+
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 import './editor.scss';
 const { withInstanceId } = wp.compose;

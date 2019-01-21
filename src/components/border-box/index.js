@@ -1,6 +1,6 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults } from "lodash";
+import PMHelper from '../../helper/helper.js';
 import CSSRulerControl from '../cssruler/index';
 import ColorPickerControl from '../color-picker/index';
 import BoxShadowControl from '../box-shadow/index';
@@ -44,7 +44,8 @@ class BorderBoxControl extends Component {
 			}
 		};
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		const pmHelper = new PMHelper();
+		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 	}
 

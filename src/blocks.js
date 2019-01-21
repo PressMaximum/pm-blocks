@@ -31,18 +31,16 @@ import "./blocks/test-live-css/block.js";
 
 
 import "./extends/blocks.js";
+import PMHelper from './helper/helper.js';
 
-
-
-const {
-	isEmpty, isUndefined, assign
-} = lodash;
 const { hooks } = wp;
 const {
     createHigherOrderComponent,
 } = wp.compose;
 
 const { subscribe } = wp.data;
+
+const pmHelper = new PMHelper();
 
 const MyChange = subscribe( (sub) => {
 	// You could use this opportunity to test whether the derived result of a
@@ -68,7 +66,7 @@ const pmCoreBlockWithUniqueID = [
 ];
 const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
-		if ( !isUndefined(props.name) && (props.name.includes('pm-blocks/') || pmCoreBlockWithUniqueID.includes(props.name)) ) {
+		if ( !pmHelper.isUndefined(props.name) && (props.name.includes('pm-blocks/') || pmCoreBlockWithUniqueID.includes(props.name)) ) {
 			const {
 				attributes,
 				setAttributes,
@@ -79,7 +77,7 @@ const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
 				uniqueID
 			} = attributes;
 	
-			if( isUndefined( uniqueID ) || '' == uniqueID ) {
+			if( pmHelper.isUndefined( uniqueID ) || '' == uniqueID ) {
 				setAttributes( {uniqueID: clientId });
 			}
 			
@@ -129,9 +127,9 @@ wp.hooks.addFilter( 'blocks.registerBlockType', 'pm-blocks/core-blocks/uniqueID'
 
 wp.hooks.addFilter( 'blocks.getSaveElement', 'pm-blocks/modify-get-save-content-extra-props', pmBlockGetSaveElementCB );
 function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
-	if ( (blockType.name.includes( 'pm-blocks/' ) || pmCoreBlockWithUniqueID.includes(blockType.name) ) && !isUndefined(attributes.uniqueID) && '' !== attributes.uniqueID && null !== attributes.uniqueID ) {
+	if ( (blockType.name.includes( 'pm-blocks/' ) || pmCoreBlockWithUniqueID.includes(blockType.name) ) && !pmHelper.isUndefined(attributes.uniqueID) && '' !== attributes.uniqueID && null !== attributes.uniqueID ) {
 		if( pmCoreBlockWithUniqueID.includes(blockType.name) ) {
-			if( null !== element && !isUndefined(element) && !isUndefined(element.props) && !isUndefined( element.props.id ) ) {
+			if( null !== element && !pmHelper.isUndefined(element) && !pmHelper.isUndefined(element.props) && !pmHelper.isUndefined( element.props.id ) ) {
 				element.props.id = undefined; // Should remove exist id to prevent expected error.
 			}
 		}

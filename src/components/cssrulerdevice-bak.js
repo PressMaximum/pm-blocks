@@ -1,5 +1,5 @@
 const { __ } = wp.i18n;
-import { defaults } from "lodash";
+import PMHelper from '../../helper/helper.js';
 const { Component } = wp.element;
 const {
 	TextControl,

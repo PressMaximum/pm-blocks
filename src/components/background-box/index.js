@@ -1,7 +1,8 @@
 import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults, pick } from "lodash";
+
+import PMHelper from '../../helper/helper.js';
 const { SelectControl, IconButton } = wp.components;
 const { withInstanceId } = wp.compose;
 const { MediaUpload, MediaPlaceholder } = wp.editor;
@@ -10,9 +11,11 @@ import ColorPickerControl from "../color-picker/index";
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 export const pmPickRelevantMediaFiles = ( image ) => {
+	const pmHelper = new PMHelper();
 	return {
-		...pick( image, [ 'id', 'url' ] )
-	};
+		id: !pmHelper.isUndefined( image.id ) ? pmHelper: '',
+		url: !pmHelper.isUndefined( image.url ) ? image.url : ''
+	}
 };
 class BackgroundBoxControl extends Component {
 	constructor() {
@@ -33,7 +36,8 @@ class BackgroundBoxControl extends Component {
 			attachment: ''
 		};
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		const pmHelper = new PMHelper();
+		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 		this.onSelectImage = this.onSelectImage.bind(this);
 	}

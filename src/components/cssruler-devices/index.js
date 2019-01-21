@@ -1,6 +1,6 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
-import { defaults } from "lodash";
+import PMHelper from '../../helper/helper.js';
 const { withInstanceId } = wp.compose;
 
 import CSSRulerControl from "../cssruler/index";
@@ -93,7 +93,8 @@ class CSSRulerDevices extends Component {
 		
 
 		//Set state
-		this.state = defaults(this.props.value, default_value);
+		const pmHelper = new PMHelper();
+		this.state = pmHelper.defaults(this.props.value, default_value);
 
 		this.onCSSRulerChange = this.onCSSRulerChange.bind(this);
 		this.onDeviceSelected = this.onDeviceSelected.bind(this);
