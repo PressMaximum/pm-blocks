@@ -3,6 +3,7 @@ const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 import './editor.scss';
 import PMHelper from '../../helper/helper.js';
+const pmHelper = new PMHelper();
 import FontsControl from "../fonts/index";
 import icons from "./icons";
 import RangeDevicesControl from "../rangecontrol-devices/index";
@@ -44,7 +45,7 @@ class TypographyDropdownControl extends Component {
 			isVisible: false,
 		};
 		//Set state
-		pmHelper = new PMHelper();
+		
 		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 

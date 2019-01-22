@@ -9,7 +9,7 @@ const { withInstanceId } = wp.compose;
 var devicesSettings, pmCurrentDevice;
 import PMHelper from '../../helper/helper.js';
 const pmHelper = new PMHelper();
-
+var pmClickToTab = 0;
 class ResponsiveDevices extends Component {
 	constructor() {
 		super(...arguments);
@@ -17,12 +17,13 @@ class ResponsiveDevices extends Component {
 
 		if( devicesSettings[0]['name'] ) {
 			this.state = {
-				tab_selected : devicesSettings[0]['name']
+				//tab_selected : devicesSettings[0]['name']
+				tab_selected: pmCurrentDevice
 			};
 		}
 
 		this.onTabSelect = this.onTabSelect.bind(this);
-
+		this.toggleDevice = this.toggleDevice.bind(this);
 		
 	} 
 
@@ -90,14 +91,34 @@ class ResponsiveDevices extends Component {
 
 	toggleDevice( value ) {
 		pmCurrentDevice = value;
+		/** Try toggle device */
 		let deviceBtnClass = '.cssruler-'+value+'-tab';
 		if( 'desktop' === value ) {
 			deviceBtnClass = '.cssruler-desk-tab';
 		}
 		const mobileTabEl = document.querySelectorAll( deviceBtnClass );
-		pmHelper.map(mobileTabEl, (value, index) => {
-			value.click();
-		});
+		console.log('mobileTabEl: ', mobileTabEl);
+		console.log('mobileTabEl length: ', mobileTabEl.length);
+
+		if( mobileTabEl.length > 0 ) {
+			console.log('can loop');
+			for( let i=0; i<mobileTabEl.length; i++ ) {
+				let val = mobileTabEl[i];
+				if( !val.classList.contains( 'active-tab' ) ) {
+					if( pmClickToTab <= (mobileTabEl.length*mobileTabEl.length) ) {
+						console.log('val: ', val);
+						val.click();
+						pmClickToTab++;
+					}
+				}
+			}
+			
+		} else {
+			console.log('can not loop');
+		}
+		/** End Try toggle device */
+
+
 
 		const bodyClassList = document.querySelector('body').classList;
 		let listDevice = this.getDevicesSetting();
@@ -133,18 +154,20 @@ class ResponsiveDevices extends Component {
 		}
 		parentProps['parentStates'] = this.state;
 		var childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, parentProps));
-	
+		console.log('pmClickToTab: ',pmClickToTab);
 		return (
 			<TabPanel id={id} className="responsive-devices-wrap" {...props}
 				activeClass="active-tab"
 				onSelect={ this.onTabSelect }
-				initialTabName={ pmCurrentDevice }
+				initialTabName={ this.state.tab_selected }
+				
 				tabs={ devicesSettings }>
 				{
 					( tab ) => <div className="devices-content">{childrenWithProps}</div>
 				}
 			</TabPanel>
 		);
+		
 	}
 }
 

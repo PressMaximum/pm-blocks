@@ -27,7 +27,7 @@ import PMLiveCSS from "./helper/live-css";
 //import "./blocks/icon-picker/block.js";
 //import "./blocks/custom-heading/block.js";
 import "./blocks/test-live-css/block.js";
-//import "./blocks/test/block.js";
+import "./blocks/test-components/block.js";
 
 
 import "./extends/blocks.js";

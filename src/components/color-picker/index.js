@@ -47,6 +47,10 @@ class ColorPickerControl extends Component {
 		this.setState({
 			isVisible: true
 		});
+		/**
+		this.setState( (state) => {
+			return {isVisible: !state.isVisible};
+		});**/
 	}
 
 	clickOutsidePopover() {

@@ -44,6 +44,9 @@ class PMHelper{
 	}
 
 	mapObject(object, iteratee) {
+		if( this.isUndefined(object) || null === object ) {
+			return;
+		}
 		const props = Object.keys(object)
 		const result = new Array(props.length)
 		
