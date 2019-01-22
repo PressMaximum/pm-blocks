@@ -166,17 +166,6 @@ class CSSRulerDevices extends Component {
 		};
 
 		this.setState({ input_value: new_value_state });
-
-		
-		let deviceBtnClass = '.cssruler-'+value+'-tab';
-		if( 'desktop' === value ) {
-			deviceBtnClass = '.cssruler-desk-tab';
-		}
-		const mobileTabEl = document.querySelectorAll( deviceBtnClass );
-		pmHelper.map(mobileTabEl, (value, index) => {
-			value.click();
-		});
-		
 	}
 
 	render() {

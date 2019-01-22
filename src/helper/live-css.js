@@ -1092,7 +1092,6 @@ class PMLiveCSS {
 			for( let j=0;j<targetSelectorKeys.length; j++ ) {
 				let targetSelectorKey = targetSelectorKeys[j];
 				let targetCSSData = targetSelector[targetSelectorKey];
-
 				if( this.definedNotEmpty( targetCSSData.css ) ) {
 					cssAll.push( `${targetSelectorKey} { ${targetCSSData.css} }` );
 				}
@@ -1101,13 +1100,13 @@ class PMLiveCSS {
 					if( this.definedNotEmpty( targetCSSData.responsive.desktop ) ) {
 						cssDesktop.push( `${targetSelectorKey} { ${targetCSSData.responsive.desktop} }` );
 					}
-
 					if( this.definedNotEmpty( targetCSSData.responsive.mobile ) ) {
 						cssMobile.push( `${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
+						cssAll.push( `.post-php.mobile ${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
 					}
-
 					if( this.definedNotEmpty( targetCSSData.responsive.tablet ) ) {
 						cssTablet.push( `${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
+						cssAll.push( `.post-php.tablet ${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
 					}
 				}
 			}
@@ -1149,11 +1148,9 @@ class PMLiveCSS {
 
 	getBlockOutputCSS( allBlocks, selectedBlock ) {
 		let allBlocksCSS = this.getAllBlocksCSS( allBlocks );
-		
-		let blockChangedCSS = this.getBlockCSS( selectedBlock );
+		//let blockChangedCSS = this.getBlockCSS( selectedBlock );
 		let readableCSS = this.getReadableCSS( allBlocksCSS );
 		let runableCSS = this.getRunableCSS( readableCSS );
-
 		return applyFilters( 'pmLiveCSSGetBlockOutputCSS', runableCSS, allBlocks, selectedBlock );
 	}
 

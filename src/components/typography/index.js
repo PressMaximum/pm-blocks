@@ -1,6 +1,7 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import PMHelper from '../../helper/helper.js';
+const pmHelper = new PMHelper();
 import FontsControl from "../fonts/index";
 import RangeDevicesControl from "../rangecontrol-devices/index";
 const { SelectControl } = wp.components;
@@ -37,7 +38,7 @@ class TypographyControl extends Component {
 			text_transform: ""
 		};
 		//Set state
-		pmHelper = new PMHelper();
+		
 		this.state = pmHelper.defaults(this.props.value, default_value);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 	}

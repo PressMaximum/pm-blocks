@@ -6,7 +6,10 @@ const {
 	Dashicon,
 } = wp.components;
 const { withInstanceId } = wp.compose;
-var devicesSettings;
+var devicesSettings, pmCurrentDevice;
+import PMHelper from '../../helper/helper.js';
+const pmHelper = new PMHelper();
+
 class ResponsiveDevices extends Component {
 	constructor() {
 		super(...arguments);
@@ -19,6 +22,8 @@ class ResponsiveDevices extends Component {
 		}
 
 		this.onTabSelect = this.onTabSelect.bind(this);
+
+		
 	} 
 
 	getDevicesSetting() {
@@ -80,7 +85,32 @@ class ResponsiveDevices extends Component {
 			tab_selected: value
 		});
 		this.props.onDeviceSelected( value );
+		this.toggleDevice( value );
 	}
+
+	toggleDevice( value ) {
+		pmCurrentDevice = value;
+		let deviceBtnClass = '.cssruler-'+value+'-tab';
+		if( 'desktop' === value ) {
+			deviceBtnClass = '.cssruler-desk-tab';
+		}
+		const mobileTabEl = document.querySelectorAll( deviceBtnClass );
+		pmHelper.map(mobileTabEl, (value, index) => {
+			value.click();
+		});
+
+		const bodyClassList = document.querySelector('body').classList;
+		let listDevice = this.getDevicesSetting();
+		let listDeviceClass = [];
+		pmHelper.map( listDevice, (val, index) => {
+			if( !pmHelper.isUndefined(val.name) ) {
+				listDeviceClass.push( val.name );
+			}
+		});
+		bodyClassList.remove( ...listDeviceClass);
+		bodyClassList.add(value);
+	}
+
 
 	render() {
 		const {
@@ -103,11 +133,12 @@ class ResponsiveDevices extends Component {
 		}
 		parentProps['parentStates'] = this.state;
 		var childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, parentProps));
-		
+	
 		return (
 			<TabPanel id={id} className="responsive-devices-wrap" {...props}
 				activeClass="active-tab"
 				onSelect={ this.onTabSelect }
+				initialTabName={ pmCurrentDevice }
 				tabs={ devicesSettings }>
 				{
 					( tab ) => <div className="devices-content">{childrenWithProps}</div>
