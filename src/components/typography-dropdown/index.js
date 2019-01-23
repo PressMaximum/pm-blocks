@@ -54,7 +54,7 @@ class TypographyDropdownControl extends Component {
 		
 	}
 
-	openPopover() {
+	openPopover(e) {
 		this.setState({
 			isVisible: true
 		});
@@ -123,9 +123,9 @@ class TypographyDropdownControl extends Component {
 		const BlockTypographyDropdown = () => (
 			<Fragment>
 				<IconButton
-					className="components-dropdown-menu__toggle"
+					className="components-dropdown-menu__toggle click-to-open"
 					icon={ icons.typography }
-					onClick={ this.openPopover }
+					onClick={ (e) => this.openPopover(e) }
 					aria-haspopup="true"
 					aria-expanded={ this.state.isVisible }
 					label={ __("Typography dropdown") }

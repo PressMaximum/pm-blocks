@@ -31,6 +31,10 @@ class PMHelper{
 	isUndefined(value) {
 		return value === undefined
 	}
+
+	notUndefinedNull( value ) {
+		return this.isUndefined(value) && null !== value;
+	}
 	
 	map(array, iteratee) {
 		let index = -1

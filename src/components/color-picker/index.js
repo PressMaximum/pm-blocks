@@ -56,7 +56,7 @@ class ColorPickerControl extends Component {
 		}
 	}
 
-	clickOutsidePopover() {
+	clickOutsidePopover( e ) {
 		this.setState({
 			isVisible: false
 		});
@@ -90,7 +90,7 @@ class ColorPickerControl extends Component {
 					<div className="color-picker-wrap">
 						<div className="color-picker-preview click-to-open" onClick={ (e) => this.openColorPicker( e )} style={colorpicker_bg}></div>
 						{this.state.isVisible && (
-							<Popover onClickOutside={this.clickOutsidePopover}>
+							<Popover onClickOutside={ (e) => this.clickOutsidePopover( e )}>
 								<ColorPicker
 									color={this.state.hex}
 									onChangeComplete={ this.onChangeComplete }

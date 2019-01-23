@@ -134,7 +134,7 @@ registerBlockType( 'pm-blocks/test-components', {
 
 						<IconPickerControl value={icon_picker} label={__("Icon Picker")} onIconChange={(new_value) => {setAttributes({icon_picker:new_value}); }}/>
 
-						<RangeDevicesControl value={rangecontrol_devices} label={__("Range Control Devices")} onCSSRulerDevicesChange={(new_value) => { setAttributes({rangecontrol_devices: new_value});}}/>
+						<RangeDevicesControl value={rangecontrol_devices} label={__("Range Control Devices")} onRangeDeviceChange={(new_value) => { setAttributes({rangecontrol_devices: new_value});}}/>
 
 						<StylingControl value={styling} label={__("Styling")} onStylingChange={(new_value) => {setAttributes({styling:new_value}); }}/>
 

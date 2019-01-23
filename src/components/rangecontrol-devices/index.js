@@ -15,7 +15,6 @@ class RangeDevicesControl extends Component {
 			value: '',
 			value_tablet: '',
 			value_mobile: '',
-
 			current_tab: 'desktop',
 			input_value: '',
 		};
@@ -105,6 +104,7 @@ class RangeDevicesControl extends Component {
 			onRangeDeviceChange,
 			...props
 		} = this.props;
+		
 		const id = `range-devices-control-${instanceId}`;
 		let wraperClassName = "range-devices-control";
 		if ("undefined" != typeof className) {

@@ -50,7 +50,7 @@ const MyChange = subscribe( (sub) => {
 	if (editor.hasChangedContent() && !editor.isTyping()) {
 		const blocks = editor.getBlocks();
 		const selectedBlock = editor.getSelectedBlock();
-		console.log('all blocks changed: ', blocks);
+		//console.log('all blocks changed: ', blocks);
 		let pmLiveCSS = new PMLiveCSS();
 		// Add style tag.
 		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );

@@ -10,6 +10,7 @@ var devicesSettings, pmSelectedTab;
 import {NavigableMenuControl} from "./navigable-container.js";
 import PMHelper from '../../helper/helper.js';
 const pmHelper = new PMHelper();
+const closest = require('dom-closest');
 
 const TabButtonControl = ( { tabId, onClick, onFocus, children, selected, ...rest } ) => (
 	<button role="tab"
@@ -73,6 +74,8 @@ class TabPanelControl extends Component {
 		this.setState( {
 			selected: tabKey,
 		} );
+		const { onTabFocus } = this.props;
+		onTabFocus( tabKey );
 	}
   
 
@@ -131,6 +134,8 @@ class TabPanelControl extends Component {
 	}
 }
 
+const TabPanelControlWithInstanceId = withInstanceId( TabPanelControl );
+
 class ResponsiveDevices extends Component {
 	constructor() {
 		super(...arguments);
@@ -143,6 +148,7 @@ class ResponsiveDevices extends Component {
 		}
 		this.onTabSelect = this.onTabSelect.bind(this);
 		this.toggleDevice = this.toggleDevice.bind(this);
+		this.onTabFocus = this.onTabFocus.bind(this);
 		pmSetDeviceTabState = pmSetDeviceTabState.bind(this);
 	} 
 
@@ -209,6 +215,10 @@ class ResponsiveDevices extends Component {
 		this.toggleDevice( value );
 	}
 
+	onTabFocus( value ) {
+		this.props.onDeviceSelected( value );
+	}
+
 	toggleDevice( value ) {
 		const bodyClassList = document.querySelector('body').classList;
 		let listDevice = this.getDevicesSetting();
@@ -221,18 +231,39 @@ class ResponsiveDevices extends Component {
 		bodyClassList.remove( ...listDeviceClass);
 		bodyClassList.add(value);
 
-
+		// Try toggle all tabs to one device.
 		let deviceBtnClass = '.cssruler-'+value+'-tab';
 		if( 'desktop' === value ) {
 			deviceBtnClass = '.cssruler-desk-tab';
 		}
 		const mobileTabEl = document.querySelectorAll( deviceBtnClass );
+		let selectedTabNav = null;
 		if( mobileTabEl.length > 0 ) {
 			for( let i=0; i<mobileTabEl.length; i++ ) {
 				let val = mobileTabEl[i];
-				val.focus();
+				
+				if( val.classList.contains('active-tab') ) {
+					selectedTabNav = val;
+				} else {
+					val.focus();
+				}
 			}
-			
+		}
+		if( null !== selectedTabNav ) {
+			let parentWrap = closest( selectedTabNav, '.responsive-devices-wrap' );
+			if( null !== parentWrap ) {
+				let inputNumber = parentWrap.querySelector( '.components-range-control__number' );
+				let inputTop = parentWrap.querySelector( '.cssruler-top' );
+				if( null !== inputNumber ) {
+					inputNumber.focus();
+				} else if( null !== inputTop ) {
+					inputTop.focus();
+				} else {
+					selectedTabNav.focus();
+				}
+			}else{
+				selectedTabNav.focus();
+			}
 		}
 	}
 
@@ -260,15 +291,16 @@ class ResponsiveDevices extends Component {
 		var childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, parentProps));
 		
 		return (
-			<TabPanelControl id={id} className="responsive-devices-wrap" {...props}
+			<TabPanelControlWithInstanceId id={id} className="responsive-devices-wrap" {...props}
 				activeClass="active-tab"
 				onSelect={ this.onTabSelect }
+				onTabFocus={ this.onTabFocus }
 				initialTabName={ pmSelectedTab }
 				tabs={ devicesSettings }>
 				{
 					( tab ) => <div className="devices-content">{childrenWithProps}</div>
 				}
-			</TabPanelControl>
+			</TabPanelControlWithInstanceId>
 		);
 	}
 }

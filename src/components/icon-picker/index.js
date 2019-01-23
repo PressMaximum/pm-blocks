@@ -29,7 +29,7 @@ class IconPickerControl extends Component {
 					if( Array.isArray( icon_keys ) && icon_keys.length > 0 ) {
 						for( let i=0; i<icon_keys.length; i++ ) {
 							let icon_item = icon_data[icon_keys[i]];
-							if( !pmHelper.isUndefined( icon_item ) && !pmHelper.isUndefined( icon_item.name ) && !pmHelper.isUndefined( icon_item.icons ) ) {
+							if( !pmHelper.notUndefinedNull( icon_item ) && !pmHelper.notUndefinedNull( icon_item.name ) && !pmHelper.notUndefinedNull( icon_item.icons ) ) {
 								icons[ icon_item.name ] = icon_item.icons;
 							}
 						}
