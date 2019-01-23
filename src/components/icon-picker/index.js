@@ -5,6 +5,9 @@ import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 import './editor.scss';
 const { withInstanceId } = wp.compose;
 
+import PMHelper from '../../helper/helper.js';
+const pmHelper = new PMHelper();
+
 class IconPickerControl extends Component {
 	constructor() {
 		super(...arguments);
@@ -22,18 +25,16 @@ class IconPickerControl extends Component {
 				result => {
 					let icon_data = result.data;
 					let icons = {};
-
 					let icon_keys = Object.keys(icon_data);
 					if( Array.isArray( icon_keys ) && icon_keys.length > 0 ) {
 						for( let i=0; i<icon_keys.length; i++ ) {
 							let icon_item = icon_data[icon_keys[i]];
-							
-							icons[ icon_item.name ] = icon_item.icons;
+							if( !pmHelper.isUndefined( icon_item ) && !pmHelper.isUndefined( icon_item.name ) && !pmHelper.isUndefined( icon_item.icons ) ) {
+								icons[ icon_item.name ] = icon_item.icons;
+							}
 						}
 					}
-				
 					this.setState({ list_icons: icons });
-					
 				},
 				error => {
 					console.log(__("Fail to load list fonts"));

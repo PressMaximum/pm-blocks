@@ -6,10 +6,131 @@ const {
 	Dashicon,
 } = wp.components;
 const { withInstanceId } = wp.compose;
-var devicesSettings, pmCurrentDevice;
+var devicesSettings, pmSelectedTab;
+import {NavigableMenuControl} from "./navigable-container.js";
 import PMHelper from '../../helper/helper.js';
 const pmHelper = new PMHelper();
-var pmClickToTab = 0;
+
+const TabButtonControl = ( { tabId, onClick, onFocus, children, selected, ...rest } ) => (
+	<button role="tab"
+		tabIndex={ selected ? null : -1 }
+		aria-selected={ selected }
+		id={ tabId }
+		onClick={ onClick }
+		onFocus={ onFocus }
+		{ ...rest }
+	>
+		{ children }
+	</button>
+);
+
+function pmSetTabState( tab ){
+	this.setState({
+		selected: tab
+	});
+	pmSelectedTab = tab;
+}
+
+function pmSetDeviceTabState( tab ){
+	this.setState({
+		tab_selected: tab
+	});
+	pmSelectedTab = tab;
+}
+
+class TabPanelControl extends Component {
+	constructor() {
+		super( ...arguments );
+		const { tabs, initialTabName } = this.props;
+
+		this.handleClick = this.handleClick.bind( this );
+		this.onNavigate = this.onNavigate.bind( this );
+
+		this.state = {
+			selected: pmSelectedTab || initialTabName || ( tabs.length > 0 ? tabs[ 0 ].name : null ),
+		};
+
+		pmSetTabState = pmSetTabState.bind(this);
+		this.handleFocus = this.handleFocus.bind(this);
+	}
+
+	handleClick( e, tabKey ) {
+		e.preventDefault();
+		pmSelectedTab = tabKey;
+		const { onSelect } = this.props;
+		this.setState( {
+			selected: tabKey,
+		} );
+		onSelect( tabKey );
+		pmSetDeviceTabState( tabKey );
+	}
+
+	onNavigate( childIndex, child ) {
+		child.click();
+	}
+
+	handleFocus( e, tabKey ) {
+		this.setState( {
+			selected: tabKey,
+		} );
+	}
+  
+
+	render() {
+		const { selected } = this.state;
+		const {
+			activeClass = 'is-active',
+			className,
+			instanceId,
+			orientation = 'horizontal',
+			tabs,
+		} = this.props;
+
+		let selectedTab = {};
+		pmHelper.mapObject(tabs, (tabData, index) => {
+			if( tabData.name === selected ) {
+				selectedTab = tabData;
+			}
+		});
+		
+		const selectedId = instanceId + '-' + selectedTab.name;
+		return (
+			<div className={ className }>
+				<NavigableMenuControl
+					role="tablist"
+					orientation={ orientation }
+					onNavigate={ this.onNavigate }
+					className="components-tab-panel__tabs"
+				>
+					{ tabs.map( ( tab ) => (
+						<TabButtonControl className={ `${ tab.className } ${ tab.name === selected ? activeClass : '' }` }
+							tabId={ instanceId + '-' + tab.name }
+							aria-controls={ instanceId + '-' + tab.name + '-view' }
+							selected={ tab.name === selected }
+							key={ tab.name }
+							onClick={ (e) => this.handleClick( e, tab.name ) }
+							onFocus={ (e) => this.handleFocus( e, tab.name ) }
+						>
+							{ tab.title }
+						</TabButtonControl>
+					) ) }
+				</NavigableMenuControl>
+				
+				{ selectedTab && (
+					<div aria-labelledby={ selectedId }
+						role="tabpanel"
+						id={ selectedId + '-view' }
+						className="components-tab-panel__tab-content"
+						tabIndex="0"
+					>
+						{ this.props.children( Object.assign( new String( selectedTab.name ), selectedTab ) ) }
+					</div>
+				) }
+			</div>
+		);
+	}
+}
+
 class ResponsiveDevices extends Component {
 	constructor() {
 		super(...arguments);
@@ -17,14 +138,12 @@ class ResponsiveDevices extends Component {
 
 		if( devicesSettings[0]['name'] ) {
 			this.state = {
-				//tab_selected : devicesSettings[0]['name']
-				tab_selected: pmCurrentDevice
+				tab_selected : devicesSettings[0]['name']
 			};
 		}
-
 		this.onTabSelect = this.onTabSelect.bind(this);
 		this.toggleDevice = this.toggleDevice.bind(this);
-		
+		pmSetDeviceTabState = pmSetDeviceTabState.bind(this);
 	} 
 
 	getDevicesSetting() {
@@ -85,41 +204,12 @@ class ResponsiveDevices extends Component {
 		this.setState({
 			tab_selected: value
 		});
+		pmSetTabState( value );
 		this.props.onDeviceSelected( value );
 		this.toggleDevice( value );
 	}
 
 	toggleDevice( value ) {
-		pmCurrentDevice = value;
-		/** Try toggle device */
-		let deviceBtnClass = '.cssruler-'+value+'-tab';
-		if( 'desktop' === value ) {
-			deviceBtnClass = '.cssruler-desk-tab';
-		}
-		const mobileTabEl = document.querySelectorAll( deviceBtnClass );
-		console.log('mobileTabEl: ', mobileTabEl);
-		console.log('mobileTabEl length: ', mobileTabEl.length);
-
-		if( mobileTabEl.length > 0 ) {
-			console.log('can loop');
-			for( let i=0; i<mobileTabEl.length; i++ ) {
-				let val = mobileTabEl[i];
-				if( !val.classList.contains( 'active-tab' ) ) {
-					if( pmClickToTab <= (mobileTabEl.length*mobileTabEl.length) ) {
-						console.log('val: ', val);
-						val.click();
-						pmClickToTab++;
-					}
-				}
-			}
-			
-		} else {
-			console.log('can not loop');
-		}
-		/** End Try toggle device */
-
-
-
 		const bodyClassList = document.querySelector('body').classList;
 		let listDevice = this.getDevicesSetting();
 		let listDeviceClass = [];
@@ -130,6 +220,20 @@ class ResponsiveDevices extends Component {
 		});
 		bodyClassList.remove( ...listDeviceClass);
 		bodyClassList.add(value);
+
+
+		let deviceBtnClass = '.cssruler-'+value+'-tab';
+		if( 'desktop' === value ) {
+			deviceBtnClass = '.cssruler-desk-tab';
+		}
+		const mobileTabEl = document.querySelectorAll( deviceBtnClass );
+		if( mobileTabEl.length > 0 ) {
+			for( let i=0; i<mobileTabEl.length; i++ ) {
+				let val = mobileTabEl[i];
+				val.focus();
+			}
+			
+		}
 	}
 
 
@@ -154,20 +258,20 @@ class ResponsiveDevices extends Component {
 		}
 		parentProps['parentStates'] = this.state;
 		var childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, parentProps));
-		console.log('pmClickToTab: ',pmClickToTab);
+		
+		console.log('pmClickToTab: ',pmSelectedTab);
+		
 		return (
-			<TabPanel id={id} className="responsive-devices-wrap" {...props}
+			<TabPanelControl id={id} className="responsive-devices-wrap" {...props}
 				activeClass="active-tab"
 				onSelect={ this.onTabSelect }
-				initialTabName={ this.state.tab_selected }
-				
+				initialTabName={ pmSelectedTab }
 				tabs={ devicesSettings }>
 				{
 					( tab ) => <div className="devices-content">{childrenWithProps}</div>
 				}
-			</TabPanel>
+			</TabPanelControl>
 		);
-		
 	}
 }
 
