@@ -43,14 +43,17 @@ class ColorPickerControl extends Component {
 		}
 	}
 
-	openColorPicker() {
-		this.setState({
-			isVisible: true
-		});
-		/**
-		this.setState( (state) => {
-			return {isVisible: !state.isVisible};
-		});**/
+	openColorPicker( e ) {
+		let target = e.target;
+		if ( target.classList.contains( 'click-to-open' ) ) {
+			target.classList.remove('click-to-open');
+			target.classList.add('click-to-close');
+			this.setState( {isVisible: true });
+		} else {
+			target.classList.remove('click-to-close');
+			target.classList.add('click-to-open');
+			this.setState( {isVisible: false });
+		}
 	}
 
 	clickOutsidePopover() {
@@ -85,18 +88,17 @@ class ColorPickerControl extends Component {
 						<span className="control-label">{label}</span>
 					)}
 					<div className="color-picker-wrap">
-						<div className="color-picker-preview" onClick={this.openColorPicker} style={colorpicker_bg}>
-							{this.state.isVisible && (
-								<Popover onClickOutside={this.clickOutsidePopover}>
-									<ColorPicker
-										color={this.state.hex}
-										onChangeComplete={ this.onChangeComplete }
-										disableHSL
-										disableAlpha={disableAlpha}
-									/>
-								</Popover>
-							)}
-						</div>
+						<div className="color-picker-preview click-to-open" onClick={ (e) => this.openColorPicker( e )} style={colorpicker_bg}></div>
+						{this.state.isVisible && (
+							<Popover onClickOutside={this.clickOutsidePopover}>
+								<ColorPicker
+									color={this.state.hex}
+									onChangeComplete={ this.onChangeComplete }
+									disableHSL
+									disableAlpha={disableAlpha}
+								/>
+							</Popover>
+						)}
 					</div>
 				</div>
 			</div>
