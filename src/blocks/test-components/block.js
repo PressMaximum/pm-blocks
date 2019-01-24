@@ -11,6 +11,7 @@ import BackgroundGroupControl from '../../components/background-group/index';
 import BorderBoxControl from '../../components/border-box/index';
 import BoxShadowControl from '../../components/box-shadow/index';
 import ColorPickerControl from '../../components/color-picker/index';
+
 import CSSRulerControl from '../../components/cssruler/index';
 import CSSRulerDevices from '../../components/cssruler-devices/index';
 import FontsControl from '../../components/fonts/index';
@@ -47,6 +48,9 @@ registerBlockType( 'pm-blocks/test-components', {
 			type: 'object'
 		},
 		color_picker: {
+			type: 'object'
+		},
+		color_palette: {
 			type: 'object'
 		},
 		css_ruler: {
@@ -86,6 +90,7 @@ registerBlockType( 'pm-blocks/test-components', {
 			border_box,
 			box_shadow,
 			color_picker,
+			color_palette,
 			css_ruler,
 			cssruler_devices,
 			fonts,

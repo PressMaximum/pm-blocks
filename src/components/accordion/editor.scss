@@ -1,3 +1,9 @@
+.accordion-control{
+	> .control-label{
+		display:block;
+		margin-bottom: 10px;
+	}
+}
 .accordion-section-control {
 	.accoridion-section-header {
 		background-color: #f3f4f5;

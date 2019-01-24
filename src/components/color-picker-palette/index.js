@@ -2,8 +2,13 @@ import './editor.scss';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 import PMHelper from '../../helper/helper.js';
-const { Popover, ColorPicker } = wp.components;
+const { Popover, ColorPicker, ColorPalette } = wp.components;
 const { withInstanceId } = wp.compose;
+
+const {
+	PanelColorSettings
+} = wp.editor;
+
 
 class ColorPickerPaletteControl extends Component {
 	constructor() {
@@ -28,9 +33,10 @@ class ColorPickerPaletteControl extends Component {
 		this.openColorPicker = this.openColorPicker.bind(this);
 		this.clickOutsidePopover = this.clickOutsidePopover.bind(this);
 		this.onChangeComplete = this.onChangeComplete.bind(this);
+		this.onColorPaletteChange = this.onColorPaletteChange.bind(this);
 	}
 
-	onChangeComplete( value ) {
+	onChangeComplete( value  ) {
 		let new_color = {
 			rgba: value.rgb,
 			hex: value.hex
@@ -43,18 +49,54 @@ class ColorPickerPaletteControl extends Component {
 		}
 	}
 
-
-	openColorPicker() {
-		this.setState({
-			isVisible: true
-		});
+	hexToRgb(hex) {
+		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		return result ? {
+			r: parseInt(result[1], 16),
+			g: parseInt(result[2], 16),
+			b: parseInt(result[3], 16),
+			a: 1
+		} : {
+			r: 255,
+			g: 255,
+			b: 255,
+			a: 1
+		};
 	}
 
-	clickOutsidePopover() {
+	onColorPaletteChange( value ) {
+		let new_color = {
+			rgba: this.hexToRgb( value ),
+			hex: value
+		};
+
+		this.setState(new_color);
+
+		if( 'function' === typeof( this.props.onColorChangeComplete ) ) {
+			this.props.onColorChangeComplete( new_color );
+		}
+	}
+
+	openColorPicker( e ) {
+		let target = e.target;
+		if ( target.classList.contains( 'click-to-open' ) ) {
+			target.classList.remove('click-to-open');
+			target.classList.add('click-to-close');
+			this.setState( {isVisible: true });
+		} else {
+			target.classList.remove('click-to-close');
+			target.classList.add('click-to-open');
+			this.setState( {isVisible: false });
+		}
+	}
+
+	clickOutsidePopover( e ) {
 		this.setState({
 			isVisible: false
 		});
 	}
+
+	
 
 	render() {
 		const {
@@ -64,6 +106,7 @@ class ColorPickerPaletteControl extends Component {
 			instanceId,
 			onColorChangeComplete,
 			disableAlpha,
+
 			...props
 		} = this.props;
 		const id = `color-picker-${instanceId}`;
@@ -73,7 +116,11 @@ class ColorPickerPaletteControl extends Component {
 		}
 
 		let colorpicker_bg = {backgroundColor: `rgba(${this.state.rgba.r}, ${this.state.rgba.g}, ${this.state.rgba.b}, ${this.state.rgba.a})`};
-	
+		let editorColor = wp.data.select("core/editor").getEditorSettings();
+
+		console.log('editorColor: ', editorColor);
+
+		const colors = editorColor.colors;
 
 		return (
 			<div className={wraperClassName} id={id} {...props}>
@@ -82,18 +129,25 @@ class ColorPickerPaletteControl extends Component {
 						<span className="control-label">{label}</span>
 					)}
 					<div className="color-picker-wrap">
-						<div className="color-picker-preview" onClick={this.openColorPicker} style={colorpicker_bg}>
-							{this.state.isVisible && (
-								<Popover onClickOutside={this.clickOutsidePopover}>
-									<ColorPicker
-										color={this.state.hex}
-										onChangeComplete={ this.onChangeComplete }
-										disableHSL
-										disableAlpha={disableAlpha}
-									/>
-								</Popover>
-							)}
-						</div>
+						<div className="color-picker-preview click-to-open" onClick={ (e) => this.openColorPicker( e )} style={colorpicker_bg}></div>
+						{this.state.isVisible && (
+							<Popover onClickOutside={ (e) => this.clickOutsidePopover( e )}>
+								<ColorPicker
+									color={this.state.hex}
+									onChangeComplete={ this.onChangeComplete }
+									disableHSL
+									disableAlpha={disableAlpha}
+								/>
+
+								<ColorPalette
+									className="color-picker-palette editor-color-palette-control__color-palette"
+									value={ "#0073a8" }
+									onChange={ this.onChangeComplete }
+									colors={colors}
+									disableCustomColors={true}
+								/>
+							</Popover>
+						)}
 					</div>
 				</div>
 			</div>
@@ -102,7 +156,3 @@ class ColorPickerPaletteControl extends Component {
 }
 
 export default withInstanceId(ColorPickerPaletteControl);
-/**
- * Using
- * <ColorPickerPaletteControl value={rgba:'', hex: ''} onColorChangeComplete={(new_color) => console.log('new color: ', new_color)} />
- */

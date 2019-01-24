@@ -30,6 +30,17 @@
     width: 36px;
     height: 14px;
     border-radius: 2px; }
+
+.color-picker-palette {
+  padding-left: 16px;
+  padding-top: 5px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  overflow: hidden; }
+  .color-picker-palette.components-color-palette {
+    margin-right: 0; }
+  .color-picker-palette .components-color-palette__clear {
+    display: none; }
 /**
  * #.# Common SCSS
  *
@@ -374,6 +385,10 @@
 .has-label .control-label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
+
+.accordion-control > .control-label {
+  display: block;
+  margin-bottom: 10px; }
 
 .accordion-section-control .accoridion-section-header {
   background-color: #f3f4f5;

@@ -28,6 +28,7 @@ import PMLiveCSS from "./helper/live-css";
 //import "./blocks/custom-heading/block.js";
 import "./blocks/test-live-css/block.js";
 import "./blocks/test-components/block.js";
+import "./blocks/test-components/color-picker.js";
 
 
 import "./extends/blocks.js";

@@ -33,7 +33,7 @@ class PMHelper{
 	}
 
 	notUndefinedNull( value ) {
-		return this.isUndefined(value) && null !== value;
+		return( !this.isUndefined(value) && null !== value );
 	}
 	
 	map(array, iteratee) {
@@ -58,6 +58,30 @@ class PMHelper{
 			result[index] = iteratee(object[key], key, object)
 		})
 		return result
+	}
+
+	uniqueID(){
+		function chr4() {
+			return Math.random()
+				.toString(16)
+				.slice(-4);
+		}
+		let date = new Date();
+		return (
+			chr4() +
+			chr4() +
+			"-" +
+			chr4() +
+			"-" +
+			chr4() +
+			"-" +
+			chr4() +
+			"-" +
+			chr4() +
+			chr4() +
+			chr4() + 
+			"_" + date.getTime()
+		);
 	}
 
 }

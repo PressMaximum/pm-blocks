@@ -41,46 +41,76 @@ class PM_Blocks_Fonts {
 	 * @return array
 	 */
 	public function get_normal_fonts() {
+		$font_variants = array(
+			'100',
+			'100italic',
+			'200',
+			'200italic',
+			'300',
+			'300italic',
+			'regular',
+			'italic',
+			'500',
+			'500italic',
+			'600',
+			'600italic',
+			'700',
+			'700italic',
+			'800',
+			'800italic',
+			'900',
+			'900italic',
+		);
 		$fonts = array(
 			'Arial' => array(
 				'family' => 'Arial',
 				'category' => 'sans-serif',
+				//'variants' => $font_variants,
 			),
 			'Baskerville' => array(
 				'family' => 'Baskerville',
 				'category' => 'serif',
+				//'variants' => $font_variants,
 			),
 			'Palatino' => array(
 				'family' => 'Palatino',
 				'category' => 'serif',
+				//'variants' => $font_variants,
 			),
 			'Bodoni MT' => array(
 				'family' => 'Bodoni MT',
 				'category' => 'serif',
+				//'variants' => $font_variants,
 			),
 			'Georgia' => array(
 				'family' => 'Georgia',
 				'category' => 'serif',
+				//'variants' => $font_variants,
 			),
 			'Century Gothic' => array(
 				'family' => 'Century Gothic',
 				'category' => 'sans-serif',
+				//'variants' => $font_variants,
 			),
 			'Tahoma' => array(
 				'family' => 'Tahoma',
 				'category' => 'sans-serif',
+				//'variants' => $font_variants,
 			),
 			'Arial Narrow' => array(
 				'family' => 'Arial Narrow',
 				'category' => 'sans-serif',
+				//'variants' => $font_variants,
 			),
 			'Trebuchet MS' => array(
 				'family' => 'Trebuchet MS',
 				'category' => 'sans-serif',
+				//'variants' => $font_variants,
 			),
 			'Consolas' => array(
 				'family' => 'Consolas',
 				'category' => 'sans-serif',
+				//'variants' => $font_variants,
 			),
 		);
 		return $fonts;

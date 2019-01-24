@@ -21,3 +21,19 @@
 		border-radius: 2px;
 	}
 }
+
+.color-picker-palette{
+	padding-left: 16px;
+	padding-top: 5px;
+	margin-top: 0;
+	margin-bottom: 20px;
+	overflow:hidden;
+
+	&.components-color-palette{
+		margin-right: 0;
+	}
+
+	.components-color-palette__clear{
+		display: none;
+	}
+}
