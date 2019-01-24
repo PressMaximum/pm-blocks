@@ -1,4 +1,10 @@
 .background-control{
+	> .control-label{
+		display:block;
+		margin-bottom: 10px;
+		font-weight: 500;
+    	color: #191E24;
+	}
 	.bg-image{
 		margin-bottom: 10px;
 	}

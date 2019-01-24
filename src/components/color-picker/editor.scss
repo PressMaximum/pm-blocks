@@ -4,6 +4,9 @@
 	margin-bottom: 10px;
 	.control-label {
 		flex-basis: calc(100% - 46px);
+		font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+		font-size: 13px;
+		font-weight: 400;
 	}
 }
 
@@ -11,13 +14,17 @@
 	padding: 5px;
 	background: #fff;
 	border-radius: 3px;
-	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
 	display: inline-block;
 	cursor: pointer;
+	height: 26px;
+	width: 50px;
+	margin-right:1px;
 
 	.color-picker-preview {
-		width: 36px;
-		height: 14px;
+		display: block;
+		width: 100%;
+		height: 100%;
 		border-radius: 2px;
 	}
 }

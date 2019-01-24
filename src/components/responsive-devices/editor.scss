@@ -170,3 +170,20 @@
 		}
 	}
 }
+
+@mixin pm_mobile_editor_padding{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.post-php{
+	&.mobile{
+		.editor-writing-flow{
+			.editor-post-title{
+				@include pm_mobile_editor_padding;
+			}
+			.editor-block-list__layout{
+				@include pm_mobile_editor_padding;
+			}
+		}
+	}
+}

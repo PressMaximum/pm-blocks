@@ -16,19 +16,26 @@
   margin-bottom: 10px; }
   .popover-color-picker .control-label {
     -ms-flex-preferred-size: calc(100% - 46px);
-        flex-basis: calc(100% - 46px); }
+        flex-basis: calc(100% - 46px);
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-size: 13px;
+    font-weight: 400; }
 
 .color-picker-wrap {
   padding: 5px;
   background: #fff;
   border-radius: 3px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
   display: inline-block;
-  cursor: pointer; }
+  cursor: pointer;
+  height: 26px;
+  width: 50px;
+  margin-right: 1px; }
   .color-picker-wrap .color-picker-preview {
-    width: 36px;
-    height: 14px;
+    display: block;
+    width: 100%;
+    height: 100%;
     border-radius: 2px; }
 
 .color-picker-palette {
@@ -51,6 +58,12 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
+.fonts-control > .control-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
+
 .fonts-control .fonts-family .fonts-select-font {
   width: 100%; }
 /**
@@ -62,6 +75,12 @@
 .has-label .control-label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
+
+.bg-gradient-control > .control-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
 /**
  * #.# Common SCSS
  *
@@ -78,11 +97,15 @@
   -ms-flex-direction: row;
       flex-direction: row;
   width: 100%;
-  padding: 2px; }
+  padding: 2px 0; }
   .cssruler-control-wrap .group-input-fields > span {
     -ms-flex: 1 1 auto;
         flex: 1 1 auto;
     margin: 2px; }
+    .cssruler-control-wrap .group-input-fields > span:first-child {
+      margin-left: 0; }
+    .cssruler-control-wrap .group-input-fields > span:last-child {
+      margin-right: 0; }
     .cssruler-control-wrap .group-input-fields > span input {
       width: 100%;
       max-width: 100%; }
@@ -309,6 +332,14 @@
       max-height: initial; }
       .post-php.mobile .edit-post-visual-editor .editor-writing-flow {
         max-height: 760px; } }
+
+.post-php.mobile .editor-writing-flow .editor-post-title {
+  padding-left: 5px;
+  padding-right: 5px; }
+
+.post-php.mobile .editor-writing-flow .editor-block-list__layout {
+  padding-left: 5px;
+  padding-right: 5px; }
 /**
  * #.# Common SCSS
  *
@@ -335,6 +366,12 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
+.background-control > .control-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
+
 .background-control .bg-image {
   margin-bottom: 10px; }
 
@@ -358,24 +395,44 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
+.styling-control > .control-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
+
 .styling-control .my-tab-panel > .components-tab-panel__tabs {
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc; }
+  .styling-control .my-tab-panel > .components-tab-panel__tabs::after {
+    content: ' ';
+    display: table;
+    clear: both; }
   .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"] {
-    border: 1px solid #000;
-    color: #000;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    font-size: 15px;
-    padding: 3px 15px;
-    margin-right: 10px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    float: left;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin-left: .5em;
+    padding: 4px 10px;
+    font-size: 14px;
+    line-height: 24px;
     font-weight: 500;
-    cursor: pointer;
-    opacity: 0.4; }
+    background: #F3F4F6;
+    color: #555;
+    text-decoration: none;
+    white-space: nowrap; }
+    .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:hover {
+      cursor: pointer; }
     .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:focus {
       outline: 0; }
     .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:last-child {
       margin-right: 0; }
     .styling-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"].active-tab {
-      opacity: 1; }
+      border-bottom: 1px solid #fff;
+      background: #fff;
+      margin-bottom: -1px;
+      color: #444; }
 /**
  * #.# Common SCSS
  *
@@ -388,7 +445,9 @@
 
 .accordion-control > .control-label {
   display: block;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
 
 .accordion-section-control .accoridion-section-header {
   background-color: #f3f4f5;
@@ -415,7 +474,7 @@
     top: 0; }
   .accordion-section-control .accoridion-section-header .control-label {
     font-size: 15px !important;
-    font-weight: bold;
+    font-weight: 500;
     color: #000; }
   .accordion-section-control .accoridion-section-header .accordion-state-icon {
     display: inline-block;
@@ -436,24 +495,59 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
 
+.bg-group-control > .control-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
+
 .bg-group-control .my-tab-panel > .components-tab-panel__tabs {
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc; }
+  .bg-group-control .my-tab-panel > .components-tab-panel__tabs::after {
+    content: ' ';
+    display: table;
+    clear: both; }
   .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"] {
-    border: 1px solid #000;
-    color: #000;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    font-size: 15px;
-    padding: 3px 15px;
-    margin-right: 10px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    float: left;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin-left: .5em;
+    padding: 4px 10px;
+    font-size: 14px;
+    line-height: 24px;
     font-weight: 500;
-    cursor: pointer;
-    opacity: 0.4; }
+    background: #F3F4F6;
+    color: #555;
+    text-decoration: none;
+    white-space: nowrap; }
+    .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:hover {
+      cursor: pointer; }
     .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:focus {
       outline: 0; }
     .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"]:last-child {
       margin-right: 0; }
     .bg-group-control .my-tab-panel > .components-tab-panel__tabs button[role="tab"].active-tab {
-      opacity: 1; }
+      border-bottom: 1px solid #fff;
+      background: #fff;
+      margin-bottom: -1px;
+      color: #444; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.border-control > .control-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
 /**
  * #.# Common SCSS
  *
@@ -472,7 +566,10 @@
   margin-bottom: 10px; }
   .box-shadow-control .group-label-color .control-label {
     -ms-flex-preferred-size: calc(100% - 46px);
-        flex-basis: calc(100% - 46px); }
+        flex-basis: calc(100% - 46px);
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-size: 13px;
+    font-weight: 400; }
   .box-shadow-control .group-label-color .popover-color-picker {
     margin-bottom: 0; }
 
@@ -485,11 +582,15 @@
   -ms-flex-direction: row;
       flex-direction: row;
   width: 100%;
-  padding: 2px; }
+  padding: 2px 0; }
   .box-shadow-control .components-base-control .components-base-control__field > span {
     -ms-flex: 1 1 auto;
         flex: 1 1 auto;
     margin: 2px; }
+    .box-shadow-control .components-base-control .components-base-control__field > span:first-child {
+      margin-left: 0; }
+    .box-shadow-control .components-base-control .components-base-control__field > span:last-child {
+      margin-right: 0; }
     .box-shadow-control .components-base-control .components-base-control__field > span input {
       width: 100%;
       max-width: 100%; }
@@ -535,6 +636,21 @@
         margin-bottom: 0; }
       .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset .components-checkbox-control__input {
         margin-right: 0 !important; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.has-label .control-label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 13px; }
+
+.typography-control > .control-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #191E24; }
 /**
  * #.# Common SCSS
  *
@@ -2822,15 +2938,9 @@ i.fipicon-angle-left:before {
 .has-label .control-label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-size: 13px; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.has-label .control-label {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-size: 13px; }
+
+.typography-dropdown-control.typography-control > .control-label {
+  font-weight: 400; }
 
 .typography-dropdown-control .components-dropdown-menu__toggle {
   width: auto;
@@ -2840,7 +2950,9 @@ i.fipicon-angle-left:before {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
-      flex-direction: row; }
+      flex-direction: row;
+  -webkit-box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2);
+          box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25, 30, 35, 0.2); }
 
 .typography-dropdown-control .components-dropdown-menu__indicator {
   content: "";

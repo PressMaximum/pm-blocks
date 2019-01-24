@@ -46,7 +46,7 @@ registerBlockType( 'pm-blocks/test-components-colorpicker', {
 					</PanelBody>
 				</InspectorControls>
 
-				<p>Test all components</p>
+				<p>Test ColorPicker with defined Palette</p>
 			</div>
 		);
 	},
@@ -54,7 +54,7 @@ registerBlockType( 'pm-blocks/test-components-colorpicker', {
 	save: function( props ) {
 		return (
 			<div className={ props.className }>
-				<p>Test all components</p>
+				<p>Test ColorPicker with defined Palette</p>
 			</div>
 		);
 	},

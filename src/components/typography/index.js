@@ -1,5 +1,6 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
+import './editor.scss';
 import PMHelper from '../../helper/helper.js';
 const pmHelper = new PMHelper();
 import FontsControl from "../fonts/index";

@@ -1,4 +1,9 @@
 .typography-dropdown-control{
+	&.typography-control{
+		> .control-label{
+			font-weight: 400;
+		}
+	}
 	.components-dropdown-menu__toggle{
 		width: auto;
 		margin: 0;
@@ -6,6 +11,8 @@
 		border: 1px solid transparent;
 		display: flex;
 		flex-direction: row;
+
+		box-shadow: inset 0 0 0 1px #e2e4e7, inset 0 0 0 2px #fff, 0 1px 1px rgba(25,30,35,.2);
 	}
 	.components-dropdown-menu__indicator{
 		content: "";
