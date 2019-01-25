@@ -1,11 +1,8 @@
 /**
  * External Dependencies
  */
-
 import PMHelper from '../../helper/helper.js';
 const pmHelper = new PMHelper();
-
-
 /**
  * WordPress Dependencies
  */

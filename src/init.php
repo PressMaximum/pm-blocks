@@ -142,7 +142,7 @@ add_action(
 					'attributes'      => array(
 						'numberPosts'  => array(
 							'type' => 'string',
-							'default' => -1
+							'default' => -1,
 						),
 						'tweetsent' => array(
 							'type' => 'string',

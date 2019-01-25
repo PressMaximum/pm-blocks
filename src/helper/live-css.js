@@ -1106,11 +1106,11 @@ class PMLiveCSS {
 					}
 					if( this.definedNotEmpty( targetCSSData.responsive.mobile ) ) {
 						cssMobile.push( `${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
-						cssAll.push( `.post-php.mobile ${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
+						cssAll.push( `.pm-match-mobile ${targetSelectorKey} { ${targetCSSData.responsive.mobile} }` );
 					}
 					if( this.definedNotEmpty( targetCSSData.responsive.tablet ) ) {
 						cssTablet.push( `${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
-						cssAll.push( `.post-php.tablet ${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
+						cssAll.push( `.pm-match-tablet ${targetSelectorKey} { ${targetCSSData.responsive.tablet} }` );
 					}
 				}
 			}

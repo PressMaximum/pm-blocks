@@ -225,11 +225,11 @@ class ResponsiveDevices extends Component {
 		let listDeviceClass = [];
 		pmHelper.map( listDevice, (val, index) => {
 			if( !pmHelper.isUndefined(val.name) ) {
-				listDeviceClass.push( val.name );
+				listDeviceClass.push( 'pm-match-' + val.name );
 			}
 		});
 		bodyClassList.remove( ...listDeviceClass);
-		bodyClassList.add(value);
+		bodyClassList.add( 'pm-match-' + value);
 
 		// Try toggle all tabs to one device.
 		let deviceBtnClass = '.cssruler-'+value+'-tab';
