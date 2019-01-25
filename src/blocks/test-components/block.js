@@ -143,7 +143,7 @@ registerBlockType( 'pm-blocks/test-components', {
 
 				<TypographyControl value={typography} label={__("Typography")} onTypographyChange={(new_value) => {setAttributes({typography:new_value});}}/>
 
-				<TypographyDropdownControl value={typography_dropdown} label={__("Typography Dropdown")} onTypographyDropdownChange={(new_value) => {setAttributes({typography_dropdown:new_value});}}/>
+				<TypographyDropdownControl value={typography_dropdown} label={__("Typography Dropdown")} onTypographyDropdownChange={(new_value) => {setAttributes({typography_dropdown:new_value}); console.log('Dropdown typo: ', new_value); }}/>
 			</div>
 		);
 		

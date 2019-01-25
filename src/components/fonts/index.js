@@ -68,39 +68,47 @@ class FontsControl extends Component {
 				let selected_value = option_target.value;
 				let selected_options = option_target.options;
 				let selected_index = option_target.selectedIndex;
-				let selected_group = selected_options[
-					selected_index
-				].parentNode.getAttribute("data-type");
-				let get_font_data = this.state.list_fonts[selected_group][
-					"fonts"
-				];
-				let font_data = get_font_data[selected_value];
-				
-				if ("undefined" !== typeof font_data.variants) {
-					this.setState({
-						list_variants: font_data.variants
-					});
-					if( '' !== font_data.variants && font_data.variants.length > 0 ) {
-						changed_value.variant = font_data.variants[0];
-					}
-				} else {
-					this.setState({
-						list_variants: []
-					});
-					changed_value.variant = 'normal';
-				}
+				let support_value = [ '', 'inherit', 'initial', 'unset' ];
+				let input_family, selected_group = '';
 
-				if ("undefined" !== typeof font_data.subsets) {
-					this.setState({
-						list_subsets: font_data.subsets
-					});
+				if( support_value.includes( selected_value ) ) {
+					input_family = selected_value;
 				} else {
-					this.setState({
-						list_subsets: []
-					});
+					selected_group = selected_options[
+						selected_index
+					].parentNode.getAttribute("data-type");
+					let get_font_data = this.state.list_fonts[selected_group][
+						"fonts"
+					];
+					let font_data = get_font_data[selected_value];
+					
+					if ("undefined" !== typeof font_data.variants) {
+						this.setState({
+							list_variants: font_data.variants
+						});
+						if( '' !== font_data.variants && font_data.variants.length > 0 ) {
+							changed_value.variant = font_data.variants[0];
+						}
+					} else {
+						this.setState({
+							list_variants: []
+						});
+						changed_value.variant = '';
+					}
+
+					if ("undefined" !== typeof font_data.subsets) {
+						this.setState({
+							list_subsets: font_data.subsets
+						});
+					} else {
+						this.setState({
+							list_subsets: []
+						});
+					}
+					input_family = font_data.family;
+					
 				}
-				
-				changed_value.family = font_data.family;
+				changed_value.family = input_family;
 				changed_value.style = '';
 				changed_value.subsets = [];
 				changed_value.font_type = selected_group;
@@ -179,6 +187,12 @@ class FontsControl extends Component {
 							})
 						}
 					>
+						<optgroup label={ __( "Default Property" ) } data-type='default_property'>
+							<option value="">{ __( "Default" ) }</option>
+							<option value="inherit">{ __( "Inherit" ) }</option>
+							<option value="initial">{ __( "Initial" ) }</option>
+						</optgroup>
+						
 						{pmHelper.mapObject(fontsList, (option, index) => (
 							<optgroup label={option.title} data-type={index}>
 								{pmHelper.mapObject(option.fonts, (value, key) => (
@@ -248,8 +262,16 @@ class FontsControl extends Component {
 							label={__("Font weight")}
 							value={this.state.variant}
 							options={[
+								{ label: __("Default"), value: "" },
+								{ label: __("100"), value: "100" },
+								{ label: __("200"), value: "200" },
+								{ label: __("300"), value: "300" },
 								{ label: __("Normal"), value: "normal" },
-								{ label: __("Bold"), value: "bold" },
+								{ label: __("500"), value: "500" },
+								{ label: __("600"), value: "600" },
+								{ label: __("700"), value: "700" },
+								{ label: __("800"), value: "800" },
+								{ label: __("900"), value: "900" },
 								{ label: __("Inherit"), value: "inherit" },
 								{ label: __("Initial"), value: "initial" },
 								{ label: __("Unset"), value: "unset" },
@@ -265,6 +287,7 @@ class FontsControl extends Component {
 							label={__("Font style")}
 							value={this.state.style}
 							options={[
+								{ label: __("Default"), value: "" },
 								{ label: __("Normal"), value: "normal" },
 								{ label: __("Italic"), value: "italic" },
 								{ label: __("Oblique"), value: "oblique" },

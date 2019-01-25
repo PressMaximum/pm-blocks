@@ -109,14 +109,17 @@
     .cssruler-control-wrap .group-input-fields > span input {
       width: 100%;
       max-width: 100%; }
-    .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button {
-      padding: 4px; }
-      .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button.active, .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button.active:hover {
-        background: #000;
-        color: #fff;
-        border: none;
-        -webkit-box-shadow: none !important;
-                box-shadow: none !important; }
+    .cssruler-control-wrap .group-input-fields > span.toggle_value_together {
+      -ms-flex: none;
+          flex: none; }
+      .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button {
+        padding: 4px; }
+        .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button.active, .cssruler-control-wrap .group-input-fields > span.toggle_value_together .components-icon-button.active:hover {
+          background: #000;
+          color: #fff;
+          border: none;
+          -webkit-box-shadow: none !important;
+                  box-shadow: none !important; }
 /**
  * #.# Common SCSS
  *
@@ -206,6 +209,10 @@
     .pm-match-mobile .edit-post-visual-editor .editor-writing-flow .editor-block-list__layout {
       padding-left: 5px;
       padding-right: 5px; }
+
+.pm-match-tablet .edit-post-layout__metaboxes,
+.pm-match-mobile .edit-post-layout__metaboxes {
+  margin-top: 0; }
 /**
  * #.# Common SCSS
  *
@@ -460,7 +467,11 @@
     .box-shadow-control .components-base-control .components-base-control__field > span input {
       width: 100%;
       max-width: 100%; }
+      .box-shadow-control .components-base-control .components-base-control__field > span input[type="checkbox"] {
+        width: auto; }
     .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset {
+      -ms-flex: none;
+          flex: none;
       position: relative; }
       .box-shadow-control .components-base-control .components-base-control__field > span.boxshadow_inset::after {
         content: attr(data-tooltip);

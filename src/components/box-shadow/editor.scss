@@ -39,10 +39,14 @@
 				input {
 					width: 100%;
 					max-width: 100%;
+
+					&[type="checkbox"] {
+						width: auto;
+					}
 				}
 
 				&.boxshadow_inset {
-					
+					flex:none;
 
 					position: relative;
 					&::after {
