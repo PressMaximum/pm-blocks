@@ -130,3 +130,39 @@ add_action( 'enqueue_block_editor_assets', 'pm_blocks_cgb_editor_assets' );
 
 
 
+add_action(
+	'plugins_loaded',
+	function () {
+		if ( function_exists( 'register_block_type' ) ) {
+			// Hook server side rendering into render callback.
+			register_block_type(
+				'pm-blocks/advance-posts',
+				array(
+					'render_callback' => 'pm_blocks_render_advance_posts',
+					'attributes'      => array(
+						'numberPosts'  => array(
+							'type' => 'string',
+							'default' => -1
+						),
+						'tweetsent' => array(
+							'type' => 'string',
+						),
+						'button'    => array(
+							'type'  => 'string',
+							'default' => 'Tweet',
+						),
+						'theme'  => array(
+							'type'  => 'boolean',
+							'default' => false,
+						),
+					),
+				)
+			);
+		}
+	}
+);
+
+function pm_blocks_render_advance_posts( $attr ) {
+	echo "<p>Render Advance Posts</p>";
+}
+

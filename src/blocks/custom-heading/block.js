@@ -3,7 +3,7 @@ import './editor.scss';
 
 import TypographyDropdownControl from '../../components/typography-dropdown/index';
 import CustomHeadingToolbar from './heading-toolbar';
-import TypographyControl from '../../components/typography/index';
+
 import StylingControl from '../../components/styling/index';
 import ColorPickerControl from '../../components/color-picker/index';
 ;
@@ -78,13 +78,13 @@ registerBlockType( 'pm-blocks/block-my-heading', {
 			<div className={`block-custom-heading ${ props.className }`} id={`block-${uniqueID}`}>
 				<Fragment>
 					<BlockControls>
-						<CustomHeadingToolbar minLevel={ 2 } maxLevel={ 5 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+						
 						<TypographyDropdownControl/>
 					</BlockControls>
 					<InspectorControls>
 						<PanelBody title={ __( 'Heading Settings' ) }>
 							<p>{ __( 'Level' ) }</p>
-							<CustomHeadingToolbar minLevel={ 1 } maxLevel={ 7 } selectedLevel={ level } onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) } />
+							
 							<p>{ __( 'Text Alignment' ) }</p>
 							<AlignmentToolbar
 								value={ align }

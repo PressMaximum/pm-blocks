@@ -1,7 +1,10 @@
 /**
  * External Dependencies
  */
-import { omit, noop, includes } from 'lodash';
+
+import PMHelper from '../../helper/helper.js';
+const pmHelper = new PMHelper();
+
 
 /**
  * WordPress Dependencies
@@ -60,7 +63,7 @@ class NavigableContainerControl extends Component {
 		}
 
 		const { getFocusableContext } = this;
-		const { cycle = true, eventToOffset, onNavigate = noop, stopNavigationEvents } = this.props;
+		const { cycle = true, eventToOffset, onNavigate, stopNavigationEvents } = this.props;
 
 		const offset = eventToOffset( event );
 
@@ -100,15 +103,17 @@ class NavigableContainerControl extends Component {
 
 		// Disable reason: Assumed role is applied by parent via props spread.
 		/* eslint-disable jsx-a11y/no-static-element-interactions */
+		let navProps = pmHelper.omitKeys( props, [
+			'stopNavigationEvents',
+			'eventToOffset',
+			'onNavigate',
+			'cycle',
+			'onlyBrowserTabstops',
+		]);
+
 		return (
 			<div ref={ this.bindContainer }
-				{ ...omit( props, [
-					'stopNavigationEvents',
-					'eventToOffset',
-					'onNavigate',
-					'cycle',
-					'onlyBrowserTabstops',
-				] ) }
+				{ ...navProps }
 				onKeyDown={ this.onKeyDown }
 				onFocus={ this.onFocus }>
 				{ children }
@@ -137,9 +142,9 @@ export class NavigableMenuControl extends Component {
 				previous = [ LEFT, UP ];
 			}
 
-			if ( includes( next, keyCode ) ) {
+			if ( next.includes( keyCode ) ) {
 				return 1;
-			} else if ( includes( previous, keyCode ) ) {
+			} else if ( previous.includes( keyCode ) ) {
 				return -1;
 			}
 		};

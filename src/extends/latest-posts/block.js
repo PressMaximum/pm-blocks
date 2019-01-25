@@ -19,9 +19,6 @@ const {
 	Fragment,
 } = wp.element;
 
-const {
-	isEmpty, isUndefined
-} = lodash;
 const registerCoreHeadingAttributes = ( settings, name ) => {
 	if ( 'core/latest-posts' === name ) {
 		settings.attributes = Object.assign( settings.attributes, {

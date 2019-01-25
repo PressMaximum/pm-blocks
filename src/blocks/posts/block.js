@@ -8,7 +8,7 @@ import ColorPickerControl from '../../components/color-picker/index';
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { isUndefined, pickBy } = lodash;
+
 const { Component, Fragment } = wp.element;
 
 const {
@@ -318,16 +318,13 @@ registerBlockType( 'pm-blocks/advance-posts', {
 			category,
 		} = props.attributes;
 
-		const advancePostsQuery = pickBy(
-			{
-				categories: category,
-				order,
-				orderby: orderBy,
-				//per_page: numberPosts
-				per_page: 2
-			},
-			value => !isUndefined(value)
-		);
+		const advancePostsQuery = {
+			categories: category,
+			order,
+			orderby: orderBy,
+			//per_page: numberPosts
+			per_page: 2
+		};
 
 		const categoriesListQuery = {
 			per_page: 99

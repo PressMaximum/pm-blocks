@@ -23,9 +23,7 @@ const {
 	renderToString
 } = wp.element;
 
-const {
-	isEmpty, isUndefined
-} = lodash;
+
 const registerCoreHeadingAttributes = ( settings, name ) => {
 	if ( 'core/heading' === name ) {
 		settings.attributes = Object.assign( settings.attributes, {
