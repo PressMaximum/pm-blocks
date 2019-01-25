@@ -43,7 +43,6 @@ class FontsControl extends Component {
 						list_subsets: saved_font_data['subsets'],
 					});
 				}
-				console.log('Result: ', result);
 			},
 			error => {
 				console.log(__("Fail to load list fonts"));
@@ -88,7 +87,7 @@ class FontsControl extends Component {
 					this.setState({
 						list_variants: []
 					});
-					changed_value.variant = '';
+					changed_value.variant = 'normal';
 				}
 
 				if ("undefined" !== typeof font_data.subsets) {
@@ -244,23 +243,42 @@ class FontsControl extends Component {
 						}
 					/>
 				) : (
-					<SelectControl
-						label={__("Font style")}
-						value={this.state.style}
-						options={[
-							{ label: __("Normal"), value: "normal" },
-							{ label: __("Italic"), value: "italic" },
-							{ label: __("Oblique"), value: "oblique" },
-							{ label: __("Initial"), value: "initial" },
-							{ label: __("Inherit"), value: "inherit" }
-						]}
-						onChange={new_value =>
-							this.onChangeHandler({
-								key: "style",
-								value: new_value
-							})
-						}
-					/>
+					<div>
+						<SelectControl
+							label={__("Font weight")}
+							value={this.state.variant}
+							options={[
+								{ label: __("Normal"), value: "normal" },
+								{ label: __("Bold"), value: "bold" },
+								{ label: __("Inherit"), value: "inherit" },
+								{ label: __("Initial"), value: "initial" },
+								{ label: __("Unset"), value: "unset" },
+							]}
+							onChange={new_value =>
+								this.onChangeHandler({
+									key: "variant",
+									value: new_value
+								})
+							}
+						/>
+						<SelectControl
+							label={__("Font style")}
+							value={this.state.style}
+							options={[
+								{ label: __("Normal"), value: "normal" },
+								{ label: __("Italic"), value: "italic" },
+								{ label: __("Oblique"), value: "oblique" },
+								{ label: __("Initial"), value: "initial" },
+								{ label: __("Inherit"), value: "inherit" }
+							]}
+							onChange={new_value =>
+								this.onChangeHandler({
+									key: "style",
+									value: new_value
+								})
+							}
+						/>
+					</div>
 				)}
 			</div>
 		);

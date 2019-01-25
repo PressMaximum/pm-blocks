@@ -39,7 +39,7 @@ registerBlockType( 'pm-blocks/test-live-css-fonts', {
 			<div className={ props.className }>
 				<InspectorControls>
 					<PanelBody title={ __( 'Fonts Settings' ) }>
-						<FontsControl value={fonts} onFontsChange={(new_value) => {setAttributes({fonts:new_value});  }}/>
+						<FontsControl value={fonts} onFontsChange={(new_value) => {setAttributes({fonts:new_value}); console.log('font value: ', new_value) }}/>
 						<RangeControl
 							label="Height"
 							value={ divHeight }

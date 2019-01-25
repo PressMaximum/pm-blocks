@@ -362,6 +362,10 @@ class PMLiveCSS {
 				if( this.definedNotEmpty( fontData.style ) ){ 
 					fontCSS += `font-style:${fontData.style};`;
 				}
+
+				if( !pmHelper.isUndefined( fontData.variant ) && '' !== fontData.variant ){ 
+					fontCSS += `font-weight:${fontData.variant};`;
+				}
 			}
 		}
 

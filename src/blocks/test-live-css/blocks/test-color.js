@@ -35,7 +35,7 @@ registerBlockType( 'pm-blocks/test-live-css-color', {
 		const {
 			setAttributes
 		} = props;
-		const { color, divHeight } = props.attributes;
+		const { color, bgColor, divHeight } = props.attributes;
 		
 		
 		return (
@@ -43,7 +43,7 @@ registerBlockType( 'pm-blocks/test-live-css-color', {
 				<InspectorControls>
 					<PanelBody title={ __( 'Color Settings' ) }>
 						<ColorPickerControl label={__("Color")} value={color} onColorChangeComplete={(new_color) => setAttributes({color: new_color})} />
-						<ColorPickerControl label={__("Background color")} value={color} onColorChangeComplete={(new_color) => setAttributes({bgColor: new_color})} />
+						<ColorPickerControl label={__("Background color")} value={bgColor} onColorChangeComplete={(new_color) => setAttributes({bgColor: new_color})} />
 						<RangeControl
 							label="Height"
 							value={ divHeight }

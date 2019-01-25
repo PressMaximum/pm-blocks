@@ -2929,6 +2929,12 @@ i.fipicon-angle-left:before {
 
 .rfipdropdown--bluegrey .rfipsearch input {
   border-radius: 0 !important; }
+
+.rfip {
+  margin-left: 0; }
+
+.iconpicker-control > .control-label {
+  margin-right: 10px; }
 /**
  * #.# Common SCSS
  *
