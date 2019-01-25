@@ -1,5 +1,5 @@
 const { __ } = wp.i18n;
-const { Component, Fragment } = wp.element;
+const { Component } = wp.element;
 import './editor.scss';
 const closest = require('dom-closest');
 import PMHelper from '../../helper/helper.js';
@@ -17,6 +17,7 @@ class TypographyDropdownControl extends Component {
 		}
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 		this.openPopover = this.openPopover.bind(this);
+		this.onClickOutside = this.onClickOutside.bind(this);
 	}
 
 	onChangeHandler(data) {
@@ -27,17 +28,27 @@ class TypographyDropdownControl extends Component {
 
 	openPopover( e ) {
 		let target = e.target;
-		let btnTarget = closest(target, 'button.components-dropdown-menu__toggle');
-		console.log('target: ', btnTarget);
-		if ( btnTarget.classList.contains( 'click-to-open' ) ) {
-			btnTarget.classList.remove('click-to-open');
-			btnTarget.classList.add('click-to-close');
-			this.setState( { isOpen: true } );
-		} else {
-			btnTarget.classList.remove('click-to-close');
-			btnTarget.classList.add('click-to-open');
-			this.setState( { isOpen: false } );
+		let targetTagName = target.nodeName;
+		let btnTarget = target;
+		if( 'BUTTON' !== targetTagName.toUpperCase() ) {
+			btnTarget = closest(target, 'button.components-dropdown-menu__toggle');	
 		}
+
+		if( pmHelper.notUndefinedNull( btnTarget ) ) {
+			if ( btnTarget.classList.contains( 'click-to-open' ) ) {
+				btnTarget.classList.remove('click-to-open');
+				btnTarget.classList.add('click-to-close');
+				this.setState( { isOpen: true } );
+			} else {
+				btnTarget.classList.remove('click-to-close');
+				btnTarget.classList.add('click-to-open');
+				this.setState( { isOpen: false } );
+			}
+		}
+	}
+
+	onClickOutside() {
+		this.setState( { isOpen: false } );
 	}
 	
 	render() {
@@ -73,7 +84,7 @@ class TypographyDropdownControl extends Component {
 				>
 					<span className="components-dropdown-menu__indicator" />
 					{this.state.isOpen && (
-						<Popover>
+						<Popover onClickOutside={this.onClickOutside}>
 							<div className="typography-dropdown-content">
 								<TypographyControl value={value} onTypographyChange={(new_value) => { this.onChangeHandler(new_value)}}/>
 							</div>
