@@ -41,8 +41,8 @@ registerBlockType( 'pm-blocks/test-live-css-spacing', {
 			<div className={ props.className }>
 				<InspectorControls>
 					<PanelBody title={ __( 'Spacing Settings' ) }>
-						<CSSRulerControl value={margin} onCSSRulerChange={ new_margin =>setAttributes({margin: new_margin})}/>
-						<CSSRulerControl value={padding} onCSSRulerChange={ new_padding =>setAttributes({padding: new_padding})}/>
+						<CSSRulerControl label={ "Margin" } value={margin} onCSSRulerChange={ new_margin =>setAttributes({margin: new_margin})}/>
+						<CSSRulerControl label={ "Padding" } value={padding} onCSSRulerChange={ new_padding =>setAttributes({padding: new_padding})}/>
 						<RangeControl
 							label="Height"
 							value={ divHeight }

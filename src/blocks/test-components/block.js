@@ -21,7 +21,7 @@ import StylingControl from '../../components/styling/index';
 import TypographyControl from '../../components/typography/index';
 import TypographyDropdownControl from '../../components/typography-dropdown/index';
 
-const { PanelBody } = wp.components;
+const { PanelBody, ColorPicker } = wp.components;
 
 registerBlockType( 'pm-blocks/test-components', {
 	title: __( 'PM: Test Components' ), 
@@ -46,6 +46,9 @@ registerBlockType( 'pm-blocks/test-components', {
 		},
 		border_box: {
 			type: 'object'
+		},
+		color: {
+			type: 'object',
 		},
 		color_picker: {
 			type: 'object'
@@ -91,6 +94,7 @@ registerBlockType( 'pm-blocks/test-components', {
 			box_shadow,
 			color_picker,
 			color_palette,
+			color,
 			css_ruler,
 			cssruler_devices,
 			fonts,
@@ -144,6 +148,8 @@ registerBlockType( 'pm-blocks/test-components', {
 				<TypographyControl value={typography} label={__("Typography")} onTypographyChange={(new_value) => {setAttributes({typography:new_value});}}/>
 
 				<TypographyDropdownControl value={typography_dropdown} label={__("Typography Dropdown")} onTypographyDropdownChange={(new_value) => {setAttributes({typography_dropdown:new_value}); console.log('Dropdown typo: ', new_value); }}/>
+
+				
 			</div>
 		);
 		

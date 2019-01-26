@@ -122,16 +122,12 @@ class ColorPickerControl extends Component {
 		let editorColor = wp.data.select("core/editor").getEditorSettings();
 		
 		const PMColorPicker = withState( {
-				color: value,
+				color: colorPickerVal,
 			} )( ( { color, setState } ) => {
 				return (
 					<ColorPicker
 						color={ color }
-						//onChangeComplete={ this.onChangeComplete }
-						onChangeComplete={ (value) => {
-							//setState({color: value});
-							this.props.onColorChangeComplete( { hex: value.hex, rgba: value.rgb } );
-						}}
+						onChangeComplete={ this.onChangeComplete }
 						disableAlpha={disableAlpha}
 					/>
 				);
@@ -139,7 +135,7 @@ class ColorPickerControl extends Component {
 		);
 
 		const PMColorPalette = withState( {
-				color: value.hex,
+				color: this.state.hex,
 			} )( ( { color, setState } ) => {
 				return (
 					<ColorPalette

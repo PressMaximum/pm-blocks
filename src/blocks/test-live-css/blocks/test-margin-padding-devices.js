@@ -24,41 +24,6 @@ registerBlockType( 'pm-blocks/test-live-css-spacing-devices', {
 		paddingDevices: {
 			type: 'object',
 		},
-		spacing2: {
-			type: 'object',
-		},
-		spacing3: {
-			type: 'object',
-		},
-		spacing4: {
-			type: 'object',
-		},
-		spacing5: {
-			type: 'object',
-		},
-		spacing6: {
-			type: 'object',
-		},
-		divHeight: {
-			type: 'number',
-		},
-		uniqueID: {
-			type: 'string',
-		},
-
-		rangecontrol_devices: {
-			type: 'object',
-		},
-		rangecontrol_devices2: {
-			type: 'object',
-		},
-		rangecontrol_devices3: {
-			type: 'object',
-		},
-		rangecontrol_devices4: {
-			type: 'object',
-		}
-
 	},
 	
 	edit: function( props ) {
@@ -75,16 +40,6 @@ registerBlockType( 'pm-blocks/test-live-css-spacing-devices', {
 					<PanelBody title={ __( 'Spacing Devices Settings' ) }>
 						<CSSRulerDevices label="Margin" value={marginDevices} onCSSRulerDevicesChange={ (value) => setAttributes({marginDevices: value})}/>
 						<CSSRulerDevices label="Padding" value={paddingDevices} onCSSRulerDevicesChange={ (value) => setAttributes({paddingDevices: value})}/>
-						<CSSRulerDevices label="Padding" value={spacing2} onCSSRulerDevicesChange={ (value) => setAttributes({spacing2: value})}/>
-						<CSSRulerDevices label="Padding" value={spacing3} onCSSRulerDevicesChange={ (value) => setAttributes({spacing3: value})}/>
-						<CSSRulerDevices label="Padding" value={spacing4} onCSSRulerDevicesChange={ (value) => setAttributes({spacing4: value})}/>
-						<CSSRulerDevices label="Padding" value={spacing5} onCSSRulerDevicesChange={ (value) => setAttributes({spacing5: value})}/>
-						<CSSRulerDevices label="Padding" value={spacing6} onCSSRulerDevicesChange={ (value) => setAttributes({spacing6: value})}/>
-
-						<RangeDevicesControl value={rangecontrol_devices} label={__("Range Control Devices")} onRangeDeviceChange={(new_value) => setAttributes({rangecontrol_devices: new_value}) }/>
-						<RangeDevicesControl value={rangecontrol_devices2} label={__("Range Control Devices")} onRangeDeviceChange={(new_value) => setAttributes({rangecontrol_devices2: new_value}) }/>
-						<RangeDevicesControl value={rangecontrol_devices3} label={__("Range Control Devices")} onRangeDeviceChange={(new_value) => setAttributes({rangecontrol_devices3: new_value}) }/>
-						<RangeDevicesControl value={rangecontrol_devices4} label={__("Range Control Devices")} onRangeDeviceChange={(new_value) => setAttributes({rangecontrol_devices4: new_value}) }/>
 						
 					</PanelBody>
 				</InspectorControls>
