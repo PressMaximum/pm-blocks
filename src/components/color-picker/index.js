@@ -1,12 +1,9 @@
 import './editor.scss';
-const { __ } = wp.i18n;
 const { Component } = wp.element;
 import PMHelper from '../../helper/helper.js';
 const pmHelper = new PMHelper();
-const closest = require('dom-closest');
-const { Popover, ColorPicker, ColorPalette } = wp.components;
-const { withInstanceId, withState } = wp.compose;
-
+const { Popover, ColorPicker } = wp.components;
+const { withInstanceId } = wp.compose;
 
 class ColorPickerControl extends Component {
 	constructor() {
@@ -31,46 +28,13 @@ class ColorPickerControl extends Component {
 		this.openColorPicker = this.openColorPicker.bind(this);
 		this.clickOutsidePopover = this.clickOutsidePopover.bind(this);
 		this.onChangeComplete = this.onChangeComplete.bind(this);
-		this.onPaletteChangeComplete = this.onPaletteChangeComplete.bind(this);
+		
 	}
 
 	onChangeComplete( value ) {
 		let new_color = {
 			rgba: value.rgb,
 			hex: value.hex
-		};
-		this.setState(new_color);
-		if( 'function' === typeof( this.props.onColorChangeComplete ) ) {
-			this.props.onColorChangeComplete( new_color );
-		}
-	}
-
-	maybeHexToRgba( value ) {
-		let returnValue;
-		if( !pmHelper.isUndefined( value ) && !pmHelper.isUndefined( value.r ) && !pmHelper.isUndefined( value.g ) && !pmHelper.isUndefined( value.b ) ) {
-			returnValue = value;
-			returnValue.a = 1;
-		} else {
-			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
-			returnValue = result ? {
-				r: parseInt(result[1], 16),
-				g: parseInt(result[2], 16),
-				b: parseInt(result[3], 16),
-				a: 1
-			} : {
-				r: 255,
-				g: 255,
-				b: 255,
-				a: 1
-			};
-		}
-		return returnValue;
-	}
-
-	onPaletteChangeComplete( color ) {
-		let new_color = {
-			rgba: this.maybeHexToRgba( color ),
-			hex: color
 		};
 		this.setState(new_color);
 		if( 'function' === typeof( this.props.onColorChangeComplete ) ) {
@@ -90,6 +54,7 @@ class ColorPickerControl extends Component {
 			this.setState( {isVisible: false });
 		}
 	}
+
 	clickOutsidePopover( e ) {
 		this.setState({
 			isVisible: false
@@ -119,40 +84,6 @@ class ColorPickerControl extends Component {
 			colorPickerVal = this.state.rgba;
 		}
 
-		let editorColor = wp.data.select("core/editor").getEditorSettings();
-		
-		const PMColorPicker = withState( {
-				color: value,
-			} )( ( { color, setState } ) => {
-				return (
-					<ColorPicker
-						color={ color }
-						//onChangeComplete={ this.onChangeComplete }
-						onChangeComplete={ (value) => {
-							//setState({color: value});
-							this.props.onColorChangeComplete( { hex: value.hex, rgba: value.rgb } );
-						}}
-						disableAlpha={disableAlpha}
-					/>
-				);
-			} 
-		);
-
-		const PMColorPalette = withState( {
-				color: value.hex,
-			} )( ( { color, setState } ) => {
-				return (
-					<ColorPalette
-						className="color-picker-palette editor-color-palette-control__color-palette"
-						value={ color }
-						onChange={ this.onPaletteChangeComplete }
-						colors={ editorColor.colors || {} }
-						disableCustomColors={ true }
-					/>
-				);
-			} 
-		);
-		
 		return (
 			<div className={wraperClassName} id={id} {...props}>
 				<div className="popover-color-picker">
@@ -163,10 +94,11 @@ class ColorPickerControl extends Component {
 						<div className="color-picker-preview click-to-open" onClick={ (e) => this.openColorPicker( e )} style={colorpicker_bg}></div>
 						{this.state.isVisible && (
 							<Popover id={this.uniqueID} onClickOutside={ (e) => this.clickOutsidePopover( e )}>
-								<PMColorPicker/>
-								{editorColor.colors && 
-									<PMColorPalette/>
-								}
+								<ColorPicker
+									color={ colorPickerVal }
+									onChangeComplete={ this.onChangeComplete }
+									disableAlpha={disableAlpha}
+								/>
 							</Popover>
 						)}
 					</div>
