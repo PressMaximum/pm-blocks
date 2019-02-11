@@ -3,8 +3,6 @@ class PMHelper{
 		this.objectProto = Object.prototype;
 		this.hasOwnProperty = this.objectProto.hasOwnProperty;
 		this.toString = Object.prototype.toString;
-
-		
 	}
 
 	eq(value, other) {
@@ -92,6 +90,13 @@ class PMHelper{
 			target[i] = obj[i]; 
 		} 
 		return target; 
+	}
+
+	arrayNotEmpty( arr ) {
+		if ( Array.isArray(arr) && arr.length > 0 ) {
+			return true;
+		}
+		return false;
 	}
 }
 

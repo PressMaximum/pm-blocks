@@ -1239,6 +1239,12 @@ class PMLiveCSS {
 			headTag[0].appendChild(css);
 		}
 	}
+
+	outputLiveCSS( blocks, selectedBlock ) {
+		let styles =  this.getBlockOutputCSS( blocks, selectedBlock );
+		let maybeGFontUrl = this.getGoogleFontURL();
+		let renderStyleTag = this.renderStyleTag(styles, maybeGFontUrl);
+	}
 }
 
 export default PMLiveCSS;

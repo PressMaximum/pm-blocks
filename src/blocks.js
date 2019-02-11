@@ -51,12 +51,9 @@ const MyChange = subscribe( (sub) => {
 	if (editor.hasChangedContent() && !editor.isTyping()) {
 		const blocks = editor.getBlocks();
 		const selectedBlock = editor.getSelectedBlock();
-		//console.log('all blocks changed: ', blocks);
 		let pmLiveCSS = new PMLiveCSS();
 		// Add style tag.
-		let styles =  pmLiveCSS.getBlockOutputCSS( blocks, selectedBlock );
-		let maybeGFontUrl = pmLiveCSS.getGoogleFontURL();
-		let renderStyleTag = pmLiveCSS.renderStyleTag(styles, maybeGFontUrl);
+		let outputLiveCSS =  pmLiveCSS.outputLiveCSS( blocks, selectedBlock );
 	}
 });
 
@@ -113,8 +110,8 @@ const pmBlockEditCB = createHigherOrderComponent( ( BlockEdit ) => {
 wp.hooks.addFilter( 'editor.BlockEdit', 'pm-blocks/block-edit', pmBlockEditCB );
 
 const registerCoreUniqueID = ( settings, name ) => {
-	//console.log('block name: ', name);
-	if ( pmCoreBlockWithUniqueID.includes(name) ) {
+	console.log('block name: ', name);
+	if ( pmHelper.arrayNotEmpty(pmCoreBlockWithUniqueID) && pmCoreBlockWithUniqueID.includes(name) ) {
 		settings.attributes = Object.assign( settings.attributes, {
 			uniqueID: {
 				type: 'string'
@@ -128,15 +125,17 @@ wp.hooks.addFilter( 'blocks.registerBlockType', 'pm-blocks/core-blocks/uniqueID'
 
 wp.hooks.addFilter( 'blocks.getSaveElement', 'pm-blocks/modify-get-save-content-extra-props', pmBlockGetSaveElementCB );
 function pmBlockGetSaveElementCB( element, blockType, attributes  ) {
-	if ( (blockType.name.includes( 'pm-blocks/' ) || pmCoreBlockWithUniqueID.includes(blockType.name) ) && !pmHelper.isUndefined(attributes.uniqueID) && '' !== attributes.uniqueID && null !== attributes.uniqueID ) {
-		if( pmCoreBlockWithUniqueID.includes(blockType.name) ) {
-			if( null !== element && !pmHelper.isUndefined(element) && !pmHelper.isUndefined(element.props) && !pmHelper.isUndefined( element.props.id ) ) {
-				element.props.id = undefined; // Should remove exist id to prevent expected error.
+	if( pmHelper.arrayNotEmpty(pmCoreBlockWithUniqueID) ) {
+		if ( (blockType.name.includes( 'pm-blocks/' ) || pmCoreBlockWithUniqueID.includes(blockType.name) ) && !pmHelper.isUndefined(attributes.uniqueID) && '' !== attributes.uniqueID && null !== attributes.uniqueID ) {
+			if( pmCoreBlockWithUniqueID.includes(blockType.name) ) {
+				if( null !== element && !pmHelper.isUndefined(element) && !pmHelper.isUndefined(element.props) && !pmHelper.isUndefined( element.props.id ) ) {
+					element.props.id = undefined; // Should remove exist id to prevent expected error.
+				}
 			}
+			return (
+				<div id={`block-${attributes.uniqueID}`}>{element}</div>
+			);
 		}
-		return (
-			<div id={`block-${attributes.uniqueID}`}>{element}</div>
-		);
 	}
 	return element;
 }

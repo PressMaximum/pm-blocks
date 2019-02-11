@@ -29,7 +29,7 @@ function pm_blocks_cgb_block_assets() { // phpcs:ignore
 		if ( $post->ID ) {
 			$maybe_gfont_url = get_post_meta( $post->ID, '_pm_blocks_maybe_gfont_url', true );
 			if ( ! empty( $maybe_gfont_url ) ) {
-				wp_enqueue_style( 'pm_blocks-maybe-gfont-url', esc_url( $maybe_gfont_url ) );
+				wp_enqueue_style( 'pm_blocks-maybe-gfont-url', esc_url( $maybe_gfont_url ), null, PM_BLOCKS_VERSION );
 				$css_dependency[] = 'pm_blocks-maybe-gfont-url';
 			}
 		}
@@ -37,8 +37,8 @@ function pm_blocks_cgb_block_assets() { // phpcs:ignore
 	wp_enqueue_style(
 		'pm_blocks-cgb-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		$css_dependency // Dependency to include the CSS after it.
-		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
+		$css_dependency, // Dependency to include the CSS after it.
+		PM_BLOCKS_VERSION
 	);
 
 	if ( is_single() || is_page() ) {
@@ -75,7 +75,7 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 		'pm_blocks-cgb-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ) // Version: File modification time.
+		PM_BLOCKS_VERSION
 	);
 
 	$localize_script = array(
@@ -91,7 +91,7 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 		if ( $post->ID ) {
 			$maybe_gfont_url = get_post_meta( $post->ID, '_pm_blocks_maybe_gfont_url', true );
 			if ( ! empty( $maybe_gfont_url ) ) {
-				wp_enqueue_style( 'pm_blocks-maybe-gfont-url', esc_url( $maybe_gfont_url ) );
+				wp_enqueue_style( 'pm_blocks-maybe-gfont-url', esc_url( $maybe_gfont_url ), null, PM_BLOCKS_VERSION );
 				$css_dependency[] = 'pm_blocks-maybe-gfont-url';
 			}
 		}
@@ -99,8 +99,8 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 	wp_enqueue_style(
 		'pm_blocks-cgb-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
-		$css_dependency // Dependency to include the CSS after it.
-		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
+		$css_dependency, // Dependency to include the CSS after it.
+		PM_BLOCKS_VERSION
 	);
 
 	if ( ( 'post.php' == $pagenow ) || ( get_post_type() == 'post' ) ) {
@@ -127,42 +127,3 @@ function pm_blocks_cgb_editor_assets() { // phpcs:ignore
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'pm_blocks_cgb_editor_assets' );
-
-
-
-add_action(
-	'plugins_loaded',
-	function () {
-		if ( function_exists( 'register_block_type' ) ) {
-			// Hook server side rendering into render callback.
-			register_block_type(
-				'pm-blocks/advance-posts',
-				array(
-					'render_callback' => 'pm_blocks_render_advance_posts',
-					'attributes'      => array(
-						'numberPosts'  => array(
-							'type' => 'string',
-							'default' => -1,
-						),
-						'tweetsent' => array(
-							'type' => 'string',
-						),
-						'button'    => array(
-							'type'  => 'string',
-							'default' => 'Tweet',
-						),
-						'theme'  => array(
-							'type'  => 'boolean',
-							'default' => false,
-						),
-					),
-				)
-			);
-		}
-	}
-);
-
-function pm_blocks_render_advance_posts( $attr ) {
-	echo "<p>Render Advance Posts</p>";
-}
-

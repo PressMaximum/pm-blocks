@@ -7,7 +7,7 @@ const {
 	InspectorControls,
 } = wp.editor;
 
-const { PanelBody, RangeControl } = wp.components;
+const { PanelBody } = wp.components;
 
 registerBlockType( 'pm-blocks/test-live-css-spacing-devices', {
 	title: __( 'PM CSS: Spacing Devices' ), 
@@ -24,6 +24,9 @@ registerBlockType( 'pm-blocks/test-live-css-spacing-devices', {
 		paddingDevices: {
 			type: 'object',
 		},
+		uniqueID: {
+			type: 'string',
+		}
 	},
 	
 	edit: function( props ) {
@@ -32,8 +35,6 @@ registerBlockType( 'pm-blocks/test-live-css-spacing-devices', {
 		} = props;
 		const { marginDevices, paddingDevices, divHeight, spacing2, spacing3, spacing4, spacing5, spacing6, rangecontrol_devices, rangecontrol_devices2, rangecontrol_devices3, rangecontrol_devices4 } = props.attributes;
 		
-		console.log('prop: ', props);
-
 		return (
 			<div className={ props.className }>
 				<InspectorControls>

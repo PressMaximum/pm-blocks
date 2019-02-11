@@ -11,8 +11,10 @@
  *
  * @package CGB
  */
+
 define( 'PM_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PM_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
+define( 'PM_BLOCKS_VERSION', '1.0.0' );
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
